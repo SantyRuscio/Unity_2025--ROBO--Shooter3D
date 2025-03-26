@@ -8,7 +8,7 @@ public class RotacionMouse : MonoBehaviour
     private Camera Cam;
 
     [SerializeField]
-    private float Sens = 100f ;
+    float Sens;
 
     [SerializeField] 
     private Plane groundPlane;
