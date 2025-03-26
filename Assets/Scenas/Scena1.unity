@@ -320,11 +320,11 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0668471, y: 0.009010414, z: 0.0013631426, w: 0.9977217}
-  m_LocalPosition: {x: -0.12, y: 2.5, z: -6.52}
+  m_LocalPosition: {x: -0.12, y: 4.51, z: -6.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1815911283}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -551,12 +551,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1815911283}
-  - component: {fileID: 1815911284}
   - component: {fileID: 1815911285}
   - component: {fileID: 1815911287}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,37 +569,13 @@ Transform:
   m_GameObject: {fileID: 1815911278}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.94, z: -0}
+  m_LocalPosition: {x: 0, y: 2.01, z: -0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1327075284406431338}
-  - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1815911284
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815911278}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 3.68
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1815911285
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1872,7 +1847,7 @@ Transform:
   m_GameObject: {fileID: 1810842171080619216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.91, z: 0}
+  m_LocalPosition: {x: 0.04, y: -1.56, z: 0}
   m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2453,6 +2428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1327075284406431338}
   - component: {fileID: 4938930520827573264}
+  - component: {fileID: 4938930520827573265}
   m_Layer: 0
   m_Name: character-Parcila
   m_TagString: Untagged
@@ -4918,6 +4894,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &4938930520827573265
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810842171080619216}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.31860206
+  m_Height: 1.9820951
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8075354, z: -0.01}
 --- !u!4 &4945311817855394536
 Transform:
   m_ObjectHideFlags: 0
@@ -8850,3 +8849,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 1410601995}
   - {fileID: 1815911283}
+  - {fileID: 330585546}
