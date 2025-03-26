@@ -13,9 +13,10 @@ public class MouseVideo : MonoBehaviour
     public float playerSpeed;
     private Vector2 newDireccion;
 
-    [SerializeField] private bool _grounded = true; //esto falta cambiar a FALSE CUANDO este el chequeo de si toca el piso
+    [SerializeField] private bool _grounded; //esto falta cambiar a FALSE CUANDO este el chequeo de si toca el piso
      
     [SerializeField] private float _jumpForce = 5f;
+
 
     void Start()
     {
@@ -29,8 +30,7 @@ public class MouseVideo : MonoBehaviour
         KeysMovement();
         AnimMenu();
 
-
-        if (Input.GetKeyDown(KeyCode.Space) && _grounded == true) // && => si esta en el piso es verdadero entonces entra  
+        if (Input.GetKeyDown(KeyCode.Space) && _grounded)
         {
             Jump();
         }
@@ -56,7 +56,7 @@ public class MouseVideo : MonoBehaviour
 
     void Jump()
     {
-        playerRb.AddForce(transform.up * _jumpForce, ForceMode.Impulse); //falta chequear el piso 
+        playerRb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
     public void AnimMenu()
@@ -64,4 +64,5 @@ public class MouseVideo : MonoBehaviour
         playerAnim.SetFloat("X", newDireccion.x);
         playerAnim.SetFloat("Y", newDireccion.y);
     }
+
 }
