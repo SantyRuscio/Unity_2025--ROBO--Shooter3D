@@ -12,7 +12,9 @@ public class EstadoMovimiento : MonoBehaviour
 
     float hzInput, vInput;
 
-   [SerializeField] float groundYOffset;
+    Animator playerAnim;
+
+    [SerializeField] float groundYOffset;
 
    [SerializeField] LayerMask groundMask;
 
@@ -25,6 +27,7 @@ public class EstadoMovimiento : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        playerAnim = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -32,6 +35,8 @@ public class EstadoMovimiento : MonoBehaviour
         GetDirectionAndMove();
 
         Gravity();
+
+        AnimMenu();
     }
 
 
@@ -41,7 +46,7 @@ void GetDirectionAndMove()
 
         vInput = Input.GetAxis("Vertical");
 
-        dir = transform.forward * vInput + transform.right * hzInput;
+        dir = (transform.forward * vInput + transform.right * hzInput).normalized;
 
         controller.Move(dir * VelocidadMovimiento * Time.deltaTime);
     }
@@ -60,6 +65,10 @@ void GetDirectionAndMove()
 
         controller.Move(velocity * Time.deltaTime);
     }
+    public void AnimMenu()
+    {
+        playerAnim.SetFloat("X", dir.x);
+        playerAnim.SetFloat("Y", dir.z);
+    }
 
-  
 }

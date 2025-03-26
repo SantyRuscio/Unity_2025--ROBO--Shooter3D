@@ -229,10 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2965b1ac2e3e64c89f813ab5d40938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1815911283}
-  horizontalOffset: 5
-  verticalOffset: 5
-  slerpSpeed: 5
 --- !u!114 &330585548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,7 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b5d83402adfc0468efd3c97fa6d322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelocidadMovimiento: 3
+  VelocidadMovimiento: 4.9
   dir: {x: 0, y: 0, z: 0}
   groundYOffset: 0.6
   groundMask:
