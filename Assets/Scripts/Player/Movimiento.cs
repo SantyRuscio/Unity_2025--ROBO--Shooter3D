@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MouseVideo : MonoBehaviour
+public class Movimiento : MonoBehaviour
 {
 
     private Transform playerTr;
