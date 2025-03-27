@@ -50,7 +50,12 @@ void GetDirectionAndMove()
 
         vInput = Input.GetAxisRaw("Vertical");
 
+        Vector3 direc = transform.localEulerAngles;
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+
         dir = (transform.forward * vInput + transform.right * hzInput).normalized;
+
+        transform.localEulerAngles = direc;
 
         controller.Move(dir * VelocidadMovimiento * Time.deltaTime);
     }
