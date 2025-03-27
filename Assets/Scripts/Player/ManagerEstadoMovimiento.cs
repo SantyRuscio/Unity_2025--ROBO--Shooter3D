@@ -18,7 +18,7 @@ public class EstadoMovimiento : MonoBehaviour
 
     [SerializeField] float groundYOffset;
 
-   [SerializeField] LayerMask groundMask;
+    [SerializeField] LayerMask groundMask;
 
     Vector3 spherePos;
 
@@ -31,23 +31,19 @@ public class EstadoMovimiento : MonoBehaviour
         controller = GetComponent<CharacterController>();
         playerAnim = GetComponentInChildren<Animator>();
 
-        _hasPistol = true;
+        _hasPistol = false;
     }
 
     void Update()
     {
         GetDirectionAndMove();
-
         Gravity();
-
         AnimMenu();
     }
 
-
-void GetDirectionAndMove()
+    void GetDirectionAndMove()
     {
         hzInput = Input.GetAxisRaw("Horizontal");
-
         vInput = Input.GetAxisRaw("Vertical");
 
         Vector3 direc = transform.localEulerAngles;
@@ -74,17 +70,16 @@ void GetDirectionAndMove()
 
         controller.Move(velocity * Time.deltaTime);
     }
+
     public void AnimMenu()
     {
         playerAnim.SetFloat("X", dir.x);
         playerAnim.SetFloat("Y", dir.z);
-        
         playerAnim.SetBool("HoldPistol", _hasPistol);
 
-        if(_hasPistol)
+        if (_hasPistol == true)
         {
             playerAnim.SetLayerWeight(1, 1);
         }
     }
-
 }
