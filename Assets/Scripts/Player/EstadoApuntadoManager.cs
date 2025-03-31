@@ -23,7 +23,7 @@ public class EstadoApuntadoManager : MonoBehaviour
 
         if (estadoMovimiento != null && estadoMovimiento._hasPistol)
         {
-            // Ya no hay limitación de ángulos, por lo que esta parte se elimina
+            // Ya no hay limitaciï¿½n de Angulos, por lo que esta parte se elimina
         }
     }
 
