@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Collisiones : MonoBehaviour
 {
-    public EstadoMovimiento estadoMovimiento;
+    public MovAndStamina estadoMovimiento;
     public GameObject nearItem;
     public GameObject itemPrefab;
     public Transform itemSlot;
     void Start()
     {
         {
-            estadoMovimiento = GetComponent<EstadoMovimiento>();
-            estadoMovimiento = GameObject.FindWithTag("Player").GetComponent<EstadoMovimiento>();
+            estadoMovimiento = GetComponent<MovAndStamina>();
+            estadoMovimiento = GameObject.FindWithTag("Player").GetComponent<MovAndStamina>();
         }   
     }
 
