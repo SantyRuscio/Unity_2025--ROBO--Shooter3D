@@ -5,24 +5,35 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 
-public class EnemigoSWAT : EnemigoIA
+
+public class PatrullaEnemi : EnemigoIA
 {
     private NavMeshAgent agent;
-    public Animator  animator;
-    // Start is called before the first frame update
+    public Animator animator;
+    public Transform[] WayPoints;
+    private int indice;
+    public float distanciaWayPoints;
+    private float distanciaWayPoints2;
+   
 
     private void Awake()
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
+        distanciaWayPoints2 = distanciaWayPoints * distanciaWayPoints;
     }
 
     public override void EstadoIdle()
     {
         base.EstadoIdle();
-        if (animator != null) animator.SetFloat("velocidad", 0);
+        if (animator != null) animator.SetFloat("velocidad", 1);
         if (animator != null) animator.SetBool("atacando", false);
-        agent.SetDestination(transform.position);
+
+        agent.SetDestination(WayPoints[indice].position);
+        if ((WayPoints[indice].position - transform.position).sqrMagnitude < distanciaWayPoints2)
+        {
+            indice = (indice+1)%WayPoints.Length;
+        }
     }
     public override void EstadoSeguir()
     {

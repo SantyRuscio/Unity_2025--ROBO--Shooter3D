@@ -7,12 +7,11 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
 
-    private Animator anim;
+    public Animator anim;
 
     void Start()
     {
         currentHealth = maxHealth;
-        anim = GetComponent<Animator>();
     }
 
     public void TakeDamage(float damage)
@@ -29,7 +28,8 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Enemigo muerto");
-        anim.SetBool("isDead", true); 
-        Destroy(gameObject, 2f);
+        anim.SetTrigger("Death");
+        //Destroy(gameObject); si este lo habilito no ekjecuta accion de muerte
+
     }
 }
