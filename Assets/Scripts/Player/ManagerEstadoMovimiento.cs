@@ -7,30 +7,23 @@ public class EstadoMovimiento : MonoBehaviour
     public float VelocidadMovimiento = 3f;
 
     [HideInInspector] public Vector3 dir;
+    private CharacterController controller;
+    private float hzInput, vInput;
+    private Vector3 spherePos;
+    private Vector3 velocity;
 
-    CharacterController controller;
+    [SerializeField] private float groundYOffset;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float gravity = -9.81f;
 
-    float hzInput, vInput;
-
-    Animator playerAnim;
+    private AnimacionesJugador animacionesJugador; // Referencia al nuevo script de animación
 
     public bool _hasPistol = false;
-
-    [SerializeField] float groundYOffset;
-
-    [SerializeField] LayerMask groundMask;
-
-    Vector3 spherePos;
-
-    [SerializeField] float gravity = -9.81f;
-
-    Vector3 velocity;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        playerAnim = GetComponentInChildren<Animator>();
-
+        animacionesJugador = GetComponent<AnimacionesJugador>(); // Obtener referencia al script de animación
         _hasPistol = false;
     }
 
@@ -38,7 +31,11 @@ public class EstadoMovimiento : MonoBehaviour
     {
         GetDirectionAndMove();
         Gravity();
-        AnimMenu();
+
+        if (animacionesJugador != null)
+        {
+            animacionesJugador.ActualizarAnimacion(dir, _hasPistol); // Llamamos a la animación desde el otro script
+        }
     }
 
     void GetDirectionAndMove()
@@ -59,8 +56,7 @@ public class EstadoMovimiento : MonoBehaviour
     bool IsGrounded()
     {
         spherePos = new Vector3(transform.position.x, transform.position.y - groundYOffset, transform.position.z);
-        if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
-        return false;
+        return Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask);
     }
 
     void Gravity()
@@ -69,17 +65,5 @@ public class EstadoMovimiento : MonoBehaviour
         else if (velocity.y < 0) velocity.y = -2;
 
         controller.Move(velocity * Time.deltaTime);
-    }
-
-    public void AnimMenu()
-    {
-        playerAnim.SetFloat("X", dir.x);
-        playerAnim.SetFloat("Y", dir.z);
-        playerAnim.SetBool("HoldPistol", _hasPistol);
-
-        if (_hasPistol == true)
-        {
-            playerAnim.SetLayerWeight(1, 1);
-        }
     }
 }
