@@ -8,12 +8,11 @@ public class Collisiones : MonoBehaviour
     public GameObject nearItem;
     public GameObject itemPrefab;
     public Transform itemSlot;
+
     void Start()
     {
-        {
-            estadoMovimiento = GetComponent<MovAndStamina>();
-            estadoMovimiento = GameObject.FindWithTag("Player").GetComponent<MovAndStamina>();
-        }   
+        estadoMovimiento = GetComponent<MovAndStamina>();
+        estadoMovimiento = GameObject.FindWithTag("Player").GetComponent<MovAndStamina>();
     }
 
     // Update is called once per frame
@@ -24,7 +23,6 @@ public class Collisiones : MonoBehaviour
 
     public void ItemLogic()
     {
-
         if (nearItem != null && Input.GetKeyDown(KeyCode.E))
         {
             GameObject instantiatedItem = Instantiate(itemPrefab, itemSlot.position, itemSlot.rotation);
@@ -41,13 +39,13 @@ public class Collisiones : MonoBehaviour
         }
     }
     void OnTriggerEnter(Collider other)
-     {
+    {
         if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
             Debug.Log("Hay Un Item Cera");
             nearItem = other.gameObject;
         }
-     }
+    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -57,5 +55,4 @@ public class Collisiones : MonoBehaviour
             nearItem = null ;
         }
     }
-
 }
