@@ -29,7 +29,15 @@ public class EnemyHealth : MonoBehaviour
     {
         Debug.Log("Enemigo muerto");
         anim.SetTrigger("Death");
-        //Destroy(gameObject); si este lo habilito no ekjecuta accion de muerte
+
+         // StartCoroutine(DeathAnim());
+
+         // Destroy(gameObject); 
 
     }
+    //IEnumerator DeathAnim()
+    //{
+      //  yield return WaitForSeconds(2);
+      //  Destroy(gameObject);
+   // }
 }
