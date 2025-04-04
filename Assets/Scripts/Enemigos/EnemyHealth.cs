@@ -19,7 +19,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        Debug.Log("Enemigo recibió daño. Vida restante: " + currentHealth);
+        Debug.Log("Enemigo recibiï¿½ daï¿½o. Vida restante: " + currentHealth);
 
         if (currentHealth <= 0)
         {
