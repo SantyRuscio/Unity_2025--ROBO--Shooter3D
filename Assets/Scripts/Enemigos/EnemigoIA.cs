@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemigoIA : MonoBehaviour
 {
+    public EnemyHealth enemyHealth;
+
     public Estados estado;
     public float distanceToFollow;
     public float distanceToAtack;
@@ -14,7 +16,8 @@ public class EnemigoIA : MonoBehaviour
     public Transform target;
     public float distance;
 
-    public bool vivo = true ;
+    public bool vivo = true;
+    public bool EjecutarMuerte = true;
 
     public void Awake()
     {
@@ -73,13 +76,25 @@ public class EnemigoIA : MonoBehaviour
     }
     public virtual void EstadoIdle()
     {
-        if(distance < distanceToFollow)
+        if (vivo == false)
+        {
+            CambiarEstado(Estados.muerto);
+            return;
+        }
+
+        if (distance < distanceToFollow)
         {
             CambiarEstado(Estados.seguir);
         }
     }
     public virtual void EstadoSeguir()
     {
+        if (vivo == false)
+        {
+            CambiarEstado(Estados.muerto);
+            return;
+        }
+
         if (distance < distanceToAtack)
         {
             CambiarEstado(Estados.atacar);
@@ -91,6 +106,12 @@ public class EnemigoIA : MonoBehaviour
     }
     public virtual void EstadoAtacar()
     {
+        if (vivo == false)
+        {
+            CambiarEstado(Estados.muerto);
+            return;
+        }
+
         if (distance > distanceToAtack + 0.4f)
         {
             CambiarEstado(Estados.seguir);

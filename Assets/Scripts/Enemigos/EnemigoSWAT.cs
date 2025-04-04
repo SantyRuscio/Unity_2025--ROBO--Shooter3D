@@ -7,8 +7,10 @@ using UnityEngine.AI;
 
 public class EnemigoSWAT : EnemigoIA
 {
+    public EnemyHealth   enemyHealth;
     private NavMeshAgent agent;
     public Animator  animator;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -41,13 +43,31 @@ public class EnemigoSWAT : EnemigoIA
     }
     public override void EstadoMuerte()
     {
-        base.EstadoMuerte();
-        if (animator != null)
+        if(EjecutarMuerte == true)
         {
-            animator.SetTrigger("Death");
-            animator.SetTrigger("morir"); // Asegúrate de que el Animator tiene un trigger llamado "morir"
+            EjecutarMuerte = false;
+            base.EstadoMuerte();
+
+            if (animator != null)
+            {
+                Die();
+            }
+            agent.enabled = false;
         }
-        agent.enabled = false;
+    }
+
+
+    public void Die()
+    {
+        Debug.Log("Enemigo muerto");
+        animator.SetTrigger("Death");
+        StartCoroutine(DeathAnim());
+
+    }
+    IEnumerator DeathAnim()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 
     public void matar()

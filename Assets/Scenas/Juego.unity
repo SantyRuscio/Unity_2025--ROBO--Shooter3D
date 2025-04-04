@@ -3286,6 +3286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5889fe6ea39de074e8e91c71de8768a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemigoIA: {fileID: 1354922514}
   maxHealth: 100
   anim: {fileID: 922159937}
 --- !u!195 &1354922510
@@ -3361,6 +3362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0906fb48cb0ce324abcf13f977b717eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: {fileID: 1354922509}
   estado: 0
   distanceToFollow: 5.25
   distanceToAtack: 2.98
@@ -3369,6 +3371,7 @@ MonoBehaviour:
   target: {fileID: 1815911283}
   distance: 0
   vivo: 1
+  EjecutarMuerte: 1
   animator: {fileID: 922159937}
   WayPoints:
   - {fileID: 582874008}
@@ -4764,6 +4767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b528eddaa8e51514a92c1ed59b0c5fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: {fileID: 1945662894}
   estado: 0
   distanceToFollow: 8.4
   distanceToAtack: 3.21
@@ -4772,6 +4776,8 @@ MonoBehaviour:
   target: {fileID: 1815911283}
   distance: 0
   vivo: 1
+  EjecutarMuerte: 1
+  enemyHealth: {fileID: 1945662894}
   animator: {fileID: 919132148333621106}
 --- !u!4 &1945662888
 Transform:
@@ -4846,6 +4852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5889fe6ea39de074e8e91c71de8768a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemigoIA: {fileID: 1945662887}
   maxHealth: 100
   anim: {fileID: 919132148333621106}
 --- !u!1 &1963080672
