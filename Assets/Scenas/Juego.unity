@@ -39413,7 +39413,6 @@ GameObject:
   - component: {fileID: 1815911285}
   - component: {fileID: 1815911288}
   - component: {fileID: 1815911293}
-  - component: {fileID: 1815911291}
   - component: {fileID: 1815911294}
   - component: {fileID: 1815911295}
   - component: {fileID: 1815911296}
@@ -39493,24 +39492,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 5.77}
---- !u!114 &1815911291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815911278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ccc71322c829c24986f5036bb109ed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  estadoMovimiento: {fileID: 0}
-  nearItem: {fileID: 0}
-  itemPrefab: {fileID: 2139704819636406675, guid: 62336ddf4192a9040bd123f6e870c3c1,
-    type: 3}
-  itemSlot: {fileID: 1249234311}
+  m_Center: {x: 0.01, y: 0.3, z: 5.38}
 --- !u!114 &1815911293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41565,6 +41547,7 @@ GameObject:
   - component: {fileID: 1963080675}
   - component: {fileID: 1963080674}
   - component: {fileID: 1963080673}
+  - component: {fileID: 1963080676}
   m_Layer: 7
   m_Name: DroppedPistolM11 (1)
   m_TagString: Untagged
@@ -41618,7 +41601,7 @@ SphereCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1.04
   m_Center: {x: 0.04, y: 0.12, z: 0}
 --- !u!4 &1963080675
 Transform:
@@ -41637,6 +41620,21 @@ Transform:
   - {fileID: 207125952}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 99.69202, y: -60.02899, z: -145.239}
+--- !u!114 &1963080676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963080672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccc71322c829c24986f5036bb109ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 2139704819636406675, guid: 62336ddf4192a9040bd123f6e870c3c1,
+    type: 3}
+  itemSlot: {fileID: 1249234311}
 --- !u!43 &1965364407
 Mesh:
   m_ObjectHideFlags: 0
@@ -46983,7 +46981,7 @@ GameObject:
   - component: {fileID: 3844574852046220210}
   - component: {fileID: 1350617253838430072}
   - component: {fileID: 3844574852046220211}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Modelo Medkit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

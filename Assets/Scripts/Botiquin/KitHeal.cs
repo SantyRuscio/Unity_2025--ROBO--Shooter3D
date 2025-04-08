@@ -2,37 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KitHeal : MonoBehaviour
+public class KitHeal : Item
 {
     private PlayerLife playerLife;
 
-    private void OnTriggerEnter(Collider other)
+    protected override bool CanItemBeUse()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (playerLife == null)
         {
-            playerLife = other.gameObject.GetComponent<PlayerLife>();
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected override void ItemInteraction()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (playerLife.CanRecover())
         {
-            playerLife = null;
+            RecoverPlayerHealth();
+        }
+        else
+        {
+            Debug.Log("El jugador ya tiene la vida completa");
         }
     }
 
-    private void Update()
+    protected override void ItemUpdate(Collider other, bool HasEnter)
     {
-        if (playerLife != null && Input.GetKeyDown(KeyCode.E))
+        if (other.gameObject.CompareTag("Player"))
         {
-            if (playerLife.CanRecover())
+            if (HasEnter)
             {
-                RecoverPlayerHealth();
+                playerLife = other.gameObject.GetComponent<PlayerLife>();
             }
             else
             {
-                Debug.Log("El jugador ya tiene la vida completa");
+                playerLife = null;
             }
         }
     }
