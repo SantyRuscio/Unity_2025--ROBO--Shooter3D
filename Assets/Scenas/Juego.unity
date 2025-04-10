@@ -41637,8 +41637,8 @@ MonoBehaviour:
   distanceToFollow: 8.4
   distanceToAtack: 3.21
   distanceToEscape: 20
-  autoSelectTarget: 1
-  target: {fileID: 1815911283}
+  autoSelectTarget: 0
+  target: {fileID: 1327075284406431338}
   distance: 0
   vivo: 1
   EjecutarMuerte: 1
@@ -47314,7 +47314,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d49a547cadba3ae498c86a50c7ac58e1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -52180,7 +52180,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 56665f9eba90ae44f9b4ceda7b4c2784, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
