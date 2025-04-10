@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     Rigidbody bulletRb;
 
     [SerializeField] float bulletPower = 16f;
-    [SerializeField] float lifeTime = 4f;
+    [SerializeField] float lifeTime = 10f;
 
     private float time = 0f;
 
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) // Cambiamos a OnCollisionEnter
     {
-        Debug.Log("Bala impactó contra: " + collision.gameObject.name);
+        Debug.Log("Bala impactï¿½ contra: " + collision.gameObject.name);
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        Destroy(gameObject); // La bala se destruye sin importar con qué choque.
+        Destroy(gameObject); // La bala se destruye sin importar con quï¿½ choque.
     }
 
     private void Update()
