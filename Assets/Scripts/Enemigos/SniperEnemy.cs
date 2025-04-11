@@ -5,46 +5,56 @@ using UnityEngine;
 public class SniperEnemigo : EnemigoIA
 {
     [Header("Configuración Sniper")]
-
-    public float tiempoApuntado = 1f;   
-    
-    public float velocidadDisparo = 0.3f;    
-
+    public float tiempoApuntado = 1f;
+    public float velocidadDisparo = 0.3f;
     public GameObject balaPrefab;
-
     public Transform puntoDisparo;
-
     public float fuerzaDisparo = 30f;
+    public Animator animator;
 
     private float tiempoApuntando;
-
     private bool estaApuntando;
-
-    private float tiempoEntreDisparos;  
-    
+    private float tiempoEntreDisparos;
     private float tiempoUltimoDisparo;
-
-    [SerializeField] Animator animator;
 
     private void Start()
     {
-        tiempoEntreDisparos = 1f / velocidadDisparo; 
-
+        tiempoEntreDisparos = 1f / velocidadDisparo;
         tiempoUltimoDisparo = 0f;
+    }
+
+    public override void EstadoIdle()
+    {
+        base.EstadoIdle();
+        estaApuntando = false;
+        tiempoApuntando = 0f;
+        // No se necesita cambiar animaciones, idle es por defecto
+    }
+
+    public override void EstadoSeguir()
+    {
+        base.EstadoSeguir();
+
+        if (distance < distanceToAtack)
+        {
+            CambiarEstado(Estados.atacar);
+        }
+        else
+        {   
+            CambiarEstado(Estados.idle);
+        }
     }
 
     public override void EstadoAtacar()
     {
+        base.EstadoAtacar();
         if (!vivo) return;
 
-     
+        // Girar hacia el objetivo
         Vector3 direccion = target.position - transform.position;
-
         direccion.y = 0;
-
         transform.rotation = Quaternion.LookRotation(direccion);
 
-   
         if (!estaApuntando)
         {
             estaApuntando = true;
@@ -54,47 +64,59 @@ public class SniperEnemigo : EnemigoIA
         {
             tiempoApuntando += Time.deltaTime;
 
-       
             if (tiempoApuntando >= tiempoApuntado && Time.time >= tiempoUltimoDisparo + tiempoEntreDisparos)
             {
                 Disparar();
                 tiempoUltimoDisparo = Time.time;
+                tiempoApuntando = 0f;
             }
         }
 
-     
         if (distance > distanceToAtack + 0.4f)
         {
             CambiarEstado(Estados.idle);
-
-            estaApuntando = false;
         }
     }
 
     private void Disparar()
     {
-        
-        GameObject bala = Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
+        if (animator != null)
+            animator.SetTrigger("isShooting");
 
+        GameObject bala = Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
+        bala.transform.LookAt(target.position);
         Rigidbody rb = bala.GetComponent<Rigidbody>();
 
         if (rb != null)
         {
             rb.AddForce(puntoDisparo.forward * fuerzaDisparo, ForceMode.Impulse);
-        }     
+        }
     }
 
-    public override void EstadoSeguir()
+    public override void EstadoMuerte()
     {
+        if (EjecutarMuerte)
+        {
+            EjecutarMuerte = false;
+            base.EstadoMuerte();
 
-        if (distance < distanceToAtack)
-        {
-            CambiarEstado(Estados.atacar);
+            if (animator != null)
+            {
+                animator.SetTrigger("Death");
+                StartCoroutine(DeathAnim());
+            }
         }
-        else
-        {
-            CambiarEstado(Estados.idle);
-        }
+    }
+
+    IEnumerator DeathAnim()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+    }
+
+    public void matar()
+    {
+        CambiarEstado(Estados.muerto);
     }
 }
 

@@ -18,21 +18,23 @@ public class Bullet : MonoBehaviour
         bulletRb.AddForce(transform.forward * bulletPower, ForceMode.Impulse);
     }
 
-    private void OnCollisionEnter(Collision collision) // Cambiamos a OnCollisionEnter
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Bala impact� contra: " + collision.gameObject.name);
+        Debug.Log("Bala impact� contra: " + other.gameObject.name);
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(20f);
             }
         }
 
-        Destroy(gameObject); // La bala se destruye sin importar con qu� choque.
+        Destroy(gameObject); // La bala se destruye sin importar con qu� choque. 
+
     }
+
 
     private void Update()
     {
