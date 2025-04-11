@@ -9,7 +9,6 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
 
-    public Animator anim;
 
     void Start()
     {
@@ -19,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        Debug.Log("Enemigo recibi� da�o. Vida restante: " + currentHealth);
+        Debug.Log("Enemigo recibio dano. Vida restante: " + currentHealth);
 
         if (currentHealth <= 0)
         {

@@ -28,7 +28,7 @@ public class MovAndStamina : MonoBehaviour
 
     [HideInInspector] public Vector3 dir;
 
-    CharacterController controller;
+    //CharacterController controller;
     float hzInput, vInput;
 
     Animator playerAnim;
@@ -50,7 +50,7 @@ public class MovAndStamina : MonoBehaviour
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        //controller = GetComponent<CharacterController>();
 
         playerAnim = GetComponentInChildren<Animator>();
 
@@ -86,15 +86,15 @@ public class MovAndStamina : MonoBehaviour
         dir = (transform.forward * vInput + transform.right * hzInput).normalized;
 
         transform.localEulerAngles = direc;
+        transform.position += dir * playerSpeed * Time.deltaTime;
 
-
-        controller.Move(dir * playerSpeed * Time.deltaTime);
+        //controller.Move(dir * playerSpeed * Time.deltaTime);
     }
 
     bool IsGrounded()
     {
         spherePos = new Vector3(transform.position.x, transform.position.y - groundYOffset, transform.position.z);
-        if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
+      //  if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
         return false;
     }
 
@@ -103,7 +103,7 @@ public class MovAndStamina : MonoBehaviour
         if (!IsGrounded()) velocity.y += gravity * Time.deltaTime;
         else if (velocity.y < 0) velocity.y = -2;
 
-        controller.Move(velocity * Time.deltaTime);
+       // controller.Move(velocity * Time.deltaTime);
     }
 
     void HandleSprint()

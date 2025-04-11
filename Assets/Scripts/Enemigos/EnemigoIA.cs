@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemigoIA : MonoBehaviour
 {
-    public EnemyHealth enemyHealth;
-
     public Estados estado;
     public float distanceToFollow;
     public float distanceToAtack;
@@ -41,7 +38,7 @@ public class EnemigoIA : MonoBehaviour
                 EstadoIdle();
                 break;
             case Estados.seguir:
-                transform.LookAt(target, Vector3.up);
+                //transform.LookAt(target, Vector3.up);
                 EstadoSeguir();
                 break;
             case Estados.atacar:
@@ -87,6 +84,7 @@ public class EnemigoIA : MonoBehaviour
             CambiarEstado(Estados.seguir);
         }
     }
+
     public virtual void EstadoSeguir()
     {
         if (vivo == false)

@@ -22,7 +22,9 @@ public class SniperEnemigo : EnemigoIA
 
     private float tiempoEntreDisparos;  
     
-    private float tiempoUltimoDisparo;     
+    private float tiempoUltimoDisparo;
+
+    [SerializeField] Animator animator;
 
     private void Start()
     {
