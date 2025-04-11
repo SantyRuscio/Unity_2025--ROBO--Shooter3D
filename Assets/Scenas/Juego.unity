@@ -38689,8 +38689,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756040038}
-  - component: {fileID: 1756040040}
   - component: {fileID: 1756040039}
+  - component: {fileID: 1756040041}
   m_Layer: 0
   m_Name: MedKit
   m_TagString: Untagged
@@ -38735,7 +38735,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 4.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1756040040
+--- !u!114 &1756040041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38744,9 +38744,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1756040037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db39eabb6a6555449e00a99a7887c70, type: 3}
+  m_Script: {fileID: 11500000, guid: 9980fa3d20ff1c94c9bb23fdacc07660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healAmount: 30
 --- !u!43 &1771065335
 Mesh:
   m_ObjectHideFlags: 0
@@ -40181,7 +40182,6 @@ GameObject:
   - component: {fileID: 1815911295}
   - component: {fileID: 1815911296}
   - component: {fileID: 1815911297}
-  - component: {fileID: 1815911298}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -40275,7 +40275,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   isDead: 0
-  vidaImagen: {fileID: 0}
+  vidaImagen: {fileID: 879431052}
 --- !u!114 &1815911295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40330,22 +40330,6 @@ CapsuleCollider:
   m_Height: 3.97
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1815911298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815911278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b7d6259f023f8f458449c0aadb95659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  isDead: 0
-  vidaImagen: {fileID: 879431052}
 --- !u!1 &1816239304
 GameObject:
   m_ObjectHideFlags: 0
