@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KitHeal : Item
 {
-    private PlayerLife playerLife;
+    private PlayerHealth playerLife;
 
     protected override bool CanItemBeUse()
     {
@@ -36,7 +36,7 @@ public class KitHeal : Item
         {
             if (HasEnter)
             {
-                playerLife = other.gameObject.GetComponent<PlayerLife>();
+                playerLife = other.gameObject.GetComponent<PlayerHealth>();
             }
             else
             {

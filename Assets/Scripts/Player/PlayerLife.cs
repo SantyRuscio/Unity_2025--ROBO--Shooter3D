@@ -1,69 +1,116 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PlayerLife : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float _maxLife = 100f;
-    private float _currentLife;
+    [Header("Configuración de Vida")]
+
+    public int maxHealth = 100;
+    public int currentHealth;
+    public bool isDead = false;
+
+    [Header("UI")]
+    public Image vidaImagen; 
 
     void Start()
     {
-        _currentLife = _maxLife; 
+        currentHealth = maxHealth;
+
+        UpdateHealthUI();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("TOCASTE K");
-            TakeDamage(50);
+            TakeDamage(10); // daño de prueba
+
+            Debug.Log("Vida actual: " + currentHealth);
         }
-    }
+
+        // curacion de prueba
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Heal(10);
+
+            Debug.Log("Vida actual: " + currentHealth);
+        }
+    } //Daños y curaciones de prueba
 
     public bool CanRecover()
     {
-        if (_currentLife < _maxLife)
-        { 
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return currentHealth < maxHealth;
     }
 
-    public void TakeDamage(float damage)
-    {
-        float life = _currentLife;
-        life -= damage;
 
-        ModifyLife(life);
-        CheckLife();
-    }
-
-    public void Recover()
+    public void TakeDamage(int damage)
     {
-        ModifyLife(_maxLife);
-    }
+        if (isDead) return; 
 
-    private void ModifyLife(float newLife)
-    {
-        _currentLife = newLife;
-        _currentLife = Mathf.Clamp(_currentLife, 0, _maxLife);
-    }
+        currentHealth -= damage;
+        currentHealth = Mathf.Max(0, currentHealth); 
 
-    private void CheckLife()
-    {
-        if (_currentLife <= 0)
+        UpdateHealthUI();
+
+        //chequear si murio
+        if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-    private void Die()
+    //curarse
+    public void Heal(int healAmount)
     {
-        Debug.Log("El jugador ha muerto.");
-        Destroy(gameObject);
+        currentHealth += healAmount;
+
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+        UpdateHealthUI();
+    }
+
+
+
+    public bool Heal() //del botiquin
+    {
+
+        return currentHealth < maxHealth;
+    }
+
+    public void Recover()
+    {
+        if (isDead) return;
+
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+    }
+
+    //metodo para morir
+    void Die()
+    {
+        isDead = true;
+        
+        GetComponent<MovAndStamina>().enabled = false; //desactiva el movimiento
+
+        GetComponent<CamaraSeguimiento>().enabled = false; //desactiva la camara
+
+        RestartLevel();
+    }
+
+    // reiniciar el nivel 
+    void RestartLevel()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void UpdateHealthUI()
+    {
+        if (vidaImagen != null)
+            vidaImagen.fillAmount = (float)currentHealth / maxHealth; 
+
     }
 }

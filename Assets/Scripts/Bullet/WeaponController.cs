@@ -12,15 +12,15 @@ public class WeaponController : MonoBehaviour
 
     private int remainingBullets = 500;  //  balas que se pueden disparar le puse 500 depues lo editamos mas adelanmte
     private float timeBetweenShots = 0.5f;  // Tiempo de cooldown entre disparos 
-    private float lastShotTime = 0f;  //  tiempo del último disparo
+    private float lastShotTime = 0f;  //  tiempo del ï¿½ltimo disparo
 
     void Update()
     {
-        // Solo disparar si quedan balas y ha pasado suficiente tiempo desde el último disparo
+        // Solo disparar si quedan balas y ha pasado suficiente tiempo desde el ï¿½ltimo disparo
         if (remainingBullets > 0 && Time.time >= lastShotTime + timeBetweenShots && Input.GetButtonDown("Fire1"))
         {
             Shoot();
-            lastShotTime = Time.time;  // Actualizar el tiempo del último disparo
+            lastShotTime = Time.time;  // Actualizar el tiempo del ï¿½ltimo disparo
         }
     }
 
@@ -51,7 +51,7 @@ public class WeaponController : MonoBehaviour
         // Si no quedan balas 
         if (remainingBullets <= 0)
         {
-            Debug.Log("No tienes más balas!");
+            Debug.Log("No tienes mï¿½s balas!");
         }
     }
 }
