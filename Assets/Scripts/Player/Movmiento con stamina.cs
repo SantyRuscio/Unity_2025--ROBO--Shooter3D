@@ -33,7 +33,10 @@ public class MovAndStamina : MonoBehaviour
 
     Animator playerAnim;
 
-    public bool _hasPistol = false;
+    private bool _hasPistol = false;
+    private bool _hasRifle = false;
+    private bool _hasWeapon = false;
+    private Weapon _currentWeapon;
 
     [SerializeField] float groundYOffset;
 
@@ -72,6 +75,46 @@ public class MovAndStamina : MonoBehaviour
         AnimMenu();
 
         UpdateStaminaBar();
+
+        if (_hasWeapon)
+        {
+            if (Input.GetButtonDown("Fire1"))
+                _currentWeapon.Shoot();
+
+            if(Input.GetButtonUp("Fire1"))
+                _currentWeapon.Realease();
+        }
+    }
+
+    public void GetWeapon(WeaponType weaponType, GameObject weaponprefab, Transform intanceSlot)
+    {
+        if(_hasWeapon == true)
+        {
+            // Hacer logica de reemplazar el arma
+        }
+        else
+        {
+            switch (weaponType)
+            {
+                case WeaponType.Pistol:
+                    _hasPistol = true;
+                    break;
+
+                case WeaponType.Rifle:
+                    _hasRifle = true;
+                    break;
+
+                default:
+                    break;
+            }
+
+            GameObject instantiatedItem = Instantiate(weaponprefab, intanceSlot.position, intanceSlot.rotation);
+            instantiatedItem.transform.parent = intanceSlot;
+
+            _currentWeapon = instantiatedItem.GetComponent<Weapon>();
+
+            _hasWeapon = true;
+        }
     }
 
     void GetDirectionAndMove()
@@ -94,7 +137,7 @@ public class MovAndStamina : MonoBehaviour
     bool IsGrounded()
     {
         spherePos = new Vector3(transform.position.x, transform.position.y - groundYOffset, transform.position.z);
-      //  if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
+     //  if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
         return false;
     }
 
@@ -155,11 +198,13 @@ public class MovAndStamina : MonoBehaviour
     {
         playerAnim.SetFloat("X", dir.x);
         playerAnim.SetFloat("Y", dir.z);
-        playerAnim.SetBool("HoldPistol", _hasPistol);
 
-        if (_hasPistol == true)
+        if (_hasWeapon == true)
         {
             playerAnim.SetLayerWeight(1, 1);
+
+            playerAnim.SetBool("HoldPistol", _hasPistol);
+            playerAnim.SetBool("HoldRifle", _hasRifle);
         }
     }
 }

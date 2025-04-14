@@ -1,0 +1,62 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class Weapon : MonoBehaviour
+{
+    [SerializeField] protected Transform _shootSpawn;
+
+    [SerializeField] protected GameObject _bulletPrefab;
+
+    //Balas que se pueden disparar le puse 500 depues lo editamos mas adelanmte
+    [SerializeField] protected int _remainingBullets = 500;
+
+    //Tiempo de cooldown entre disparos
+    [SerializeField] protected float _timeBetweenShots = 0.5f;
+
+    public abstract void Shoot();
+    public abstract void Realease();
+
+    protected abstract bool CheckCanShoot();
+
+    protected void InstanciateBullet()
+    {
+        // Crear la bala
+        Instantiate(_bulletPrefab, _shootSpawn.position, Quaternion.LookRotation(GetShootDirection()));
+
+        RemoveBullet();
+    }
+
+    private Vector3 GetShootDirection()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        Vector3 shootDirection;
+        if (Physics.Raycast(ray, out hit))
+        {
+            shootDirection = (hit.point - _shootSpawn.position).normalized;
+        }
+        else
+        {
+            shootDirection = Camera.main.transform.forward;
+        }
+
+        return shootDirection;
+    }
+
+    protected void RemoveBullet()
+    {
+        // resta las balas restantes
+        _remainingBullets--;
+
+        // Mostrar las balas restantes en consola checkeo
+        Debug.Log("Balas restantes: " + _remainingBullets);
+
+        // Si no quedan balas 
+        if (_remainingBullets <= 0)
+        {
+            Debug.Log("No tienes mas balas!");
+        }
+    }
+}
