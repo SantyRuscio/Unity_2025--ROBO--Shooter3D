@@ -580,6 +580,9 @@ MonoBehaviour:
   itemPrefab: {fileID: 2139704819636406675, guid: 62336ddf4192a9040bd123f6e870c3c1,
     type: 3}
   itemSlot: {fileID: 0}
+  _PickUp: {fileID: 0}
+  Armamento: {fileID: 8300000, guid: 278b730b4e14f514dbceae5640727f36, type: 3}
+  type: 0
 --- !u!1 &8571605557847542874
 GameObject:
   m_ObjectHideFlags: 0

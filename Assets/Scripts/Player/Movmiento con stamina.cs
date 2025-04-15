@@ -18,6 +18,7 @@ public class MovAndStamina : MonoBehaviour
 
     public float stamina;
 
+
     public float staminaDrain = 20f;
 
     public float staminaRegen = 10f;
@@ -48,6 +49,9 @@ public class MovAndStamina : MonoBehaviour
 
     Vector3 velocity;
 
+    [SerializeField] public AudioSource _PickUp;
+    [SerializeField] private AudioClip PpAk47;
+    [SerializeField] private AudioClip PpM11;
 
     public Image staminaBarFill;
 
@@ -98,10 +102,12 @@ public class MovAndStamina : MonoBehaviour
             {
                 case WeaponType.Pistol:
                     _hasPistol = true;
+                    _PickUp.PlayOneShot(PpM11);
                     break;
 
                 case WeaponType.Rifle:
                     _hasRifle = true;
+                    _PickUp.PlayOneShot(PpAk47);
                     break;
 
                 default:
@@ -109,6 +115,7 @@ public class MovAndStamina : MonoBehaviour
             }
 
             GameObject instantiatedItem = Instantiate(weaponprefab, intanceSlot.position, intanceSlot.rotation);
+
             instantiatedItem.transform.parent = intanceSlot;
 
             _currentWeapon = instantiatedItem.GetComponent<Weapon>();
