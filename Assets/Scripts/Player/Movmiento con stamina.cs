@@ -127,7 +127,6 @@ public class MovAndStamina : MonoBehaviour
     void GetDirectionAndMove()
     {
         hzInput = Input.GetAxisRaw("Horizontal");
-
         vInput = Input.GetAxisRaw("Vertical");
 
         Vector3 direc = transform.localEulerAngles;
@@ -203,13 +202,15 @@ public class MovAndStamina : MonoBehaviour
 
     public void AnimMenu()
     {
-        playerAnim.SetFloat("X", dir.x);
-        playerAnim.SetFloat("Y", dir.z);
+        // Convertimos la dirección global a local antes de enviarla al Animator
+        Vector3 localDir = transform.InverseTransformDirection(dir);
+
+        playerAnim.SetFloat("X", localDir.x);
+        playerAnim.SetFloat("Y", localDir.z);
 
         if (_hasWeapon == true)
         {
             playerAnim.SetLayerWeight(1, 1);
-
             playerAnim.SetBool("HoldPistol", _hasPistol);
             playerAnim.SetBool("HoldRifle", _hasRifle);
         }
