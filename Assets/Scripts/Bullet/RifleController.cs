@@ -5,6 +5,8 @@ using UnityEngine;
 public class RifleController : Weapon
 {
     private bool _isShooting;
+    [SerializeField] public AudioSource _AkTiro;
+    [SerializeField] private AudioClip sonidoDisparo;
 
     public override void Realease()
     {
@@ -25,6 +27,7 @@ public class RifleController : Weapon
     {
         while (_isShooting)
         {
+            _AkTiro.PlayOneShot(sonidoDisparo);
             yield return new WaitForSeconds(_timeBetweenShots);
 
             InstanciateBullet();

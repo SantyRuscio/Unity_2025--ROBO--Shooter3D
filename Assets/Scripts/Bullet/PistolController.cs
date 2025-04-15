@@ -7,11 +7,15 @@ public class PistolController : Weapon
     //Tiempo del ultimo disparo
     protected float lastShotTime = 0f;
 
+    [SerializeField] public AudioSource _Pistol;
+    [SerializeField] private AudioClip sonidoDisparo;
     public override void Realease() { }
 
     public override void Shoot()
     {
         if (CheckCanShoot() == false) return;
+
+        _Pistol.PlayOneShot(sonidoDisparo);
 
         lastShotTime = Time.time;  // Actualizar el tiempo del ultimo disparo
 
