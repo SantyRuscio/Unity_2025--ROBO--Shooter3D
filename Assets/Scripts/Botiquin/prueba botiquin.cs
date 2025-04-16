@@ -19,6 +19,7 @@ public class Medkit : Item
         {
             playerHealth.Heal(healAmount);
             Debug.Log("Botiquín usado. Vida actual: " + playerHealth.currentHealth);
+
             Destroy(gameObject); // Elimina el botiquín después de usarlo
         }
     }
