@@ -18,6 +18,7 @@ public class MovAndStamina : MonoBehaviour
 
     public float stamina;
 
+
     public float staminaDrain = 20f;
 
     public float staminaRegen = 10f;
@@ -33,7 +34,10 @@ public class MovAndStamina : MonoBehaviour
 
     Animator playerAnim;
 
-    public bool _hasPistol = false;
+    private bool _hasPistol = false;
+    private bool _hasRifle = false;
+    private bool _hasWeapon = false;
+    private Weapon _currentWeapon;
 
     [SerializeField] float groundYOffset;
 
@@ -45,6 +49,9 @@ public class MovAndStamina : MonoBehaviour
 
     Vector3 velocity;
 
+    [SerializeField] public AudioSource _PickUp;
+    [SerializeField] private AudioClip PpAk47;
+    [SerializeField] private AudioClip PpM11;
 
     public Image staminaBarFill;
 
@@ -72,12 +79,54 @@ public class MovAndStamina : MonoBehaviour
         AnimMenu();
 
         UpdateStaminaBar();
+
+        if (_hasWeapon)
+        {
+            if (Input.GetButtonDown("Fire1"))
+                _currentWeapon.Shoot();
+
+            if(Input.GetButtonUp("Fire1"))
+                _currentWeapon.Realease();
+        }
+    }
+
+    public void GetWeapon(WeaponType weaponType, GameObject weaponprefab, Transform intanceSlot)
+    {
+        if(_hasWeapon == true)
+        {
+            // Hacer logica de reemplazar el arma
+        }
+        else
+        {
+            switch (weaponType)
+            {
+                case WeaponType.Pistol:
+                    _hasPistol = true;
+                    _PickUp.PlayOneShot(PpM11);
+                    break;
+
+                case WeaponType.Rifle:
+                    _hasRifle = true;
+                    _PickUp.PlayOneShot(PpAk47);
+                    break;
+
+                default:
+                    break;
+            }
+
+            GameObject instantiatedItem = Instantiate(weaponprefab, intanceSlot.position, intanceSlot.rotation);
+
+            instantiatedItem.transform.parent = intanceSlot;
+
+            _currentWeapon = instantiatedItem.GetComponent<Weapon>();
+
+            _hasWeapon = true;
+        }
     }
 
     void GetDirectionAndMove()
     {
         hzInput = Input.GetAxisRaw("Horizontal");
-
         vInput = Input.GetAxisRaw("Vertical");
 
         Vector3 direc = transform.localEulerAngles;
@@ -94,7 +143,7 @@ public class MovAndStamina : MonoBehaviour
     bool IsGrounded()
     {
         spherePos = new Vector3(transform.position.x, transform.position.y - groundYOffset, transform.position.z);
-      //  if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
+     //  if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
         return false;
     }
 
@@ -153,13 +202,17 @@ public class MovAndStamina : MonoBehaviour
 
     public void AnimMenu()
     {
-        playerAnim.SetFloat("X", dir.x);
-        playerAnim.SetFloat("Y", dir.z);
-        playerAnim.SetBool("HoldPistol", _hasPistol);
+        // Convertimos la dirección global a local antes de enviarla al Animator
+        Vector3 localDir = transform.InverseTransformDirection(dir);
 
-        if (_hasPistol == true)
+        playerAnim.SetFloat("X", localDir.x);
+        playerAnim.SetFloat("Y", localDir.z);
+
+        if (_hasWeapon == true)
         {
             playerAnim.SetLayerWeight(1, 1);
+            playerAnim.SetBool("HoldPistol", _hasPistol);
+            playerAnim.SetBool("HoldRifle", _hasRifle);
         }
     }
 }
