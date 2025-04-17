@@ -5,16 +5,18 @@ using UnityEngine;
 public class EnemigoIA : MonoBehaviour
 {
     public Estados estado;
-    public float distanceToFollow;
-    public float distanceToAtack;
-    public float distanceToEscape;
+     public float distanceToFollow;
+     public float distanceToAtack;
+     public float distanceToEscape;
 
     public bool autoSelectTarget = false;
     public Transform target;
     public float distance;
 
     public bool vivo = true;
-    public bool EjecutarMuerte = true;
+    protected bool EjecutarMuerte = true;
+
+    public bool naziMode = false;
 
     public void Awake()
     {
@@ -79,7 +81,7 @@ public class EnemigoIA : MonoBehaviour
             return;
         }
 
-        if (distance < distanceToFollow)
+        if (distance < distanceToFollow && naziMode == true )
         {
             CambiarEstado(Estados.seguir);
         }
