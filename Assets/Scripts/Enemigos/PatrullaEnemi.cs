@@ -14,7 +14,14 @@ public class PatrullaEnemi : EnemigoIA
     private int indice;
     public float distanciaWayPoints;
     private float distanciaWayPoints2;
-   
+
+
+    [Header("Configuración de Ataque")]
+    public int dañoAlJugador = 10;
+    public float tiempoEntreAtaques = 2f;
+
+    private float tiempoParaProximoAtaque;
+
 
     private void Awake()
     {
@@ -44,11 +51,35 @@ public class PatrullaEnemi : EnemigoIA
     }
     public override void EstadoAtacar()
     {
-        base.EstadoAtacar();
-        if (animator != null) animator.SetFloat("velocidad", 0);
-        if (animator != null) animator.SetBool("atacando", true);
-        agent.SetDestination(transform.position);
-        transform.LookAt(target, Vector3.up);
+
+        agent.isStopped = true;
+        agent.ResetPath();
+
+
+        if (target != null)
+        {
+            Vector3 direction = (target.position - transform.position).normalized;
+            direction.y = 0;
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
+
+
+        if (Time.time >= tiempoParaProximoAtaque && distance <= distanceToAtack)
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("atacando");
+            }
+
+            AplicarDañoAlJugador();
+            tiempoParaProximoAtaque = Time.time + tiempoEntreAtaques;
+        }
+
+        if (distance > distanceToAtack + 0.5f)
+        {
+            agent.isStopped = false;
+            CambiarEstado(Estados.seguir);
+        }
     }
     public override void EstadoMuerte()
     {
@@ -84,4 +115,16 @@ public class PatrullaEnemi : EnemigoIA
         CambiarEstado(Estados.muerto);
     }
 
+    public void AplicarDañoAlJugador()
+    {
+        if (target != null)
+        {
+            PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(dañoAlJugador);
+            }
+        }
+    }
 }
+
