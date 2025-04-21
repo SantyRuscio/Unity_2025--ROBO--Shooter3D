@@ -8,7 +8,7 @@ public class BulletSniper : MonoBehaviour
 
     [SerializeField] float bulletPower = 16f;
     [SerializeField] float lifeTime = 10f;
-    [SerializeField] int damageToPlayer = 20; // Cambiado a int para coincidir con PlayerHealth
+    [SerializeField] int damageToPlayer = 20; 
 
     private float time = 0f;
 
@@ -28,11 +28,11 @@ public class BulletSniper : MonoBehaviour
             PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(damageToPlayer); // Aplica daño al jugador
+                playerHealth.TakeDamage(damageToPlayer); 
             }
         }
 
-        Destroy(gameObject); // La bala se destruye sin importar con qué choque.
+        Destroy(gameObject); 
     }
 
     private void Update()
