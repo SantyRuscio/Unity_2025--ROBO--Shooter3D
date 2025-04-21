@@ -34,9 +34,9 @@ public class MovAndStamina : MonoBehaviour
 
     Animator playerAnim;
 
-    private bool _hasPistol = false;
-    private bool _hasRifle = false;
-    private bool _hasWeapon = false;
+    public bool _hasPistol = false;
+    public bool _hasRifle = false;
+    public bool _hasWeapon = false;
     private Weapon _currentWeapon;
 
     [SerializeField] float groundYOffset;
@@ -75,8 +75,6 @@ public class MovAndStamina : MonoBehaviour
         HandleSprint();
 
         Gravity();
-
-        AnimMenu();
 
         UpdateStaminaBar();
 
@@ -198,21 +196,5 @@ public class MovAndStamina : MonoBehaviour
     {
 
         staminaBarFill.fillAmount = stamina / maxStamina;
-    }
-
-    public void AnimMenu()
-    {
-        // Convertimos la dirección global a local antes de enviarla al Animator
-        Vector3 localDir = transform.InverseTransformDirection(dir);
-
-        playerAnim.SetFloat("X", localDir.x);
-        playerAnim.SetFloat("Y", localDir.z);
-
-        if (_hasWeapon == true)
-        {
-            playerAnim.SetLayerWeight(1, 1);
-            playerAnim.SetBool("HoldPistol", _hasPistol);
-            playerAnim.SetBool("HoldRifle", _hasRifle);
-        }
     }
 }

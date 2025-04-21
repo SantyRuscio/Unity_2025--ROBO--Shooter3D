@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class EnemigoSWAT : EnemigoIA
 {
-    public EnemyHealth   enemyHealth;
+  // public EnemyHealth   enemyHealth;
     private NavMeshAgent agent;
     public Animator animator;
 

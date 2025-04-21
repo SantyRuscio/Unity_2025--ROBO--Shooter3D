@@ -65190,6 +65190,9 @@ MonoBehaviour:
   staminaDrain: 20
   staminaRegen: 10
   dir: {x: 0, y: 0, z: 0}
+  _hasPistol: 0
+  _hasRifle: 0
+  _hasWeapon: 0
   groundYOffset: 0.6
   groundMask:
     serializedVersion: 2
@@ -68475,7 +68478,6 @@ MonoBehaviour:
   distance: 0
   vivo: 1
   naziMode: 0
-  enemyHealth: {fileID: 1945662894}
   animator: {fileID: 919132148333621106}
   "da\xF1oAlJugador": 10
   tiempoEntreAtaques: 1.5
@@ -81834,7 +81836,7 @@ PrefabInstance:
     - target: {fileID: 5440294601055913343, guid: 33dbbe6f92dbe1d49a8f44cd66692764,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.8
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5440294601055913343, guid: 33dbbe6f92dbe1d49a8f44cd66692764,
         type: 3}
@@ -81844,7 +81846,7 @@ PrefabInstance:
     - target: {fileID: 5440294601055913343, guid: 33dbbe6f92dbe1d49a8f44cd66692764,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 51.2
+      value: 35.5
       objectReference: {fileID: 0}
     - target: {fileID: 5440294601055913343, guid: 33dbbe6f92dbe1d49a8f44cd66692764,
         type: 3}
