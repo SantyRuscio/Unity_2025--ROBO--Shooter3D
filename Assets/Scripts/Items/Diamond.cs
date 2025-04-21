@@ -16,7 +16,7 @@ public class Diamond : Item
     {
         foreach (EnemigoIA current in enemigos)
         {
-            current.naziMode = true; 
+            current.AggresiveMode = true; 
         }
 
         Destroy(gameObject);

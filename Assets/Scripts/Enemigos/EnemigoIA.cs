@@ -16,7 +16,7 @@ public class EnemigoIA : MonoBehaviour
     public bool vivo = true;
     protected bool EjecutarMuerte = true;
 
-    public bool naziMode = false;
+    public bool AggresiveMode = false;
 
     public void Awake()
     {
@@ -81,7 +81,7 @@ public class EnemigoIA : MonoBehaviour
             return;
         }
 
-        if (distance < distanceToFollow && naziMode == true )
+        if (distance < distanceToFollow && AggresiveMode == true )
         {
             CambiarEstado(Estados.seguir);
         }
