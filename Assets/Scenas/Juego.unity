@@ -65190,6 +65190,9 @@ MonoBehaviour:
   staminaDrain: 20
   staminaRegen: 10
   dir: {x: 0, y: 0, z: 0}
+  _hasPistol: 0
+  _hasRifle: 0
+  _hasWeapon: 0
   groundYOffset: 0.6
   groundMask:
     serializedVersion: 2
