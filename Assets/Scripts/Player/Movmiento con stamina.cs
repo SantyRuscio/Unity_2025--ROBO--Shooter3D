@@ -55,9 +55,15 @@ public class MovAndStamina : MonoBehaviour
 
     public Image staminaBarFill;
 
+    //public EnemigoIA enemigoIA;
+
+    public Rigidbody rb;
+
+    [SerializeField] private EnemigoIA[] enemigos;
+
     void Start()
     {
-        //controller = GetComponent<CharacterController>();
+        rb  = GetComponent<Rigidbody>();
 
         playerAnim = GetComponentInChildren<Animator>();
 
@@ -68,12 +74,13 @@ public class MovAndStamina : MonoBehaviour
         UpdateStaminaBar();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         GetDirectionAndMove();
-
         HandleSprint();
-
+    }
+    void Update()
+    {
         Gravity();
 
         UpdateStaminaBar();
@@ -119,6 +126,13 @@ public class MovAndStamina : MonoBehaviour
             _currentWeapon = instantiatedItem.GetComponent<Weapon>();
 
             _hasWeapon = true;
+
+            // enemigoIA.AggresiveMode = true;
+
+            foreach (EnemigoIA current in enemigos)
+            {
+                current.AggresiveMode = true;
+            }
         }
     }
 
@@ -133,7 +147,7 @@ public class MovAndStamina : MonoBehaviour
         dir = (transform.forward * vInput + transform.right * hzInput).normalized;
 
         transform.localEulerAngles = direc;
-        transform.position += dir * playerSpeed * Time.deltaTime;
+        rb.MovePosition (rb.position + dir * playerSpeed * Time.deltaTime) ;
 
         //controller.Move(dir * playerSpeed * Time.deltaTime);
     }
