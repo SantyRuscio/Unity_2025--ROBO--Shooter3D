@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Diamond : Item
 {
+    private bool _isPlayerInside;
+
     [SerializeField] private EnemigoIA[] enemigos;
 
     protected override bool CanItemBeUse()
     {
-        return true;
+        return _isPlayerInside;
     }
 
     protected override void ItemInteraction()
@@ -22,5 +24,11 @@ public class Diamond : Item
         Destroy(gameObject);
     }
 
-    protected override void ItemUpdate(Collider other, bool HasEnter) {}
+    protected override void ItemUpdate(Collider other, bool HasEnter)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _isPlayerInside = HasEnter;
+        }
+    }
 }
