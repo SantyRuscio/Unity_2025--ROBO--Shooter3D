@@ -74,13 +74,13 @@ public class MovAndStamina : MonoBehaviour
         UpdateStaminaBar();
     }
 
-    private void FixedUpdate()
-    {
-        GetDirectionAndMove();
-        HandleSprint();
-    }
     void Update()
     {
+
+        GetDirectionAndMove();
+
+        HandleSprint();
+
         Gravity();
 
         UpdateStaminaBar();
@@ -147,9 +147,10 @@ public class MovAndStamina : MonoBehaviour
         dir = (transform.forward * vInput + transform.right * hzInput).normalized;
 
         transform.localEulerAngles = direc;
-        rb.MovePosition (rb.position + dir * playerSpeed * Time.deltaTime) ;
+        // rb.MovePosition (rb.position + dir * playerSpeed * Time.deltaTime) ;
 
-        //controller.Move(dir * playerSpeed * Time.deltaTime);
+        transform.position += dir * playerSpeed * Time.deltaTime;
+
     }
 
     bool IsGrounded()
