@@ -21,7 +21,7 @@ public class EnemigoSWAT : EnemigoIA
 
 
 
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
