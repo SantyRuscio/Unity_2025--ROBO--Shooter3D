@@ -23,7 +23,7 @@ public class PatrullaEnemi : EnemigoIA
     private float tiempoParaProximoAtaque;
 
 
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
         agent = GetComponent<NavMeshAgent>();
