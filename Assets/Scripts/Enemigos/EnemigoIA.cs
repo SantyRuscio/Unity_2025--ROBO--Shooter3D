@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class EnemigoIA : MonoBehaviour
     protected bool EjecutarMuerte = true;
 
     public bool AggresiveMode = false;
+
 
     public void Awake()
     {
@@ -131,6 +133,7 @@ public class EnemigoIA : MonoBehaviour
                 distance = Vector3.Distance(transform.position, target.position);
                 yield return new WaitForSeconds(0.3f);
             }
+            yield return new WaitForSeconds(0.3f); //posible solucion a crash
         }
     }
    
