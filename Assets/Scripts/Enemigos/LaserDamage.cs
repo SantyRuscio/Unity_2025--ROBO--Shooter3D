@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserDamage : MonoBehaviour
 {
-    [SerializeField] private int damageAmount = (int)20f; // Daño moderado
+    [SerializeField] private int damageAmount = (int)20f;
 
     private void OnTriggerEnter(Collider other)
     {

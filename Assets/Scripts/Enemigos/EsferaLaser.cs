@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EsferaLaser : EnemigoIA // Hereda de EnemigoIA, no de MonoBehaviour
+public class EsferaLaser : EnemigoIA 
 {
-    [Header("Configuración")]
+    [Header("Configuraciï¿½n")]
     public float velocidadRotacion = 5f;
     public GameObject[] lasers;
 
     private bool _lasersActivados;
 
-    void Start() // Añade esto para inicialización segura
+    void Start() 
     {
-        ActivarLasers(false); // Desactiva los láseres al inicio.
+        ActivarLasers(false); 
         _lasersActivados = false;
     }
 
