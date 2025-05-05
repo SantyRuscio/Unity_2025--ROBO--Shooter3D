@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,8 +17,8 @@ public class MovAndStamina : MonoBehaviour
 
     public float maxStamina = 100f;
 
-    public float stamina;
 
+    public float stamina;
 
     public float staminaDrain = 20f;
 
@@ -27,21 +28,27 @@ public class MovAndStamina : MonoBehaviour
 
     private bool isExhausted = false;
 
+    public bool puedeSaltar = false;
+
+    [SerializeField] private float fuerzaDeSalto = 5f;
+
     [HideInInspector] public Vector3 dir;
 
     //CharacterController controller;
     float hzInput, vInput;
 
     Animator playerAnim;
+ 
+    public bool _jump = false;
 
     public bool _hasPistol = false;
     public bool _hasRifle = false;
     public bool _hasWeapon = false;
     private Weapon _currentWeapon;
 
-    [SerializeField] float groundYOffset;
+    [SerializeField] private float _groundDistanceToJump = 2.4f;
 
-    [SerializeField] LayerMask groundMask;
+    [SerializeField] private LayerMask _groundMask;
 
     Vector3 spherePos;
 
@@ -84,6 +91,11 @@ public class MovAndStamina : MonoBehaviour
         Gravity();
 
         UpdateStaminaBar();
+
+        if (puedeSaltar == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            saltar();
+        }
 
         if (_hasWeapon)
         {
@@ -153,11 +165,41 @@ public class MovAndStamina : MonoBehaviour
 
     }
 
+    void saltar()
+    {
+        Debug.Log("Intentando saltar");
+
+        if (IsGrounded())
+        {
+            Debug.Log("Saltando");
+            _jump = true;
+            rb.AddForce(Vector3.up * fuerzaDeSalto, ForceMode.Impulse);
+            StartCoroutine(jumpTime());
+        }
+        else
+        {
+            Debug.Log("No está en el suelo.");
+        }
+    }
+     IEnumerator jumpTime()
+     {
+        yield return new WaitForSeconds(0.7f);
+        _jump = false;
+     }
+
+
     bool IsGrounded()
     {
-        spherePos = new Vector3(transform.position.x, transform.position.y - groundYOffset, transform.position.z);
-     //  if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
-        return false;
+        bool groundCheck = Physics.Raycast(transform.position, (transform.up * -1), _groundDistanceToJump, _groundMask);
+
+        // Visualiza la esfera en la escena para asegurarte que está donde debería
+        return groundCheck;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, (transform.up * -1) * _groundDistanceToJump);
     }
 
     void Gravity()

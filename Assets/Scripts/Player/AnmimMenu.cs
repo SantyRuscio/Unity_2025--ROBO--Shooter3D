@@ -35,6 +35,9 @@ public class PlayerAnimator : MonoBehaviour
         {
             playerAnim.SetLayerWeight(1, 0);
         }
+
+
+        playerAnim.SetBool("Jump", movScript._jump);
     }
 }
 

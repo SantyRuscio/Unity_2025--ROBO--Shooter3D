@@ -7,7 +7,12 @@ public class Diamond : Item
 {
     private bool _isPlayerInside;
 
-    [SerializeField] private EnemigoIA[] enemigos;
+    private EnemigoIA[] enemigos;
+
+    private void Start()
+    {
+        enemigos = FindObjectsOfType<EnemigoIA>();
+    }
 
     protected override bool CanItemBeUse()
     {
