@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody bulletRb;
 
-    [SerializeField] float bulletPower = 16f;
+    [SerializeField] float bulletPower = 50f;
     [SerializeField] float lifeTime = 10f;
 
     private float time = 0f;
