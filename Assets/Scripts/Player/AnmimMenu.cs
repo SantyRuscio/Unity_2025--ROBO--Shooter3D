@@ -4,40 +4,40 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    private Animator playerAnim;
-    private MovAndStamina movScript;
+    private Animator _playerAnim;
+    private WeaponPlayer _weaponPlayerScript;
+    private MovAndStamina _movAndStramina;
 
     void Start()
     {
-        playerAnim = GetComponentInChildren<Animator>(); 
-        movScript = GetComponent<MovAndStamina>(); 
+        _playerAnim = GetComponentInChildren<Animator>(); 
+        _weaponPlayerScript = GetComponent<WeaponPlayer>();
+        _movAndStramina = GetComponent<MovAndStamina>(); 
     }
 
-    void Update()
+    private void Update()
     {
         HandleAnimation();
     }
 
-    void HandleAnimation()
+    private void HandleAnimation()
     {
-        Vector3 localDir = transform.InverseTransformDirection(movScript.dir);
+        Vector3 localDir = transform.InverseTransformDirection(_movAndStramina.GetMovementDirection());
 
-        playerAnim.SetFloat("X", localDir.x);
-        playerAnim.SetFloat("Y", localDir.z);
+        _playerAnim.SetFloat("X", localDir.x);
+        _playerAnim.SetFloat("Y", localDir.z);
 
-        if (movScript._hasWeapon)
+        if (_weaponPlayerScript.GetHasWeapon())
         {
-            playerAnim.SetLayerWeight(1, 1);
-            playerAnim.SetBool("HoldPistol", movScript._hasPistol);
-            playerAnim.SetBool("HoldRifle", movScript._hasRifle);
+            _playerAnim.SetLayerWeight(1, 1);
+            _playerAnim.SetBool("HoldPistol", _weaponPlayerScript.GetHasPistol());
+            _playerAnim.SetBool("HoldRifle", _weaponPlayerScript.GetHasRifle());
         }
         else
         {
-            playerAnim.SetLayerWeight(1, 0);
+            _playerAnim.SetLayerWeight(1, 0);
         }
 
-
-        playerAnim.SetBool("Jump", movScript._jump);
+        _playerAnim.SetBool("Jump", _movAndStramina.GetIsJumping());
     }
 }
-

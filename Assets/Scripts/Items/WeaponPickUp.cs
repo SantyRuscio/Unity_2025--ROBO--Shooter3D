@@ -10,16 +10,16 @@ public enum WeaponType
 
 public class WeaponPickUp : Item
 {
-    [SerializeField] protected GameObject itemPrefab;
-    [SerializeField] protected Transform itemSlot;
+    [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private Transform itemSlot;
 
-    protected MovAndStamina estadoMovimiento;
+    private WeaponPlayer _weaponPlayer;
 
     [SerializeField] private WeaponType type;
 
     protected override bool CanItemBeUse()
     {
-        if (estadoMovimiento == null)
+        if (_weaponPlayer == null)
         {
             return false;
         }
@@ -31,7 +31,7 @@ public class WeaponPickUp : Item
 
     protected override void ItemInteraction()
     {
-        estadoMovimiento.GetWeapon(type, itemPrefab, itemSlot);
+        _weaponPlayer.GetWeapon(type, itemPrefab, itemSlot);
         Destroy(gameObject);
     }
 
@@ -41,11 +41,11 @@ public class WeaponPickUp : Item
         {
             if(HasEnter) 
             {
-                estadoMovimiento = other.gameObject.GetComponent<MovAndStamina>();
+                _weaponPlayer = other.gameObject.GetComponent<WeaponPlayer>();
             }
             else
             {
-                estadoMovimiento = null;
+                _weaponPlayer = null;
             }
         }
     }

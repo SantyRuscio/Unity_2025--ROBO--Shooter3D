@@ -1,22 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MovAndStamina : MonoBehaviour
 {
     [Header("Movimiento")]
-    public float VelocidadMovimiento = 3f;
+    [SerializeField] private float _playerSpeed = 3f;
 
-    public float MultVelocidad = 1.5f;
+    [SerializeField] private float _playerSpeedMultiplier = 1.5f;
 
-    private float playerSpeed;
+    private MovementHandle _movementHandle;
 
     [Header("Stamina")]
-
     public float maxStamina = 100f;
-
 
     public float stamina;
 
@@ -28,152 +25,90 @@ public class MovAndStamina : MonoBehaviour
 
     private bool isExhausted = false;
 
-    public bool puedeSaltar = false;
+    [Header("Jumping")]
+    private bool _canJump = false;
+    private bool _isJumping = false;
 
-    [SerializeField] private float fuerzaDeSalto = 5f;
-
-    [HideInInspector] public Vector3 dir;
-
-    //CharacterController controller;
-    float hzInput, vInput;
-
-    Animator playerAnim;
- 
-    public bool _jump = false;
-
-    public bool _hasPistol = false;
-    public bool _hasRifle = false;
-    public bool _hasWeapon = false;
-    private Weapon _currentWeapon;
+    [SerializeField] private float _jumpForcce = 5f;
 
     [SerializeField] private float _groundDistanceToJump = 2.4f;
 
     [SerializeField] private LayerMask _groundMask;
 
-    Vector3 spherePos;
+    [SerializeField] private float _gravity = -9.81f;
 
-    [SerializeField] float gravity = -9.81f;
+    private Rigidbody _rigidBody;
 
-    Vector3 velocity;
+    private Vector3 _velocity;
 
-    [SerializeField] public AudioSource _PickUp;
-    [SerializeField] private AudioClip PpAk47;
-    [SerializeField] private AudioClip PpM11;
-
+    [Header("UI")]
     public Image staminaBarFill;
 
-    //public EnemigoIA enemigoIA;
+    private WeaponPlayer _weaponPlayer;
 
-    public Rigidbody rb;
-
-    [SerializeField] private EnemigoIA[] enemigos;
-
-    void Start()
+    #region UNITY METHODS
+    private void Awake()
     {
-        rb  = GetComponent<Rigidbody>();
+        _rigidBody = GetComponent<Rigidbody>();
+        _weaponPlayer = GetComponent<WeaponPlayer>();
 
-        playerAnim = GetComponentInChildren<Animator>();
+        _movementHandle = new MovementHandle(_playerSpeed, _jumpForcce, transform, _rigidBody);
+    }
 
+    private void Start()
+    {
         stamina = maxStamina;
-
-        playerSpeed = VelocidadMovimiento;
 
         UpdateStaminaBar();
     }
 
-    void Update()
+    private void Update()
     {
-
-        GetDirectionAndMove();
+        HandleInput();
 
         HandleSprint();
 
-        Gravity();
+        HandleGravity();
 
         UpdateStaminaBar();
-
-        if (puedeSaltar == true && Input.GetKeyDown(KeyCode.Space))
-        {
-            saltar();
-        }
-
-        if (_hasWeapon)
-        {
-            if (Input.GetButtonDown("Fire1"))
-                _currentWeapon.Shoot();
-
-            if(Input.GetButtonUp("Fire1"))
-                _currentWeapon.Realease();
-        }
     }
 
-    public void GetWeapon(WeaponType weaponType, GameObject weaponprefab, Transform intanceSlot)
+    #endregion
+
+    #region GETTER METHOD
+    public Vector3 GetMovementDirection()
     {
-        if(_hasWeapon == true)
-        {
-            // Hacer logica de reemplazar el arma
-        }
-        else
-        {
-            switch (weaponType)
-            {
-                case WeaponType.Pistol:
-                    _hasPistol = true;
-                    _PickUp.PlayOneShot(PpM11);
-                    break;
-
-                case WeaponType.Rifle:
-                    _hasRifle = true;
-                    _PickUp.PlayOneShot(PpAk47);
-                    break;
-
-                default:
-                    break;
-            }
-
-            GameObject instantiatedItem = Instantiate(weaponprefab, intanceSlot.position, intanceSlot.rotation);
-
-            instantiatedItem.transform.parent = intanceSlot;
-
-            _currentWeapon = instantiatedItem.GetComponent<Weapon>();
-
-            _hasWeapon = true;
-
-            // enemigoIA.AggresiveMode = true;
-
-            foreach (EnemigoIA current in enemigos)
-            {
-                current.AggresiveMode = true;
-            }
-        }
+        return _movementHandle.GetDirection();
     }
 
-    void GetDirectionAndMove()
+    private bool IsGrounded()
     {
-        hzInput = Input.GetAxisRaw("Horizontal");
-        vInput = Input.GetAxisRaw("Vertical");
+        bool groundCheck = Physics.Raycast(transform.position, (transform.up * -1), _groundDistanceToJump, _groundMask);
 
-        Vector3 direc = transform.localEulerAngles;
-        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+        return groundCheck;
+    }
+    #endregion
 
-        dir = (transform.forward * vInput + transform.right * hzInput).normalized;
 
-        transform.localEulerAngles = direc;
-        // rb.MovePosition (rb.position + dir * playerSpeed * Time.deltaTime) ;
-
-        transform.position += dir * playerSpeed * Time.deltaTime;
-
+    #region JUMPING METHODS
+    public bool GetIsJumping()
+    {
+        return _isJumping;
+    }
+    public void ChangeCanJumpState(bool NewState)
+    {
+        _canJump = NewState;
     }
 
-    void saltar()
+    private void Jump()
     {
         Debug.Log("Intentando saltar");
 
         if (IsGrounded())
         {
             Debug.Log("Saltando");
-            _jump = true;
-            rb.AddForce(Vector3.up * fuerzaDeSalto, ForceMode.Impulse);
+            _isJumping = true;
+            _movementHandle.Jump();
             StartCoroutine(jumpTime());
         }
         else
@@ -184,17 +119,10 @@ public class MovAndStamina : MonoBehaviour
      IEnumerator jumpTime()
      {
         yield return new WaitForSeconds(0.7f);
-        _jump = false;
+        _isJumping = false;
      }
 
-
-    bool IsGrounded()
-    {
-        bool groundCheck = Physics.Raycast(transform.position, (transform.up * -1), _groundDistanceToJump, _groundMask);
-
-        // Visualiza la esfera en la escena para asegurarte que está donde debería
-        return groundCheck;
-    }
+    #endregion
 
     private void OnDrawGizmos()
     {
@@ -202,23 +130,48 @@ public class MovAndStamina : MonoBehaviour
         Gizmos.DrawLine(transform.position, (transform.up * -1) * _groundDistanceToJump);
     }
 
-    void Gravity()
+    #region HANDLE METHODS
+    private void HandleInput()
     {
-        if (!IsGrounded()) velocity.y += gravity * Time.deltaTime;
-        else if (velocity.y < 0) velocity.y = -2;
+        _movementHandle.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-       // controller.Move(velocity * Time.deltaTime);
+        if (_canJump == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+
+        if (_weaponPlayer.GetHasWeapon())
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                _weaponPlayer.GetCurrentWeapon().Shoot();
+            }
+
+            if (Input.GetButtonUp("Fire1"))
+            {
+                _weaponPlayer.GetCurrentWeapon().Realease();
+            }
+        }
     }
-
+    private void HandleGravity()
+    {
+        if (!IsGrounded())
+        {
+            _velocity.y += _gravity * Time.deltaTime;
+        }
+        else if (_velocity.y < 0)
+        {
+            _velocity.y = -2;
+        }
+    }
     void HandleSprint()
     {
-        bool isMoving = hzInput != 0 || vInput != 0;
-
+        bool isMoving = _movementHandle.IsMoving();
 
         if (Input.GetKey(KeyCode.LeftShift) && stamina > 0 && isMoving && !isExhausted)
         {
             isSprinting = true;
-            playerSpeed = VelocidadMovimiento * MultVelocidad;
+            _movementHandle.ChangeSpeed(_playerSpeed * _playerSpeedMultiplier);
 
             stamina -= staminaDrain * Time.deltaTime;
 
@@ -231,9 +184,8 @@ public class MovAndStamina : MonoBehaviour
         else
         {
             isSprinting = false;
-            playerSpeed = VelocidadMovimiento;
+            _movementHandle.ChangeSpeed(_playerSpeed);
         }
-
 
         if (!isSprinting && stamina < maxStamina)
         {
@@ -247,11 +199,10 @@ public class MovAndStamina : MonoBehaviour
 
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
     }
-
+    #endregion
 
     void UpdateStaminaBar()
     {
-
         staminaBarFill.fillAmount = stamina / maxStamina;
     }
 }

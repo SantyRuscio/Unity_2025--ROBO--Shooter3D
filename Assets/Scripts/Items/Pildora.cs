@@ -13,7 +13,7 @@ public class Pildora : Item
 
     protected override void ItemInteraction()
     {
-        _jugador.puedeSaltar = true;
+        _jugador.ChangeCanJumpState(true);
         Debug.Log("oper");
         Destroy(gameObject); 
     }
