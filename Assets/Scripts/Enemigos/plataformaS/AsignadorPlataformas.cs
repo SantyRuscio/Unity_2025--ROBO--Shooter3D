@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class AsignadorDePlataformaFalsa : MonoBehaviour
 {
-    void Start()
+    [SerializeField] private Plataforma[] _childPlatforms;
+
+    [SerializeField] private int _numberOfPlatfoms = 2;
+
+    private void Start()
     {
-        if (transform.childCount < 2)
+        if (_childPlatforms.Length-1 < _numberOfPlatfoms)
         {
-            Debug.LogWarning("Se necesitan 2 plataformas por fila.");
+            Debug.LogWarning("Se necesitan " + _numberOfPlatfoms + " plataformas por fila.");
             return;
         }
 
         // Elegir aleatoriamente cuál de las 2 es la falsa
-        int falsaIndex = Random.Range(0, 2);
+        int falsaIndex = Random.Range(0, _childPlatforms.Length-1);
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < _childPlatforms.Length - 1; i++)
         {
-            Plataforma plataforma = transform.GetChild(i).GetComponent<Plataforma>();
-            if (plataforma != null)
-            {
-                plataforma.esFalsa = (i == falsaIndex);
-            }
+            _childPlatforms[i].SetIsFalse(i == falsaIndex);
         }
     }
 }
-

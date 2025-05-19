@@ -2,67 +2,74 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamaraSeguimiento : MonoBehaviour
+public class CamaraSeguimiento
 {
-    Transform playerTr;
-    public Transform cameraAxis;
+    private Transform _playerTr;
 
-    public Transform cameraTrack;
+    private Transform _cameraAxis;
 
-    private Transform theCamera;
+    private Transform _cameraTrack;
 
-    private float rotY = 0f;
+    private Transform _theCamera;
 
-    private float rotX = 0f;
+    private bool _enable = true;
 
-    public float camRotSpeed = 200f;
+    private float _rotY = 0f;
 
-    public float minAngle = -45f;
+    private float _rotX = 0f;
 
-    public float maxAngle = 45f;
+    private float _camRotSpeed = 75f;
 
-    public float cameraSpeed = 5f; 
+    private float _minAngle = -45f;
 
-    public float rotationSmoothness = 10f; 
+    private float _maxAngle = 45f;
 
-    void Start()
+    private float _cameraSpeed = 15f;
+
+    private float _rotationSmoothness = 100f; 
+
+    public CamaraSeguimiento(Transform transformPlayer, Transform CameraTrack, Transform CameraAxis)
     {
-        playerTr = this.transform;
+        _playerTr = transformPlayer;
 
-        theCamera = Camera.main.transform;
+        _cameraTrack = CameraTrack;
+
+        _cameraAxis = CameraAxis;
+
+        _theCamera = Camera.main.transform;
     }
 
-    void LateUpdate()
+    public void ToggleFunctionality(bool isEnable)
     {
-        CameraLogic();
+        _enable = isEnable;
     }
 
-    public void CameraLogic()
+    public void CameraLogic(float MouseX, float MouseY)
     {
-        float mouseX = Input.GetAxis("Mouse X");
+        if (_enable == false) return;
 
-        float mouseY = Input.GetAxis("Mouse Y");
+        float mouseX = MouseX;
+
+        float mouseY = MouseY;
 
         float theTime = Time.deltaTime;
 
-        rotY += mouseY * theTime * camRotSpeed;
+        _rotY += mouseY * theTime * _camRotSpeed;
 
-        rotX += mouseX * theTime * camRotSpeed;
+        _rotX += mouseX * theTime * _camRotSpeed;
 
-        rotY = Mathf.Clamp(rotY, minAngle, maxAngle);
+        _rotY = Mathf.Clamp(_rotY, _minAngle, _maxAngle);
 
-        Quaternion targetPlayerRotation = Quaternion.Euler(0, rotX, 0);
+        Quaternion targetPlayerRotation = Quaternion.Euler(0, _rotX, 0);
 
-        playerTr.rotation = Quaternion.Slerp(playerTr.rotation, targetPlayerRotation, theTime * rotationSmoothness);
+        _playerTr.rotation = Quaternion.Slerp(_playerTr.rotation, targetPlayerRotation, theTime * _rotationSmoothness);
 
-        Quaternion targetCameraRotation = Quaternion.Euler(-rotY, 0, 0);
+        Quaternion targetCameraRotation = Quaternion.Euler(-_rotY, 0, 0);
 
-        cameraAxis.localRotation = Quaternion.Slerp(cameraAxis.localRotation, targetCameraRotation, theTime * rotationSmoothness);
+        _cameraAxis.localRotation = Quaternion.Slerp(_cameraAxis.localRotation, targetCameraRotation, theTime * _rotationSmoothness);
 
-        theCamera.position = Vector3.Lerp(theCamera.position, cameraTrack.position, theTime * cameraSpeed);
+        _theCamera.position = Vector3.Lerp(_theCamera.position, _cameraTrack.position, theTime * _cameraSpeed);
 
-        theCamera.rotation = Quaternion.Slerp(theCamera.rotation, cameraTrack.rotation, theTime * cameraSpeed);
+        _theCamera.rotation = Quaternion.Slerp(_theCamera.rotation, _cameraTrack.rotation, theTime * _cameraSpeed);
     }
 }
-
-

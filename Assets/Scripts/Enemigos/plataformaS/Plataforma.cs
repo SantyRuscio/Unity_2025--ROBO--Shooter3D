@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class Plataforma : MonoBehaviour
 {
-    public bool esFalsa = false;
-    private bool yaSeRompio = false;
+    private bool _isFalse = false;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (yaSeRompio) return;
-
-        if (collision.gameObject.CompareTag("Player") && esFalsa)
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet")) && _isFalse)
         {
-            yaSeRompio = true;
             RomperPlataforma();
         }
     }
+    
+    public void SetIsFalse(bool isfalse)
+    {
+        _isFalse = isfalse;
+    }
 
-    void RomperPlataforma()
+    private void RomperPlataforma()
     {
         Debug.Log("¡Plataforma falsa, se rompe!");
         Destroy(gameObject);
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
-        rb.isKinematic = false;
-        rb.useGravity = true;
     }
 }
-

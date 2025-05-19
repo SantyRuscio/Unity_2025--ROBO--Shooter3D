@@ -73,8 +73,6 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
-
-
     public bool Heal() //del botiquin
     {
 
@@ -94,9 +92,10 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
         
-        GetComponent<MovAndStamina>().enabled = false; //desactiva el movimiento
+        var moveandStamina = GetComponent<MovAndStamina>(); //desactiva el movimiento
 
-        GetComponent<CamaraSeguimiento>().enabled = false; //desactiva la camara
+        moveandStamina.ChangeCameraEnableState(false);//desactiva la camara
+        moveandStamina.enabled = false;
 
         RestartLevel();
     }

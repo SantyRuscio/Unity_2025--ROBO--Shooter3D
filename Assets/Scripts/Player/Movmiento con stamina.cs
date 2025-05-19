@@ -12,6 +12,8 @@ public class MovAndStamina : MonoBehaviour
 
     private MovementHandle _movementHandle;
 
+    private CamaraSeguimiento _camaraSeguimiento;
+
     [Header("Stamina")]
     public float maxStamina = 100f;
 
@@ -46,6 +48,11 @@ public class MovAndStamina : MonoBehaviour
 
     private WeaponPlayer _weaponPlayer;
 
+    [Header("CAMARA")]
+    [SerializeField] private Transform _cameraAxis;
+    [SerializeField] private Transform _cameraTrack;
+
+
     #region UNITY METHODS
     private void Awake()
     {
@@ -53,12 +60,13 @@ public class MovAndStamina : MonoBehaviour
         _weaponPlayer = GetComponent<WeaponPlayer>();
 
         _movementHandle = new MovementHandle(_playerSpeed, _jumpForcce, transform, _rigidBody);
+
+        _camaraSeguimiento = new CamaraSeguimiento(transform, _cameraTrack, _cameraAxis);
     }
 
     private void Start()
     {
         stamina = maxStamina;
-
         UpdateStaminaBar();
     }
 
@@ -73,6 +81,10 @@ public class MovAndStamina : MonoBehaviour
         UpdateStaminaBar();
     }
 
+    private void LateUpdate()
+    {
+        _camaraSeguimiento.CameraLogic(Input.GetAxis("Mouse X") , Input.GetAxis("Mouse Y"));
+    }
     #endregion
 
     #region GETTER METHOD
@@ -198,6 +210,11 @@ public class MovAndStamina : MonoBehaviour
         }
 
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
+    }
+
+    public void ChangeCameraEnableState(bool enable)
+    {
+        _camaraSeguimiento.ToggleFunctionality(enable);
     }
     #endregion
 
