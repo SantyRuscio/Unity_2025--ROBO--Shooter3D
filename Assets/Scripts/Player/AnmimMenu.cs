@@ -40,4 +40,8 @@ public class PlayerAnimator : MonoBehaviour
 
         _playerAnim.SetBool("Jump", _movAndStramina.GetIsJumping());
     }
+    public void TriggerSpecialAnimation()
+    {
+        _playerAnim.SetTrigger("SpecialAction"); 
+    }
 }

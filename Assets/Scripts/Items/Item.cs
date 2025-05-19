@@ -11,11 +11,13 @@ public abstract class Item : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ItemUpdate(other, true);
+        Debug.Log("entro algo");
     }
 
     private void OnTriggerExit(Collider other)
     {
         ItemUpdate(other, false);
+        Debug.Log("salio algo");
     }
 
     private void Update()
