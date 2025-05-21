@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class Bullet : MonoBehaviour
 {
+
     Rigidbody bulletRb;
 
     [SerializeField] float bulletPower = 50f;
     [SerializeField] float lifeTime = 10f;
+    [SerializeField] float _damage = 20f;
 
     private float time = 0f;
 
@@ -22,19 +25,22 @@ public class Bullet : MonoBehaviour
     {
         Debug.Log("Bala impact� contra: " + other.gameObject.name);
 
-        if (other.gameObject.CompareTag("Enemy"))
+        var damageable = other.GetComponent<IDamageable>();
+
+        Plataforma plataforma = other.GetComponent<Plataforma>();
+
+        if (damageable != null)
         {
-            EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
-            {
-                enemyHealth.TakeDamage(20f);
-            }
+            damageable.TakeDamage(_damage);
         }
 
-        Destroy(gameObject); // La bala se destruye sin importar con qu� choque. 
+        if (plataforma != null)
+        {
+            plataforma.ForceBrocken();
+        }
+       Destroy(gameObject); // La bala se destruye sin importar con qu� choque. 
 
     }
-
 
     private void Update()
     {

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour, Iinteractuables
+public abstract class Item : MonoBehaviour, IInteractuables
 {
     protected abstract bool CanItemBeUse();
-    protected abstract void ItemInteraction();
+    //protected abstract void ItemInteraction();
     protected abstract void ItemUpdate(Collider other, bool HasEnter);
 
     private void OnTriggerEnter(Collider other)
@@ -24,14 +24,15 @@ public abstract class Item : MonoBehaviour, Iinteractuables
     {
         if (CanItemBeUse() && Input.GetKeyDown(KeyCode.E))
         {
-            ItemInteraction();
+            Interactuar();
         }
     }
-    public void Interactuar()
+
+    public virtual void Interactuar()
     {
-        if (CanItemBeUse())
-        {
-            ItemInteraction();
-        }
+       //if (CanItemBeUse())
+       //{
+       //    ItemInteraction();
+       //}
     }
 }

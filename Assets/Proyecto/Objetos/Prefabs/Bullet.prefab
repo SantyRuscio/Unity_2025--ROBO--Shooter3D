@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPower: 50
   lifeTime: 4
+  _damage: 20
 --- !u!65 &2366879450814309372
 BoxCollider:
   m_ObjectHideFlags: 0

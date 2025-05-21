@@ -19,11 +19,11 @@ public class Diamond : Item
         return _isPlayerInside;
     }
 
-    protected override void ItemInteraction()
+    public override void Interactuar()
     {
         foreach (EnemigoIA current in enemigos)
         {
-            current.AggresiveMode = true; 
+            current.AggresiveMode = true;
         }
 
         Destroy(gameObject);
@@ -35,9 +35,5 @@ public class Diamond : Item
         {
             _isPlayerInside = HasEnter;
         }
-    }
-    public interface Iinteractuables
-    {
-        void Interactuar();
     }
 }

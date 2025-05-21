@@ -13,7 +13,7 @@ public class Medkit : Item
         return playerInRange && playerHealth != null && playerHealth.CanRecover();
     }
 
-    protected override void ItemInteraction()
+    public override void Interactuar()
     {
         if (playerHealth != null)
         {
@@ -40,9 +40,4 @@ public class Medkit : Item
             }
         }
     }
-    public interface Iinteractuables
-    {
-        void Interactuar();
-    }
 }
-

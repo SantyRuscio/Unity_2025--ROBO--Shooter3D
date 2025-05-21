@@ -34,7 +34,7 @@ public class WeaponPickUp : Item
         }
     }
 
-    protected override void ItemInteraction()
+    public override void Interactuar()
     {
         foreach (EnemigoIA current in enemigos)
         {
@@ -57,9 +57,5 @@ public class WeaponPickUp : Item
                 _weaponPlayer = null;
             }
         }
-    }
-    public interface Iinteractuables
-    {
-        void Interactuar();
     }
 }

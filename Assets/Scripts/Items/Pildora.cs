@@ -11,11 +11,11 @@ public class Pildora : Item
         return _jugador != null; 
     }
 
-    protected override void ItemInteraction()
+    public override void Interactuar()
     {
         _jugador.ChangeCanJumpState(true);
         Debug.Log("oper");
-        Destroy(gameObject); 
+        Destroy(gameObject);
     }
 
     protected override void ItemUpdate(Collider other, bool HasEnter)
@@ -32,10 +32,5 @@ public class Pildora : Item
                 _jugador = null;
             }
         }
-    }
-
-    public interface Iinteractuables
-    {
-        void Interactuar();
     }
 }

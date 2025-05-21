@@ -6,17 +6,25 @@ public class Plataforma : MonoBehaviour
 {
     private bool _isFalse = false;
 
+
     private void OnCollisionEnter(Collision collision)
     {
-        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet")) && _isFalse)
+        if (collision.gameObject.CompareTag("Player") && _isFalse)
         {
             RomperPlataforma();
         }
     }
-    
     public void SetIsFalse(bool isfalse)
     {
         _isFalse = isfalse;
+    }
+
+    public void ForceBrocken()
+    {
+        if (_isFalse)
+        {
+            RomperPlataforma();
+        }
     }
 
     private void RomperPlataforma()

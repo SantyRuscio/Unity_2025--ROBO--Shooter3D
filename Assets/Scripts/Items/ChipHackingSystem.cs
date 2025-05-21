@@ -10,7 +10,7 @@ public class ChipHackingSystem : Item
         return _jugador != null;
     }
 
-    protected override void ItemInteraction()
+    public override void Interactuar()
     {
         PlayerAnimator playerAnimator = _jugador.GetComponent<PlayerAnimator>();
         if (playerAnimator != null)
@@ -38,9 +38,5 @@ public class ChipHackingSystem : Item
                 _jugador = null;
             }
         }
-    }
-    public interface Iinteractuables
-    {
-        void Interactuar();
     }
 }
