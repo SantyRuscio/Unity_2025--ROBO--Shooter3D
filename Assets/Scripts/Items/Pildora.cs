@@ -33,4 +33,9 @@ public class Pildora : Item
             }
         }
     }
+
+    public interface Iinteractuables
+    {
+        void Interactuar();
+    }
 }

@@ -39,4 +39,8 @@ public class ChipHackingSystem : Item
             }
         }
     }
+    public interface Iinteractuables
+    {
+        void Interactuar();
+    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour, Iinteractuables
 {
     protected abstract bool CanItemBeUse();
     protected abstract void ItemInteraction();
@@ -23,6 +23,13 @@ public abstract class Item : MonoBehaviour
     private void Update()
     {
         if (CanItemBeUse() && Input.GetKeyDown(KeyCode.E))
+        {
+            ItemInteraction();
+        }
+    }
+    public void Interactuar()
+    {
+        if (CanItemBeUse())
         {
             ItemInteraction();
         }

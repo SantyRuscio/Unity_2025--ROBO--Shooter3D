@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Medkit : Item
+public class Medkit : Item 
 {
     public int healAmount = 30;
     private bool playerInRange = false;
@@ -39,6 +39,10 @@ public class Medkit : Item
                 playerHealth = null;
             }
         }
+    }
+    public interface Iinteractuables
+    {
+        void Interactuar();
     }
 }
 

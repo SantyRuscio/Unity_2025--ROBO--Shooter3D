@@ -36,4 +36,8 @@ public class Diamond : Item
             _isPlayerInside = HasEnter;
         }
     }
+    public interface Iinteractuables
+    {
+        void Interactuar();
+    }
 }

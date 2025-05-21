@@ -58,4 +58,8 @@ public class WeaponPickUp : Item
             }
         }
     }
+    public interface Iinteractuables
+    {
+        void Interactuar();
+    }
 }
