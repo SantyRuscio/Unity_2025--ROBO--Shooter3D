@@ -15,8 +15,13 @@ public class WeaponPickUp : Item
 
     private WeaponPlayer _weaponPlayer;
 
-    [SerializeField] private WeaponType type;
+    private EnemigoIA[] enemigos;
 
+    [SerializeField] private WeaponType type;
+    private void Start()
+    {
+        enemigos = FindObjectsOfType<EnemigoIA>();
+    }
     protected override bool CanItemBeUse()
     {
         if (_weaponPlayer == null)
@@ -31,6 +36,10 @@ public class WeaponPickUp : Item
 
     protected override void ItemInteraction()
     {
+        foreach (EnemigoIA current in enemigos)
+        {
+            current.AggresiveMode = true;
+        }
         _weaponPlayer.GetWeapon(type, itemPrefab, itemSlot);
         Destroy(gameObject);
     }
