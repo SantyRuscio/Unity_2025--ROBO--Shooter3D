@@ -29,21 +29,19 @@ public abstract class Weapon : MonoBehaviour
 
     private Vector3 GetShootDirection()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;
 
-        Vector3 shootDirection;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 1000f))
         {
-            shootDirection = (hit.point - _shootSpawn.position).normalized;
+            return (hit.point - _shootSpawn.position).normalized;
         }
         else
         {
-            shootDirection = Camera.main.transform.forward;
+            return Camera.main.transform.forward;
         }
-
-        return shootDirection;
     }
+
 
     protected void RemoveBullet()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponPlayer : MonoBehaviour
 {
@@ -14,11 +15,14 @@ public class WeaponPlayer : MonoBehaviour
 
     [SerializeField] private EnemigoIA[] _enemigos;
 
+    [SerializeField] private Image crosshairImage;
+
     private Weapon _currentWeapon;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        crosshairImage.enabled = false;
     }
 
     public Weapon GetCurrentWeapon()
@@ -53,11 +57,13 @@ public class WeaponPlayer : MonoBehaviour
             {
                 case WeaponType.Pistol:
                     _hasPistol = true;
+                    crosshairImage.enabled = true;
                     _audioSource.PlayOneShot(_PickUpPistolSFX);
                     break;
 
                 case WeaponType.Rifle:
                     _hasRifle = true;
+                    crosshairImage.enabled = true;
                     _audioSource.PlayOneShot(_PickUpRifleSFX);
                     break;
 
