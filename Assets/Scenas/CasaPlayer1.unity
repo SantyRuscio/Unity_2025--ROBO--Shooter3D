@@ -1993,7 +1993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _miraEscondida: {fileID: 1690256414}
-  _ComandanteRuscio: {fileID: 1487901894}
+  _Comandantes: {fileID: 0}
   _Pizarron: {fileID: 581203088}
   sonidoPizarron: {fileID: 8300000, guid: 4864516cc7d54dd46be15297c086db68, type: 3}
 --- !u!65 &667515870
