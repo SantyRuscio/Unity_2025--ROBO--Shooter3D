@@ -9,6 +9,8 @@ public class PistolController : Weapon
 
     [SerializeField] public AudioSource _Pistol;
     [SerializeField] private AudioClip sonidoDisparo;
+
+    public ParticleSystem fogonazo;
     public override void Realease() { }
 
     public override void Shoot()
@@ -16,6 +18,8 @@ public class PistolController : Weapon
         if (CheckCanShoot() == false) return;
 
         _Pistol.PlayOneShot(sonidoDisparo);
+
+        fogonazo.Play();
 
         lastShotTime = Time.time;  // Actualizar el tiempo del ultimo disparo
 

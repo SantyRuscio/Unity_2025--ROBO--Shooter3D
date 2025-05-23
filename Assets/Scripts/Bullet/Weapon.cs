@@ -14,6 +14,7 @@ public abstract class Weapon : MonoBehaviour
     //Tiempo de cooldown entre disparos
     [SerializeField] protected float _timeBetweenShots = 0.5f;
 
+
     public abstract void Shoot();
     public abstract void Realease();
 
@@ -23,6 +24,7 @@ public abstract class Weapon : MonoBehaviour
     {
         // Crear la bala
         Instantiate(_bulletPrefab, _shootSpawn.position, Quaternion.LookRotation(GetShootDirection()));
+
 
         RemoveBullet();
     }
