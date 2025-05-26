@@ -13,6 +13,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float currentHealth;
     public bool isDead = false;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip _hurtClip;
+    [SerializeField] private AudioSource _audioSource;
+
     [Header("UI")]
     public Image vidaImagen; 
 
@@ -52,7 +56,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (isDead) return; 
 
         currentHealth -= damage;
-        currentHealth = Mathf.Max(0, currentHealth); 
+        currentHealth = Mathf.Max(0, currentHealth);
+
+        if (_hurtClip != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(_hurtClip);
+        }
 
         UpdateHealthUI();
 

@@ -18,11 +18,11 @@ public class CamaraSeguimiento
 
     private float _rotX = 0f;
 
-    private float _camRotSpeed = 75f;
+    private float _camRotSpeed = 100f;
 
     private float _minAngle = -45f;
 
-    private float _maxAngle = 45f;
+    private float _maxAngle = 90f;
 
     private float _cameraSpeed = 15f;
 
