@@ -2099,8 +2099,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _miraEscondida: {fileID: 1690256414}
   _Comandantes: {fileID: 1487901894}
-  _Pizarron: {fileID: 581203088}
-  sonidoPizarron: {fileID: 8300000, guid: 4864516cc7d54dd46be15297c086db68, type: 3}
+  _Sonido: {fileID: 581203088}
+  sonidoInformativo: {fileID: 8300000, guid: 4864516cc7d54dd46be15297c086db68, type: 3}
 --- !u!65 &667515870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4745,7 +4745,7 @@ Transform:
   m_GameObject: {fileID: 1685719737861731602}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13113183, y: 0, z: 0, w: 0.991365}
-  m_LocalPosition: {x: 0.469, y: -0.483, z: -1.42}
+  m_LocalPosition: {x: -0, y: -0.439, z: -0.536}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7320,7 +7320,7 @@ Transform:
   m_GameObject: {fileID: 6960454703056802237}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.85, z: -3.06}
+  m_LocalPosition: {x: 0, y: 2.85, z: -1.66}
   m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
   m_ConstrainProportionsScale: 0
   m_Children:

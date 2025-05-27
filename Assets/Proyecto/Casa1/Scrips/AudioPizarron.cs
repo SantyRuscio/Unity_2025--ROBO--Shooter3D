@@ -9,8 +9,8 @@ public class AudioPizarron : MonoBehaviour
     [SerializeField] private Image _miraEscondida;
     [SerializeField] private TextMeshProUGUI _Comandantes;
 
-    [SerializeField] public AudioSource _Pizarron;
-    [SerializeField] private AudioClip sonidoPizarron;
+    [SerializeField] public AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoInformativo;
     private void Start()
     {
         _miraEscondida.gameObject.SetActive(false);
@@ -18,7 +18,7 @@ public class AudioPizarron : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        _Pizarron.PlayOneShot(sonidoPizarron);
+        _Sonido.PlayOneShot(sonidoInformativo);
         _Comandantes.gameObject.SetActive(true);
 
         GetComponent<BoxCollider>().enabled = false;
