@@ -13,15 +13,19 @@ public class ChipHackingSystem : Item
     public override void Interactuar()
     {
         PlayerAnimator playerAnimator = _jugador.GetComponent<PlayerAnimator>();
+
         if (playerAnimator != null)
         {
             playerAnimator.TriggerSpecialAnimation();
         }
-        Debug.Log("ChipHackingSystem activado");
+        CameraSecurityIA camaraSeguridad = FindObjectOfType<CameraSecurityIA>();
+        if (camaraSeguridad != null)
+        {
+            camaraSeguridad.CamaraActivada = false;
+            Debug.Log("ChipHackingSystem activado");
+        }
 
-        // PROXIMAMENTE CAMBIARA LAS CAMARAS , LAS DESACTIVA
-
-        Destroy(gameObject); // Destruir el objeto si querés que desaparezca luego de usarlo
+        Destroy(gameObject);
     }
 
     protected override void ItemUpdate(Collider other, bool HasEnter)

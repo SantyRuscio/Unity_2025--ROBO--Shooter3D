@@ -44,4 +44,8 @@ public class PlayerAnimator : MonoBehaviour
     {
         _playerAnim.SetTrigger("SpecialAction"); 
     }
+    public void TriggerSpecialElectricBall()
+    {
+        _playerAnim.SetTrigger("GolpeElectrico");
+    }
 }

@@ -14,6 +14,8 @@ public class MovAndStamina : MonoBehaviour
 
     private CamaraSeguimiento _camaraSeguimiento;
 
+    private bool _canMove = true;
+
     [Header("Stamina")]
     public float maxStamina = 100f;
 
@@ -88,6 +90,12 @@ public class MovAndStamina : MonoBehaviour
     #endregion
 
     #region GETTER METHOD
+
+    public void SetMovementEnabled(bool enabled)
+    {
+        _canMove = enabled;
+    }
+
     public Vector3 GetMovementDirection()
     {
         return _movementHandle.GetDirection();
@@ -145,6 +153,8 @@ public class MovAndStamina : MonoBehaviour
     #region HANDLE METHODS
     private void HandleInput()
     {
+        if (!_canMove) return; // <- bloquear movimiento si está paralizado
+
         _movementHandle.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (_canJump == true && Input.GetKeyDown(KeyCode.Space))
