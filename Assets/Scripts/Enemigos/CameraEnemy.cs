@@ -10,7 +10,7 @@ public class CameraSecurityIA : EnemigoIA
     [SerializeField] private Transform cabezaRotatoria;
     [SerializeField] private float cooldown = 2f;
 
-    public bool CamaraActivada = true;
+    private bool _camaraActivada = true;
 
     private float attackTimer = 0f;
 
@@ -18,7 +18,7 @@ public class CameraSecurityIA : EnemigoIA
     {
         attackTimer += Time.deltaTime;
 
-        if (CamaraActivada)
+        if (_camaraActivada)
         {
             SeguirTarget();
         }
@@ -55,9 +55,14 @@ public class CameraSecurityIA : EnemigoIA
         cabezaRotatoria.rotation = Quaternion.Slerp(cabezaRotatoria.rotation, lookRotation, Time.deltaTime * 2f);
     }
 
+
+     public void DesactivarCamera(bool CamaraActivada)
+     {
+        _camaraActivada = CamaraActivada;
+     }
     private void Atacar()
     {
-       if(CamaraActivada)
+       if(_camaraActivada)
 
         {
             Vector3 dirToTarget = (target.position - transform.position).normalized;

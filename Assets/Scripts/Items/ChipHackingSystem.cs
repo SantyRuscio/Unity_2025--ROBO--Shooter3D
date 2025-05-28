@@ -21,7 +21,7 @@ public class ChipHackingSystem : Item
         CameraSecurityIA camaraSeguridad = FindObjectOfType<CameraSecurityIA>();
         if (camaraSeguridad != null)
         {
-            camaraSeguridad.CamaraActivada = false;
+            camaraSeguridad.DesactivarCamera(false);
             Debug.Log("ChipHackingSystem activado");
         }
 
