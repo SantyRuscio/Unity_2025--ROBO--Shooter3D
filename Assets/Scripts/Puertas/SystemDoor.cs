@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class SystemDoor : MonoBehaviour
+public class SystemDoor : MonoBehaviour, IInteractuables
 {
     [Header("Referencia")]
     [SerializeField] private Transform transformPuerta;
+    private Transform player;
+    [SerializeField] private Item item;
+    [SerializeField] private TextMeshProUGUI _Indicaciones;
 
     [Header("Ángulos de apertura")]
     [SerializeField] private float doorOpenAngle = -18.9f;
@@ -18,29 +21,32 @@ public class SystemDoor : MonoBehaviour
     [Header("Sistema de apertura")]
     [SerializeField] private bool doorOpen = false;
     [SerializeField] private float activationDistance = 3f;
+    private bool _canBeOpen = true;
 
     [Header("AudioPuerta")]
     [SerializeField] private AudioSource AudioSource;
     [SerializeField] private AudioClip RuidoPuerta;
 
-    private Transform player;
-    [SerializeField] private TextMeshProUGUI _Indicaciones;
-
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        if(item != null)
+        { 
+            item.SetCanInteract(false);
+        } 
     }
 
     void Update()
     {
+
+
         if (Vector3.Distance(transform.position, player.position) <= activationDistance)
         {
             _Indicaciones.gameObject.SetActive(true);
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && _canBeOpen == true)
             {
-                doorOpen = !doorOpen; // Alterna entre abrir y cerrar
-                AudioSource.PlayOneShot(RuidoPuerta);
+                Interactuar();
             }
         }
 
@@ -50,8 +56,14 @@ public class SystemDoor : MonoBehaviour
         }
         else
         {
+            if (_canBeOpen != true)
+            {
+                return;
+            }
+
             DoorClose();
         }
+
     }
 
     private void DoorOpen()
@@ -59,11 +71,23 @@ public class SystemDoor : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0, doorOpenAngle, 0);
         transformPuerta.rotation = Quaternion.Slerp(transformPuerta.rotation, targetRotation, smooth * Time.deltaTime);
         _Indicaciones.gameObject.SetActive(false);
+
+        if(item != null)
+        {
+            item.SetCanInteract(true);
+            _canBeOpen = false;
+        }
     }
 
     private void DoorClose()
     {
         Quaternion targetRotation = Quaternion.Euler(0, doorCloseAngle, 0);
         transformPuerta.rotation = Quaternion.Slerp(transformPuerta.rotation, targetRotation, smooth * Time.deltaTime);
+    }
+
+    public void Interactuar()
+    {
+        doorOpen = !doorOpen; // Alterna entre abrir y cerrar
+        AudioSource.PlayOneShot(RuidoPuerta);
     }
 }

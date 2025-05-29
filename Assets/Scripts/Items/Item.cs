@@ -12,12 +12,16 @@ public abstract class Item : MonoBehaviour, IInteractuables
 
     [SerializeField] protected TextMeshProUGUI _Indicaciones;
 
+    private bool _canInteract = true;
+
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Player") == false) return;
+
         ItemUpdate(other, true);
-        _Indicaciones.gameObject.SetActive(true);
-        Debug.Log("entro algo");
+       _Indicaciones.gameObject.SetActive(true);
+        Debug.Log(gameObject.name + "  entro algo   " + other.gameObject.name);
     }
 
     private void OnTriggerExit(Collider other)
@@ -29,11 +33,16 @@ public abstract class Item : MonoBehaviour, IInteractuables
 
     private void Update()
     {
-        if (CanItemBeUse() && Input.GetKeyDown(KeyCode.E))
+        if (CanItemBeUse() && Input.GetKeyDown(KeyCode.E) && _canInteract)
         {
             Interactuar();
             _Indicaciones.gameObject.SetActive(false);
         }
+    }
+
+    public void SetCanInteract(bool InteractuarNuevo)
+    {
+        _canInteract = InteractuarNuevo;
     }
 
     public virtual void Interactuar()
