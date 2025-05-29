@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AudioPizarron : MonoBehaviour
+public class AudioGenerico : MonoBehaviour
 {
     [SerializeField] private Image _miraEscondida;
     [SerializeField] private TextMeshProUGUI _Comandantes;
