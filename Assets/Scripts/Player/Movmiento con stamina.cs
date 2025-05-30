@@ -7,47 +7,31 @@ public class MovAndStamina : MonoBehaviour
 {
     [Header("Movimiento")]
     [SerializeField] private float _playerSpeed = 3f;
-
     [SerializeField] private float _playerSpeedMultiplier = 1.5f;
-
     private MovementHandle _movementHandle;
-
     private CamaraSeguimiento _camaraSeguimiento;
-
     private bool _canMove = true;
 
     [Header("Stamina")]
     public float maxStamina = 100f;
-
     public float stamina;
-
     public float staminaDrain = 20f;
-
     public float staminaRegen = 10f;
-
     private bool isSprinting = false;
-
     private bool isExhausted = false;
 
     [Header("Jumping")]
     private bool _canJump = false;
     private bool _isJumping = false;
-
     [SerializeField] private float _jumpForcce = 5f;
-
     [SerializeField] private float _groundDistanceToJump = 2.4f;
-
     [SerializeField] private LayerMask _groundMask;
-
     [SerializeField] private float _gravity = -9.81f;
-
     private Rigidbody _rigidBody;
-
     private Vector3 _velocity;
 
     [Header("UI")]
     public Image staminaBarFill;
-
     private WeaponPlayer _weaponPlayer;
 
     [Header("CAMARA")]
@@ -95,7 +79,7 @@ public class MovAndStamina : MonoBehaviour
     {
         _canMove = enabled;
     }
-
+ 
     public Vector3 GetMovementDirection()
     {
         return _movementHandle.GetDirection();
@@ -153,7 +137,7 @@ public class MovAndStamina : MonoBehaviour
     #region HANDLE METHODS
     private void HandleInput()
     {
-        if (!_canMove) return; // <- bloquear movimiento si está paralizado
+        if (!_canMove) return; // bloquear movimiento si está paralizado
 
         _movementHandle.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
@@ -175,6 +159,7 @@ public class MovAndStamina : MonoBehaviour
             }
         }
     }
+
     private void HandleGravity()
     {
         if (!IsGrounded())

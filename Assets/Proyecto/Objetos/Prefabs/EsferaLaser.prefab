@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8702773443100064078}
   - component: {fileID: 9051635018649035423}
   - component: {fileID: 3938748738987378795}
-  - component: {fileID: 3713087026282523544}
+  - component: {fileID: 6651681450368385263}
   m_Layer: 0
   m_Name: Laser3
   m_TagString: Untagged
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3713087026282523544
+--- !u!114 &6651681450368385263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4820d6da8e09dd4e8f4d9fdf2d7f77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 20
+  damageAmount: 25
 --- !u!1 &7075733748613510865
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 1962908222816246245}
   - component: {fileID: 9140797168997598404}
   - component: {fileID: 5885891343126065140}
-  - component: {fileID: 7399340433072067087}
+  - component: {fileID: 5770262113423054898}
   m_Layer: 0
   m_Name: Laser2
   m_TagString: Untagged
@@ -229,7 +229,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7399340433072067087
+--- !u!114 &5770262113423054898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4820d6da8e09dd4e8f4d9fdf2d7f77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 20
+  damageAmount: 25
 --- !u!1 &7367402441099249775
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,8 +271,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7367402441099249775}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.89, y: 15.25, z: -77.948}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.799999, y: 13.643804, z: -100.44675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 7659889922188637585}
   - component: {fileID: 191968092077202994}
   - component: {fileID: 5092737560191751060}
-  - component: {fileID: 7913530916749269822}
+  - component: {fileID: 6687117113630174857}
   m_Layer: 0
   m_Name: Laser1
   m_TagString: Untagged
@@ -517,7 +517,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7913530916749269822
+--- !u!114 &6687117113630174857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4820d6da8e09dd4e8f4d9fdf2d7f77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 20
+  damageAmount: 25
 --- !u!1 &9191860669509460258
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 6075306746431689915}
   - component: {fileID: 1952381392724071197}
   - component: {fileID: 1791474543509294419}
-  - component: {fileID: 5657627350105672184}
+  - component: {fileID: 581372995210875600}
   m_Layer: 0
   m_Name: Laser4
   m_TagString: Untagged
@@ -638,7 +638,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &5657627350105672184
+--- !u!114 &581372995210875600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -650,4 +650,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4820d6da8e09dd4e8f4d9fdf2d7f77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 20
+  damageAmount: 25

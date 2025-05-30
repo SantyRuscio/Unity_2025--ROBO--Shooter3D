@@ -16,9 +16,9 @@ public class PatrullaEnemi : EnemigoIA
     private float distanciaWayPoints2;
 
 
-    [Header("Configuración de Ataque")]
-    public int dañoAlJugador = 10;
-    public float tiempoEntreAtaques = 2f;
+   [Header("Configuración de Ataque")]
+   [SerializeField] private float _dañoAlJugador = 10f;
+   [SerializeField] private float _tiempoEntreAtaques = 2f;
 
     private float tiempoParaProximoAtaque;
 
@@ -72,7 +72,7 @@ public class PatrullaEnemi : EnemigoIA
             }
 
             AplicarDañoAlJugador();
-            tiempoParaProximoAtaque = Time.time + tiempoEntreAtaques;
+            tiempoParaProximoAtaque = Time.time + _tiempoEntreAtaques;
         }
 
         if (distance > distanceToAtack + 0.5f)
@@ -119,12 +119,12 @@ public class PatrullaEnemi : EnemigoIA
     {
         if (target != null)
         {
-            PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            var damageable = target.GetComponent<IDamageable>();
+
+            if (damageable != null && target.CompareTag("Player"))
             {
-                playerHealth.TakeDamage(dañoAlJugador);
+                damageable.TakeDamage(_dañoAlJugador);
             }
         }
     }
 }
-

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,16 +11,10 @@ public class EnemigoSWAT : EnemigoIA
     private NavMeshAgent agent;
     public Animator animator;
 
-
-
     [Header("Configuración de Ataque")]
-    public int dañoAlJugador = 10;
-    public float tiempoEntreAtaques = 2f;
-
+    [SerializeField] float _dañoAlJugador = 20f;
+    [SerializeField] float _tiempoEntreAtaques = 2f;
     private float tiempoParaProximoAtaque;
-
-
-
 
     private new void Awake()
     {
@@ -64,7 +59,7 @@ public class EnemigoSWAT : EnemigoIA
             }
 
             AplicarDañoAlJugador();
-            tiempoParaProximoAtaque = Time.time + tiempoEntreAtaques;
+            tiempoParaProximoAtaque = Time.time + _tiempoEntreAtaques;
         }
 
         if (distance > distanceToAtack + 0.5f)
@@ -88,7 +83,6 @@ public class EnemigoSWAT : EnemigoIA
         }
     }
 
-
     public void Die()
     {
         Debug.Log("Enemigo muerto");
@@ -111,10 +105,11 @@ public class EnemigoSWAT : EnemigoIA
     {
         if (target != null)
         {
-            PlayerHealth playerHealth = target.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            var damageable = target.GetComponent<IDamageable>();
+
+            if (damageable != null && target.CompareTag("Player"))
             {
-                playerHealth.TakeDamage(dañoAlJugador);
+                damageable.TakeDamage(_dañoAlJugador);
             }
         }
     }

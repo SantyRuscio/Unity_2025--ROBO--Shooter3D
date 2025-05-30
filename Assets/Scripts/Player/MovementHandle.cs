@@ -49,6 +49,7 @@ public class MovementHandle
         _transform.localEulerAngles = directionAngle;
 
         _transform.position += _direction * _movementSpeed * Time.deltaTime;
+
     }
 
     public void Jump()

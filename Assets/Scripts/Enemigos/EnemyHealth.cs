@@ -22,6 +22,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
+            Debug.Log("TENGO QUE ESTAR MEURTO");
             EnemigoIA.vivo = false; 
         }
     }
