@@ -112,7 +112,7 @@ public class MovAndStamina : MonoBehaviour
         {
             Debug.Log("Saltando");
             _isJumping = true;
-            _movementHandle.Jump();
+            _movementHandle.OnJump();
             StartCoroutine(jumpTime());
         }
         else
@@ -139,7 +139,7 @@ public class MovAndStamina : MonoBehaviour
     {
         if (!_canMove) return; // bloquear movimiento si está paralizado
 
-        _movementHandle.Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        _movementHandle.OnMove(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (_canJump == true && Input.GetKeyDown(KeyCode.Space))
         {
