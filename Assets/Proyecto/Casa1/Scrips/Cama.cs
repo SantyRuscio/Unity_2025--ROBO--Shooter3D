@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Cama : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _tocaLaLetra;
+    private AudioGenerico AudioGenerico;
 
     private void Start()
     {
@@ -32,7 +33,7 @@ public class Cama : MonoBehaviour
     private void NextScene()
     {
         Debug.Log("CARGANDO ESCENA");
-       // SceneManager.LoadScene("Juego"); fALTA poner el nombre que va realmente
+        // SceneManager.LoadScene("Juego"); //fALTA poner el nombre que va realmente
     }
 }
 

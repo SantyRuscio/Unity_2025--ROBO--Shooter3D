@@ -6182,7 +6182,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6286429986659614943}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b7d6259f023f8f458449c0aadb95659, type: 3}
   m_Name: 
@@ -8107,7 +8107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215fa73c4bed0e642a29593bbadbbb75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 2.1
+  _playerSpeed: 2.2
   _playerSpeedMultiplier: 2.5
   maxStamina: 0
   stamina: 0

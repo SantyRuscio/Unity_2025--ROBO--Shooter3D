@@ -11,6 +11,7 @@ public class AudioGenerico : MonoBehaviour
 
     [SerializeField] public AudioSource _Sonido;
     [SerializeField] private AudioClip sonidoInformativo;
+
     private void Start()
     {
         _miraEscondida.gameObject.SetActive(false);
@@ -19,6 +20,7 @@ public class AudioGenerico : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         _Sonido.PlayOneShot(sonidoInformativo);
+
         _Comandantes.gameObject.SetActive(true);
 
         GetComponent<BoxCollider>().enabled = false;
@@ -33,4 +35,3 @@ public class AudioGenerico : MonoBehaviour
         Destroy(gameObject);
     }
 }
-
