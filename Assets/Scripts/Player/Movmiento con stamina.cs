@@ -71,6 +71,7 @@ public class MovAndStamina : MonoBehaviour
     {
         _camaraSeguimiento.CameraLogic(Input.GetAxis("Mouse X") , Input.GetAxis("Mouse Y"));
     }
+
     #endregion
 
     #region GETTER METHOD

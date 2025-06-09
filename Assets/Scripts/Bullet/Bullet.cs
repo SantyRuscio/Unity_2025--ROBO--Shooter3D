@@ -42,6 +42,11 @@ public class Bullet : MonoBehaviour
 
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        Destroy(gameObject);
+    }
+
     private void Update()
     {
         time += Time.deltaTime;
