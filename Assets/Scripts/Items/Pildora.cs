@@ -6,15 +6,34 @@ public class Pildora : Item
 {
     private MovAndStamina _jugador;
 
+    [SerializeField] private float _timerSound = 0.15f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoSalto;
+
     protected override bool CanItemBeUse()
     {
-        return _jugador != null; 
+        return _jugador != null;
     }
 
     public override void Interactuar()
     {
         _jugador.ChangeCanJumpState(true);
         Debug.Log("oper");
+
+        if (sonidoSalto != null && _Sonido != null)
+            _Sonido.PlayOneShot(sonidoSalto);
+
+        GetComponent<Collider>().enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
+
+        StartCoroutine(ReproducirSalto());
+    }
+
+    private IEnumerator ReproducirSalto()
+    {
+        yield return new WaitForSeconds(_timerSound);
         Destroy(gameObject);
     }
 
@@ -22,15 +41,10 @@ public class Pildora : Item
     {
         if (other.CompareTag("Player"))
         {
+            _jugador = HasEnter ? other.GetComponent<MovAndStamina>() : null;
+
             if (HasEnter)
-            {
-                _jugador = other.gameObject.GetComponent<MovAndStamina>();
                 Debug.Log("ENTRE");
-            }
-            else
-            {
-                _jugador = null;
-            }
         }
     }
 }

@@ -38,6 +38,9 @@ public class MovAndStamina : MonoBehaviour
     [SerializeField] private Transform _cameraAxis;
     [SerializeField] private Transform _cameraTrack;
 
+    [Header("AUDIO")]
+    [SerializeField] private AudioSource _sonido;
+    [SerializeField] private AudioClip _Salto;
 
     #region UNITY METHODS
     private void Awake()
@@ -112,6 +115,7 @@ public class MovAndStamina : MonoBehaviour
         if (IsGrounded())
         {
             Debug.Log("Saltando");
+            _sonido.PlayOneShot(_Salto);
             _isJumping = true;
             _movementHandle.OnJump();
             StartCoroutine(jumpTime());

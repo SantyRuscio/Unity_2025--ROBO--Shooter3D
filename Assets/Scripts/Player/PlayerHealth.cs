@@ -13,11 +13,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float currentHealth;
     public bool isDead = false;
 
-    [Header("Audio")]
+    [Header("AudiosEspeciales")]
     [SerializeField] private AudioClip _hurtClip;
     [SerializeField] private AudioSource _audioSource;
-
     [SerializeField] private AudioClip _audioElectrico;
+
+    [Header("AudioCurarse")]
+    [SerializeField] public AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoBotiquin;
 
     [Header("UI")]
     public Image vidaImagen; 
@@ -97,6 +100,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         currentHealth += healAmount;
 
         currentHealth = Mathf.Min(currentHealth, maxHealth);
+
+        _Sonido.PlayOneShot(sonidoBotiquin);
 
         UpdateHealthUI();
     }

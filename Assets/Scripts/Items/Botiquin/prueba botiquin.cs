@@ -8,6 +8,10 @@ public class Medkit : Item
     private bool playerInRange = false;
     private PlayerHealth playerHealth;
 
+    [Header("Audio")]
+    [SerializeField] public AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoBotiquin;
+
     protected override bool CanItemBeUse()
     {
         return playerInRange && playerHealth != null && playerHealth.CanRecover();
@@ -19,8 +23,7 @@ public class Medkit : Item
         {
             playerHealth.Heal(healAmount);
             Debug.Log("Botiquín usado. Vida actual: " + playerHealth.currentHealth);
-
-            Destroy(gameObject); // Elimina el botiquín después de usarlo
+            Destroy(gameObject);
         }
     }
 

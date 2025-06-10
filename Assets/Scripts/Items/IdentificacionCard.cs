@@ -7,6 +7,12 @@ public class IdentificacionCard : Item
 {
     private MovAndStamina _player1;
     [SerializeField] private DoorDiamond _doorDiamond;
+    [SerializeField] private float _timerSound = 0.3f;
+
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoIdentifiacion;
 
     private bool CardPicked = true;
     protected override bool CanItemBeUse()
@@ -18,6 +24,19 @@ public class IdentificacionCard : Item
     {
         Debug.Log("Agarre la card");
         _doorDiamond.CardPicked(CardPicked);
+
+        if (sonidoIdentifiacion != null && _Sonido != null)
+            _Sonido.PlayOneShot(sonidoIdentifiacion);
+
+        GetComponent<Collider>().enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
+
+        StartCoroutine(ReproducirIdentificacion());
+
+    }
+    private IEnumerator ReproducirIdentificacion()
+    {
+        yield return new WaitForSeconds(_timerSound);
         Destroy(gameObject);
     }
 

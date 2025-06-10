@@ -5,6 +5,12 @@ public class ChipHackingSystem : Item
 {
     private MovAndStamina _jugador;
 
+    [SerializeField] private float _timerSound = 0.99f;
+
+    [Header("Audio")]
+    [SerializeField] public AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoHackear;
+
     protected override bool CanItemBeUse()
     {
         return _jugador != null;
@@ -13,11 +19,11 @@ public class ChipHackingSystem : Item
     public override void Interactuar()
     {
         PlayerAnimator playerAnimator = _jugador.GetComponent<PlayerAnimator>();
-
         if (playerAnimator != null)
         {
             playerAnimator.TriggerSpecialAnimation();
         }
+
         CameraSecurityIA camaraSeguridad = FindObjectOfType<CameraSecurityIA>();
         if (camaraSeguridad != null)
         {
@@ -25,6 +31,16 @@ public class ChipHackingSystem : Item
             Debug.Log("ChipHackingSystem activado");
         }
 
+        GetComponent<Collider>().enabled = false;
+
+        StartCoroutine(ReproducirHacking());
+    }
+
+    private IEnumerator ReproducirHacking()
+    {
+        _Sonido.PlayOneShot(sonidoHackear);
+        yield return new WaitForSeconds(_timerSound); // espera que el audio termine
+        gameObject.SetActive(false); // ahora sí se puede apagar
         Destroy(gameObject);
     }
 
