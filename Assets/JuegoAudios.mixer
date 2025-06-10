@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-8009439943442714269
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Interactuables
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: e9d93e5c375ee5a429b5c44ba9845f68
+  m_Children: []
+  m_Volume: 35329a6b9d2cc16468c5663b71ca9f51
+  m_Pitch: 7443379b635848846aa3fc4b80f78b31
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -7823416378162606376}
+  m_UserColorIndex: 2
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &-7823416378162606376
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 96a8c350696a50b4bb2464427bd9b08a
+  m_EffectName: Attenuation
+  m_MixLevel: 0e81306c37804b546bb1cc1ab0d89770
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-5258625020290868488
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -36,6 +69,7 @@ AudioMixerController:
     - 20b2b9fcfc13a004b82cc6688bc379b9
     - ee63078c81e477346b465a7fc510de22
     - 11779cf1631cdea4ba6775009d1381b2
+    - e9d93e5c375ee5a429b5c44ba9845f68
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -52,6 +86,7 @@ AudioMixerGroupController:
   - {fileID: 5084641918581083582}
   - {fileID: 3042134663643213019}
   - {fileID: 5009406594400680095}
+  - {fileID: -8009439943442714269}
   m_Volume: 7dd710914d566604eb579233e82c9bb5
   m_Pitch: 6ab0ea591fd8518438b89ac291cd7d8b
   m_Send: 00000000000000000000000000000000
@@ -89,6 +124,7 @@ AudioMixerSnapshotController:
     dd06e746619de6846918c1e163e31e9d: -8.841784
     aaa99aa7c08aaa946a864aaebb9c1286: -4.653023
     5485cca740f97cb4783811cf67d4c199: -9.332112
+    35329a6b9d2cc16468c5663b71ca9f51: -4.9356413
   m_TransitionOverrides: {}
 --- !u!243 &3042134663643213019
 AudioMixerGroupController:
