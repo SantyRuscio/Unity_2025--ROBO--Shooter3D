@@ -3,7 +3,12 @@ guid: 0a7ef2961fd5b6746902fdf75689bb69
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _paredBlocked: {instanceID: 0}
+  - _Sonido: {instanceID: 0}
+  - sonidoMacetas: {instanceID: 0}
+  - particulas: {fileID: 7322789336210171219, guid: 0d5896955343ea44ba119942ac7ce293,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
