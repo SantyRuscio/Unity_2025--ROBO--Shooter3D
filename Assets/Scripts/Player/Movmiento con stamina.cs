@@ -68,11 +68,12 @@ public class MovAndStamina : MonoBehaviour
         HandleGravity();
 
         UpdateStaminaBar();
+        _camaraSeguimiento.CameraLogic(Input.GetAxis("Mouse X") , Input.GetAxis("Mouse Y"));
     }
 
     private void LateUpdate()
     {
-        _camaraSeguimiento.CameraLogic(Input.GetAxis("Mouse X") , Input.GetAxis("Mouse Y"));
+        _camaraSeguimiento.CameraMoving();
     }
 
     #endregion

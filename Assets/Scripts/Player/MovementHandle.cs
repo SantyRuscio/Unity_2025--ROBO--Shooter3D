@@ -45,14 +45,15 @@ public class MovementHandle
         _horizontalInput = horizontal;
         _verticalInput = vertical;
 
-        Vector3 directionAngle = _transform.localEulerAngles;
-        _transform.localEulerAngles = new Vector3(0, directionAngle.y, 0);
+        Vector3 forward = _transform.forward;
+        Vector3 right = _transform.right;
+        _direction = (forward * vertical + right * horizontal).normalized;
 
-        _direction = (_transform.forward * vertical + _transform.right * horizontal).normalized;
+        Vector3 currentVelocity = _rigidBody.velocity;
+        Vector3 targetVelocity = _direction * _movementSpeed;
+        targetVelocity.y = currentVelocity.y;
 
-        _transform.localEulerAngles = directionAngle;
-
-        _transform.position += _direction * _movementSpeed * Time.deltaTime;
+        _rigidBody.velocity = targetVelocity;
     }
 
     private void Jump()

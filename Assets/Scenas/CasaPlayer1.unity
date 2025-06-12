@@ -5843,7 +5843,7 @@ Transform:
   m_GameObject: {fileID: 6286429986659614943}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.29, y: 3.82, z: -4.61}
+  m_LocalPosition: {x: -9.29, y: 3.82, z: -5.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6193,6 +6193,8 @@ MonoBehaviour:
   _hurtClip: {fileID: 0}
   _audioSource: {fileID: 0}
   _audioElectrico: {fileID: 0}
+  _Sonido: {fileID: 0}
+  sonidoBotiquin: {fileID: 0}
   vidaImagen: {fileID: 0}
 --- !u!1 &1977932662266631277
 GameObject:
@@ -8107,7 +8109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215fa73c4bed0e642a29593bbadbbb75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 2.2
+  _playerSpeed: 2.9
   _playerSpeedMultiplier: 2.5
   maxStamina: 0
   stamina: 0
@@ -8122,6 +8124,8 @@ MonoBehaviour:
   staminaBarFill: {fileID: 1690256414}
   _cameraAxis: {fileID: 6436985382168504918}
   _cameraTrack: {fileID: 1527650508745339727}
+  _sonido: {fileID: 0}
+  _Salto: {fileID: 0}
 --- !u!4 &5987135705544881879
 Transform:
   m_ObjectHideFlags: 0

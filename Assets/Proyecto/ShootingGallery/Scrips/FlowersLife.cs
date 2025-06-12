@@ -7,7 +7,7 @@ public class FlowersLife : MonoBehaviour
 {
     [SerializeField] private ParedBlocked _paredBlocked;
 
-    [SerializeField] private float _timerSound = 5f;
+    [SerializeField] private float _timerSound = 0.4f;
 
     [Header("Audio")]
     [SerializeField] public AudioSource _Sonido;
@@ -24,13 +24,14 @@ public class FlowersLife : MonoBehaviour
 
             GetComponent<Collider>().enabled = false;
 
+            _Sonido.PlayOneShot(sonidoMacetas);
+
             StartCoroutine(ReproducirMacetas());
         }
     }
 
     private IEnumerator ReproducirMacetas()
     {
-        _Sonido.PlayOneShot(sonidoMacetas);
 
         ParticleSystem instanciaExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
         instanciaExplosion.Play();

@@ -35,11 +35,11 @@ public class CamaraSeguimiento
         _enable = isEnable;
     }
 
+        float deltaTime = Time.deltaTime; Vector3 finalCameraPos;
     public void CameraLogic(float mouseX, float mouseY)
     {
         if (!_enable) return;
 
-        float deltaTime = Time.deltaTime;
 
         _rotY += mouseY * deltaTime * _camRotSpeed;
         _rotX += mouseX * deltaTime * _camRotSpeed;
@@ -56,14 +56,19 @@ public class CamaraSeguimiento
         float distance = direction.magnitude;
         direction.Normalize();
 
-        Vector3 finalCameraPos = desiredCameraPos;
+         finalCameraPos = desiredCameraPos;
 
         if (Physics.SphereCast(_cameraAxis.position, _cameraCollisionRadius, direction, out RaycastHit hit, distance, _collisionMask))
         {
             finalCameraPos = hit.point + hit.normal * 0.05f; // Alejamos ligeramente la cámara del muro
         }
 
-        _theCamera.position = Vector3.Lerp(_theCamera.position, finalCameraPos, deltaTime * _cameraSpeed);
-        _theCamera.rotation = Quaternion.Slerp(_theCamera.rotation, _cameraTrack.rotation, deltaTime * _cameraSpeed);
+    }
+
+    public void CameraMoving()
+    {
+        _theCamera.position = Vector3.Lerp(_theCamera.position, finalCameraPos, _cameraSpeed);
+        _theCamera.rotation = Quaternion.Slerp(_theCamera.rotation, _cameraTrack.rotation, _cameraSpeed);
+
     }
 }
