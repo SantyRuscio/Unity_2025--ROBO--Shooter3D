@@ -134,7 +134,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 5464425902589247731, guid: 6dd2fec6b3eb8c041b8356525e8f91c4,
     type: 3}
   _remainingBullets: 500
-  _timeBetweenShots: 0.5
+  _timeBetweenShots: 0.3
   _Pistol: {fileID: -3723463786551549850}
   sonidoDisparo: {fileID: 8300000, guid: b27a967567b9ee64bbdc51bfcbd99154, type: 3}
   fogonazo: {fileID: 6229895797984276346}
@@ -259,8 +259,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2297204046911550042}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.65258706, y: 0.000000029802315, z: 0.00000000791624, w: 0.75771374}
-  m_LocalPosition: {x: -0.0778, y: 0.2873, z: 0.0588}
+  m_LocalRotation: {x: -0.6525871, y: 0.000000059604638, z: 0.000000005587935, w: 0.7577137}
+  m_LocalPosition: {x: -0.07780002, y: 0.28730005, z: 0.05879994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -438,7 +438,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.484538e+30, y: 2.2687054e-10, z: 2.748857e+26, w: 229.40382}
+  m_BoundingSphereOverride: {x: 0, y: 6e-44, z: 2.7e-44, w: 1.4062e-41}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -864,7 +864,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
