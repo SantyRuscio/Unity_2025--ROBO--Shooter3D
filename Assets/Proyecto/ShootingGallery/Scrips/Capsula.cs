@@ -13,7 +13,7 @@ public class CambiarEscena : MonoBehaviour
     {
         if (jugadorDentro && Input.GetKeyDown(KeyCode.E))
         {
-           // SceneManager.LoadScene("CasaPlayer1"); -- falta carga la escena en la build
+            SceneManager.LoadScene("Juego"); 
         }
     }
 
