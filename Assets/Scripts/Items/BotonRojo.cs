@@ -31,7 +31,6 @@ public class BotonRojo : Item
             _Sonido.PlayOneShot(sonidoBoton);
             StartCoroutine(SubirRejaSuavemente());
         }
-
     }
 
     private IEnumerator SubirRejaSuavemente()

@@ -9,6 +9,8 @@ public class Diamond : Item
 
     private EnemigoIA[] enemigos;
 
+    [SerializeField] private RejasEscape _rejasEscape;
+
     private void Start()
     {
         enemigos = FindObjectsOfType<EnemigoIA>();
@@ -25,6 +27,8 @@ public class Diamond : Item
         {
             current.AggresiveMode = true;
         }
+
+        _rejasEscape.DiamondWasPick(true);
 
         Destroy(gameObject);
     }
