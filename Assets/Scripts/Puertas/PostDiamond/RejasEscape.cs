@@ -1,33 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RejasEscape : MonoBehaviour
 {
-   [SerializeField] private bool _diamondWasPicked = false;
-   [SerializeField] private GameObject grillObject;
+    [SerializeField] private bool _diamondWasPicked = false;
+    [SerializeField] private GameObject[] grillObject;
 
     private void Awake()
     {
-        grillObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (_diamondWasPicked)
+        for (int i = 0; i < grillObject.Length; i++)
         {
-            ActivateGrill();
+            if (grillObject[i] != null)
+                grillObject[i].SetActive(false);
         }
     }
 
     private void ActivateGrill()
     {
-        grillObject.SetActive(true);
-    }
+        for (int i = 0; i < grillObject.Length; i++)
+        {
+            if (grillObject[i] != null)
+                grillObject[i].SetActive(true);
+        }
 
+        Debug.Log("Rejas activadas.");
+    }
 
     public void DiamondWasPick(bool Picked)
     {
         _diamondWasPicked = Picked;
+
+        if (_diamondWasPicked)
+        {
+            ActivateGrill();
+        }
     }
 }
