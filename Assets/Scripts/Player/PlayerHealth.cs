@@ -125,12 +125,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         isDead = true;
         
-        var moveandStamina = GetComponent<MovAndStamina>(); //desactiva el movimiento
+        var moveandStamina = GetComponent<MovAndStamina>(); 
 
-        moveandStamina.ChangeCameraEnableState(false);//desactiva la camara
+        moveandStamina.ChangeCameraEnableState(false);
         moveandStamina.enabled = false;
 
-        RestartLevel();
+        SceneManager.LoadScene(5);
     }
 
     // reiniciar el nivel 

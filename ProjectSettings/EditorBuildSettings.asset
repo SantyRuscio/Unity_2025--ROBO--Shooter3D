@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenas/CasaPlayer1.unity
     guid: ec8782fe5360e714aa41da69de0b336b
+  - enabled: 1
+    path: Assets/Scenas/Derrota.unity
+    guid: c3b9434e595fb7f4590e6a4fb53dae8b
   m_configObjects: {}

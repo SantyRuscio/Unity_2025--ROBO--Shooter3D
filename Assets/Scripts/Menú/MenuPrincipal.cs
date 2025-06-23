@@ -19,7 +19,7 @@ public class MenuPrincipal : MonoBehaviour, IPointerEnterHandler
 
     public void Controles()
     {
-        StartCoroutine(CambioConFade(2));
+        StartCoroutine(CambioConFade(3));
     }
 
     public void Salir()
