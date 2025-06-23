@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuOpciones : MonoBehaviour
 {
-    public void Volver()
+    public void VolverMenu()
     {
         SceneManager.LoadScene(0);
+
+    }
+    public void VolverReintento()
+    {
+        SceneManager.LoadScene(2);
 
     }
 }

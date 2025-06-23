@@ -20,6 +20,13 @@ public class PatrullaEnemi : EnemigoIA
    [SerializeField] private float _dañoAlJugador = 10f;
    [SerializeField] private float _tiempoEntreAtaques = 2f;
 
+
+    [Header("Audio")]
+    [SerializeField] public AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoAtaque;
+    [SerializeField] private AudioClip sonidoPesigue;
+    [SerializeField] private AudioClip sonidoMuerte;
+
     private float tiempoParaProximoAtaque;
 
 
@@ -69,18 +76,27 @@ public class PatrullaEnemi : EnemigoIA
             if (animator != null)
             {
                 animator.SetTrigger("atacando");
+                StartCoroutine(GolpeEnemigo());
             }
 
-            AplicarDañoAlJugador();
             tiempoParaProximoAtaque = Time.time + _tiempoEntreAtaques;
         }
 
         if (distance > distanceToAtack + 0.5f)
         {
             agent.isStopped = false;
+            _Sonido.PlayOneShot(sonidoPesigue);
             CambiarEstado(Estados.seguir);
         }
     }
+
+    IEnumerator GolpeEnemigo()
+    {
+        yield return new WaitForSeconds(1.8f);
+        _Sonido.PlayOneShot(sonidoAtaque);
+        AplicarDañoAlJugador();
+    }
+
     public override void EstadoMuerte()
     {
         if (EjecutarMuerte == true)
@@ -106,6 +122,7 @@ public class PatrullaEnemi : EnemigoIA
     }
     IEnumerator DeathAnim()
     {
+        _Sonido.PlayOneShot(sonidoMuerte);
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
