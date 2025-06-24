@@ -6,17 +6,25 @@ public class Plataforma : MonoBehaviour
 {
     private bool _isFalse = false;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoPisada;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player") && _isFalse)
         {
+            _Sonido.PlayOneShot(sonidoPisada);
+
             RomperPlataforma();
         }
+        _Sonido.PlayOneShot(sonidoPisada);
     }
     public void SetIsFalse(bool isfalse)
     {
         _isFalse = isfalse;
+
+     //   _Sonido.PlayOneShot(sonidoPisada);
     }
 
     public void ForceBrocken()
@@ -29,7 +37,7 @@ public class Plataforma : MonoBehaviour
 
     private void RomperPlataforma()
     {
-        Debug.Log("¡Plataforma falsa, se rompe!");
+        Debug.Log("ï¿½Plataforma falsa, se rompe!");
         Destroy(gameObject);
     }
 }

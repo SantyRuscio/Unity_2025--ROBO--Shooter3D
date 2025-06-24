@@ -128,7 +128,7 @@ public class MovAndStamina : MonoBehaviour
         }
         else
         {
-            Debug.Log("No está en el suelo.");
+            Debug.Log("No estï¿½ en el suelo.");
         }
     }
      IEnumerator jumpTime()
@@ -148,7 +148,7 @@ public class MovAndStamina : MonoBehaviour
     #region HANDLE METHODS
     private void HandleInput()
     {
-        if (!_canMove) return; // bloquear movimiento si está paralizado
+        if (!_canMove) return; // bloquear movimiento si estï¿½ paralizado
 
 
         if (_canJump == true && Input.GetKeyDown(KeyCode.Space))
@@ -226,23 +226,5 @@ public class MovAndStamina : MonoBehaviour
     void UpdateStaminaBar()
     {
         staminaBarFill.fillAmount = stamina / maxStamina;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.layer == 8)  // 8 = pared
-        {
-            Debug.Log("entre");
-            _movementHandle.StopMovement();
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.layer == 8)  // 8 = pared
-        {
-            Debug.Log("entreS");
-            _movementHandle.StopMovement();
-        }
     }
 }

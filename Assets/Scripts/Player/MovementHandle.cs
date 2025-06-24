@@ -42,10 +42,6 @@ public class MovementHandle
         _movementSpeed = newSpeed;
     }
 
-    public void StopMovement()
-    {
-        _rigidBody.velocity = Vector3.zero;
-    }
     private void Move(float horizontal, float vertical)
     {
         _horizontalInput = horizontal;
