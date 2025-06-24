@@ -71,6 +71,11 @@ public class MovAndStamina : MonoBehaviour
         _camaraSeguimiento.CameraLogic(Input.GetAxis("Mouse X") , Input.GetAxis("Mouse Y"));
     }
 
+    private void FixedUpdate()
+    {
+        _movementHandle.OnMove(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+    }
     private void LateUpdate()
     {
         _camaraSeguimiento.CameraMoving();
@@ -145,7 +150,6 @@ public class MovAndStamina : MonoBehaviour
     {
         if (!_canMove) return; // bloquear movimiento si está paralizado
 
-        _movementHandle.OnMove(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (_canJump == true && Input.GetKeyDown(KeyCode.Space))
         {
@@ -222,5 +226,23 @@ public class MovAndStamina : MonoBehaviour
     void UpdateStaminaBar()
     {
         staminaBarFill.fillAmount = stamina / maxStamina;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == 8)  // 8 = pared
+        {
+            Debug.Log("entre");
+            _movementHandle.StopMovement();
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == 8)  // 8 = pared
+        {
+            Debug.Log("entreS");
+            _movementHandle.StopMovement();
+        }
     }
 }

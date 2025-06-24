@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 public class MovementHandle
 {
@@ -41,22 +42,30 @@ public class MovementHandle
         _movementSpeed = newSpeed;
     }
 
+    public void StopMovement()
+    {
+        _rigidBody.velocity = Vector3.zero;
+    }
     private void Move(float horizontal, float vertical)
     {
         _horizontalInput = horizontal;
         _verticalInput = vertical;
 
-        Vector3 forward = _transform.forward;
-        Vector3 right = _transform.right;
-        _direction = (forward * vertical + right * horizontal).normalized;
+        Vector3 directionAngle = _transform.localEulerAngles;
 
-        Vector3 currentVelocity = _rigidBody.velocity;
-        Vector3 targetVelocity = _direction * _movementSpeed;
-        targetVelocity.y = currentVelocity.y;
+        _transform.localEulerAngles = new Vector3(0, directionAngle.y, 0);
 
-        _rigidBody.velocity = targetVelocity;
+        Vector3 direction = (_transform.forward * vertical + _transform.right * horizontal).normalized;
+
+        _transform.localEulerAngles = directionAngle;
+
+        Vector3 velocity = direction * _movementSpeed;
+
+        _rigidBody.velocity = new Vector3(velocity.x, _rigidBody.velocity.y, velocity.z);
+
+        _direction = direction;
     }
-
+ 
     private void Jump()
     {
         _rigidBody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
