@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuPausa : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     private bool isPaused = false;
 
+    public Animator animator;
+
+    [SerializeField] private float tiempoEspera = 2.5f;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -36,10 +40,29 @@ public class MenuPausa : MonoBehaviour
         isPaused = true;
     }
 
-    public void LoadMainMenu()
+ 
+
+    public void MainMenu()
+
     {
+        FadeOut();
+
         Time.timeScale = 1f;
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        StartCoroutine(CambioConFade(0));
+    }
+
+    public void FadeOut()
+    {
+        if (animator != null)
+            animator.Play("fade out");
+    }
+
+
+    private IEnumerator CambioConFade(int escenaID)
+    {
+        FadeOut();
+        yield return new WaitForSeconds(tiempoEspera);
+        SceneManager.LoadScene(escenaID);
     }
 }
