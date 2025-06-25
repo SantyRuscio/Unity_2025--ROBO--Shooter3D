@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EsferaLaserVertical : EnemigoIA
 {
-    [Header("Configuración")]
+    [Header("Configuraciï¿½n")]
     public float velocidadMovimiento = 3f;
     public float distanciaVertical = 5f;
     public GameObject[] lasers;

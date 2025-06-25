@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraSecurityIA : EnemigoIA
 {
-    [Header("Ataque de Cámara")]
+    [Header("Ataque de Cï¿½mara")]
     [SerializeField] private GameObject electricBallPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private Transform cabezaRotatoria;

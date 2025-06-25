@@ -1303,14 +1303,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   estado: 0
-  distanceToFollow: 8.4
+  distanceToFollow: 17.6
   distanceToAtack: 2.98
   distanceToEscape: 20
   autoSelectTarget: 0
   target: {fileID: 0}
   distance: 0
   vivo: 1
-  AggresiveMode: 0
   animator: {fileID: 9147388204109526610}
   "_da\xF1oAlJugador": 20
   _tiempoEntreAtaques: 2
