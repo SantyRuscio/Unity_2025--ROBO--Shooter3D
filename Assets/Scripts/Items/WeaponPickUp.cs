@@ -38,7 +38,7 @@ public class WeaponPickUp : Item
     {
         foreach (EnemigoIA current in enemigos)
         {
-            current.AggresiveMode = true;
+            current.Agresive = true;
         }
         _weaponPlayer.GetWeapon(type, itemPrefab, itemSlot);
         Destroy(gameObject);

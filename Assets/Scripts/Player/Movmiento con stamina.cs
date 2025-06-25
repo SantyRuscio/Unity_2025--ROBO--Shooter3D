@@ -73,6 +73,9 @@ public class MovAndStamina : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_canMove) return; // bloquear movimiento si est� paralizado
+
+
         _movementHandle.OnMove(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
     }
@@ -85,14 +88,20 @@ public class MovAndStamina : MonoBehaviour
 
     #region GETTER METHOD
 
-    public void SetMovementEnabled(bool enabled)
+    public bool SetMovementEnabled
     {
-        _canMove = enabled;
+        set
+        {
+            _canMove = value;
+        }
     }
  
-    public Vector3 GetMovementDirection()
+    public Vector3 GetMovementDirection
     {
-        return _movementHandle.GetDirection();
+        get
+        {
+            return _movementHandle.GetDirection();
+        }
     }
 
     private bool IsGrounded()

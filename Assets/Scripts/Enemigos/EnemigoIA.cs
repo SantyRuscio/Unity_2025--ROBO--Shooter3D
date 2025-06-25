@@ -18,7 +18,7 @@ public abstract class EnemigoIA : MonoBehaviour
     public bool vivo = true;
     protected bool EjecutarMuerte = true;
 
-    public bool AggresiveMode = false;
+    protected bool AggresiveMode = false;
 
     public virtual void Awake()
     {
@@ -35,6 +35,17 @@ public abstract class EnemigoIA : MonoBehaviour
         CheckEstado();
     }
 
+    public bool Agresive
+    {
+        get
+        {
+            return AggresiveMode;
+        }
+        set
+        {
+            AggresiveMode = value;
+        }
+    }
     private void CheckEstado()
     {
         switch (estado)

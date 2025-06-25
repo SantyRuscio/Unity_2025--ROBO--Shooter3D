@@ -83,7 +83,7 @@ public class WeaponPlayer : MonoBehaviour
 
             foreach (EnemigoIA current in _enemigos)
             {
-                current.AggresiveMode = true;
+                current.Agresive = true;
             }
         }
     }

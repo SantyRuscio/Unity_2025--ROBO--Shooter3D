@@ -10,6 +10,7 @@ public class Diamond : Item
     private EnemigoIA[] enemigos;
     [SerializeField] private RejasEscape _rejasEscape;
     [SerializeField] private float _timerSound = 0.3f;
+    
 
     [Header("Audio")]
     [SerializeField] private AudioSource _Sonido;
@@ -29,7 +30,7 @@ public class Diamond : Item
     {
         foreach (EnemigoIA current in enemigos)
         {
-            current.AggresiveMode = true;
+            current.Agresive = true;
         }
 
         if (_sonidoDiamond != null && _Sonido != null)

@@ -61,9 +61,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         var moveScript = GetComponent<MovAndStamina>();
         if (moveScript != null)
         {
-            moveScript.SetMovementEnabled(false);
+            moveScript.SetMovementEnabled = false ;
             yield return new WaitForSeconds(duration);
-            moveScript.SetMovementEnabled(true);
+            moveScript.SetMovementEnabled = true;
         }
     }
 

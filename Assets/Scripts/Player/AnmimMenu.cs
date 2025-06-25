@@ -22,7 +22,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void HandleAnimation()
     {
-        Vector3 localDir = transform.InverseTransformDirection(_movAndStramina.GetMovementDirection());
+        Vector3 localDir = transform.InverseTransformDirection(_movAndStramina.GetMovementDirection);
 
         _playerAnim.SetFloat("X", localDir.x);
         _playerAnim.SetFloat("Y", localDir.z);
