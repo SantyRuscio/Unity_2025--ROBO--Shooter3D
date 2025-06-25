@@ -18,7 +18,7 @@ public class AsignadorDePlataformaFalsa : MonoBehaviour
             return;
         }
 
-        // Elegir aleatoriamente cuál de las 2 es la falsa
+        // Elegir aleatoriamente cuï¿½l de las 2 es la falsa
         int falsaIndex = Random.Range(0, _childPlatforms.Length-1);
 
         for (int i = 0; i < _childPlatforms.Length - 1; i++)

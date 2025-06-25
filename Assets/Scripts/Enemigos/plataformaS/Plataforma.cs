@@ -23,8 +23,6 @@ public class Plataforma : MonoBehaviour
     public void SetIsFalse(bool isfalse)
     {
         _isFalse = isfalse;
-
-     //   _Sonido.PlayOneShot(sonidoPisada);
     }
 
     public void ForceBrocken()
