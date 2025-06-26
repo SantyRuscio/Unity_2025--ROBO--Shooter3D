@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pildora : Item
 {
-    private MovAndStamina _jugador;
+    private IJump _jugador;
 
     [SerializeField] private float _timerSound = 0.15f;
 
@@ -19,6 +19,7 @@ public class Pildora : Item
 
     public override void Interactuar()
     {
+        base.Interactuar();
         _jugador.ChangeCanJumpState(true);
         Debug.Log("oper");
 
@@ -41,10 +42,17 @@ public class Pildora : Item
     {
         if (other.CompareTag("Player"))
         {
-            _jugador = HasEnter ? other.GetComponent<MovAndStamina>() : null;
+            IJump jumpHandler = other.GetComponent<IJump>();
 
-            if (HasEnter)
+            if (HasEnter && jumpHandler != null)
+            {
+                _jugador = jumpHandler;
                 Debug.Log("ENTRE");
+            }
+            else
+            {
+                _jugador = null;
+            }
         }
     }
 }

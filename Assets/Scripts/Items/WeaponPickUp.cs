@@ -36,6 +36,7 @@ public class WeaponPickUp : Item
 
     public override void Interactuar()
     {
+        base.Interactuar();
         foreach (EnemigoIA current in enemigos)
         {
             current.Agresive = true;

@@ -22,6 +22,7 @@ public class IdentificacionCard : Item
 
     public override void Interactuar()
     {
+        base.Interactuar();
         Debug.Log("Agarre la card");
         _doorDiamond.CardPicked(CardPicked);
 

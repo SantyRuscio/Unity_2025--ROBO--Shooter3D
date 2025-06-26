@@ -31,15 +31,6 @@ public abstract class Item : MonoBehaviour, IInteractuables
         _Indicaciones.gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (CanItemBeUse() && Input.GetKeyDown(KeyCode.E) && _canInteract)
-        {
-            Interactuar();
-            _Indicaciones.gameObject.SetActive(false);
-        }
-    }
-
     public void SetCanInteract(bool InteractuarNuevo)
     {
         _canInteract = InteractuarNuevo;
@@ -47,9 +38,7 @@ public abstract class Item : MonoBehaviour, IInteractuables
 
     public virtual void Interactuar()
     {
-       //if (CanItemBeUse())
-       //{
-       //    ItemInteraction();
-       //}
+        Debug.Log("LEO");
+        _Indicaciones.gameObject.SetActive(false);
     }
 }

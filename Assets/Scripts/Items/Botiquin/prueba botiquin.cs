@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Medkit : Item 
+public class Medkit : Item
 {
     public int healAmount = 30;
     private bool playerInRange = false;
-    private PlayerHealth playerHealth;
+    private IHeal playerHealth;
 
     [Header("Audio")]
     [SerializeField] public AudioSource _Sonido;
@@ -19,10 +18,12 @@ public class Medkit : Item
 
     public override void Interactuar()
     {
+       base.Interactuar();
+
         if (playerHealth != null)
         {
             playerHealth.Heal(healAmount);
-            Debug.Log("Botiquín usado. Vida actual: " + playerHealth.currentHealth);
+            Debug.Log("Botiquín usado.");
             Destroy(gameObject);
         }
     }
@@ -31,9 +32,11 @@ public class Medkit : Item
     {
         if (other.CompareTag("Player"))
         {
-            if (HasEnter)
+            var healComponent = other.GetComponent<IHeal>();
+
+            if (HasEnter && healComponent != null)
             {
-                playerHealth = other.GetComponent<PlayerHealth>();
+                playerHealth = healComponent;
                 playerInRange = true;
             }
             else

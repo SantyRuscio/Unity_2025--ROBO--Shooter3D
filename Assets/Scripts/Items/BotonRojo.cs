@@ -26,6 +26,7 @@ public class BotonRojo : Item
 
     public override void Interactuar()
     {
+        base.Interactuar();
         if (!_rejaSubiendo)
         {
             _Sonido.PlayOneShot(sonidoBoton);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MovAndStamina : MonoBehaviour
+public class MovAndStamina : MonoBehaviour, IJump
 {
     [Header("Movimiento")]
     [SerializeField] private float _playerSpeed = 3f;
@@ -68,6 +68,9 @@ public class MovAndStamina : MonoBehaviour
         HandleGravity();
 
         UpdateStaminaBar();
+
+        InteracTor();
+
         _camaraSeguimiento.CameraLogic(Input.GetAxis("Mouse X") , Input.GetAxis("Mouse Y"));
     }
 
@@ -232,6 +235,23 @@ public class MovAndStamina : MonoBehaviour
     }
     #endregion
 
+    void InteracTor()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            var i = Physics.OverlapSphere(transform.position, 5);
+
+            foreach(var item in i)
+            {
+                if(item.GetComponent<Item>() != null)
+                {
+                    item.GetComponent<Item>().Interactuar();
+                    break;
+                }
+            }
+
+        }
+    }
     void UpdateStaminaBar()
     {
         staminaBarFill.fillAmount = stamina / maxStamina;

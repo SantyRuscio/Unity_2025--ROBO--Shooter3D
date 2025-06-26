@@ -18,6 +18,7 @@ public class ChipHackingSystem : Item
 
     public override void Interactuar()
     {
+
         PlayerAnimator playerAnimator = _jugador.GetComponent<PlayerAnimator>();
         if (playerAnimator != null)
         {

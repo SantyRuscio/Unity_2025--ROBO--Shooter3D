@@ -6,3 +6,11 @@ using UnityEngine;
     {
         public void TakeDamage(float damage);
     }
+    public interface IJump { public void ChangeCanJumpState(bool NewState);}
+
+public interface IHeal
+{
+    public void Heal(int healAmount);
+    bool CanRecover();
+}
+
