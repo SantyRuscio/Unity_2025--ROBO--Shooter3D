@@ -16,34 +16,17 @@ public class Medkit : Item
         return playerInRange && playerHealth != null && playerHealth.CanRecover();
     }
 
-    public override void Interactuar()
+    public override void Interactuar(GameObject Interactor)
     {
-       base.Interactuar();
+       base.Interactuar(Interactor);
+
+        playerHealth = Interactor.GetComponent<IHeal>();
 
         if (playerHealth != null)
         {
             playerHealth.Heal(healAmount);
             Debug.Log("Botiquín usado.");
             Destroy(gameObject);
-        }
-    }
-
-    protected override void ItemUpdate(Collider other, bool HasEnter)
-    {
-        if (other.CompareTag("Player"))
-        {
-            var healComponent = other.GetComponent<IHeal>();
-
-            if (HasEnter && healComponent != null)
-            {
-                playerHealth = healComponent;
-                playerInRange = true;
-            }
-            else
-            {
-                playerInRange = false;
-                playerHealth = null;
-            }
         }
     }
 }

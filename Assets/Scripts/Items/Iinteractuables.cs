@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IInteractuables
 {
-    public void Interactuar();
+    public void Interactuar(GameObject interactor);
 }

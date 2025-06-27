@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +9,15 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField] protected GameObject _bulletPrefab;
 
+    [SerializeField] public  AudioClip _pickUpSFX;
+
     //Balas que se pueden disparar le puse 500 depues lo editamos mas adelanmte
     [SerializeField] protected int _remainingBullets = 500;
 
     //Tiempo de cooldown entre disparos
     [SerializeField] protected float _timeBetweenShots = 0.5f;
 
-
+    public WeaponType type;
     public abstract void Shoot();
     public abstract void Realease();
 
@@ -59,4 +62,5 @@ public abstract class Weapon : MonoBehaviour
             Debug.Log("No tienes mas balas!");
         }
     }
+
 }

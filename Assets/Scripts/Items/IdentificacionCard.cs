@@ -20,9 +20,9 @@ public class IdentificacionCard : Item
         return _player1 != null;
     }
 
-    public override void Interactuar()
+    public override void Interactuar(GameObject Interactor)
     {
-        base.Interactuar();
+        base.Interactuar(Interactor);
         Debug.Log("Agarre la card");
         _doorDiamond.CardPicked(CardPicked);
 
@@ -41,19 +41,4 @@ public class IdentificacionCard : Item
         Destroy(gameObject);
     }
 
-    protected override void ItemUpdate(Collider other, bool HasEnter)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (HasEnter)
-            {
-                _player1 = other.gameObject.GetComponent<MovAndStamina>();
-                Debug.Log("ENTRE");
-            }
-            else
-            {
-                _player1 = null;
-            }
-        }
-    }
 }

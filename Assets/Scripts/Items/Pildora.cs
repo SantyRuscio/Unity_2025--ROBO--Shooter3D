@@ -16,12 +16,16 @@ public class Pildora : Item
     {
         return _jugador != null;
     }
-
-    public override void Interactuar()
+        
+    public override void Interactuar(GameObject Interactor)
     {
-        base.Interactuar();
+        _jugador = Interactor.GetComponent<IJump>();
+
+        if(_jugador == null) return;
+
+        base.Interactuar(Interactor);
+
         _jugador.ChangeCanJumpState(true);
-        Debug.Log("oper");
 
         if (sonidoSalto != null && _Sonido != null)
             _Sonido.PlayOneShot(sonidoSalto);
@@ -38,21 +42,4 @@ public class Pildora : Item
         Destroy(gameObject);
     }
 
-    protected override void ItemUpdate(Collider other, bool HasEnter)
-    {
-        if (other.CompareTag("Player"))
-        {
-            IJump jumpHandler = other.GetComponent<IJump>();
-
-            if (HasEnter && jumpHandler != null)
-            {
-                _jugador = jumpHandler;
-                Debug.Log("ENTRE");
-            }
-            else
-            {
-                _jugador = null;
-            }
-        }
-    }
 }

@@ -16,9 +16,8 @@ public class ChipHackingSystem : Item
         return _jugador != null;
     }
 
-    public override void Interactuar()
+    public override void Interactuar(GameObject Interactor)
     {
-
         PlayerAnimator playerAnimator = _jugador.GetComponent<PlayerAnimator>();
         if (playerAnimator != null)
         {
@@ -45,19 +44,4 @@ public class ChipHackingSystem : Item
         Destroy(gameObject);
     }
 
-    protected override void ItemUpdate(Collider other, bool HasEnter)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (HasEnter)
-            {
-                _jugador = other.gameObject.GetComponent<MovAndStamina>();
-                Debug.Log("Jugador cerca del ChipHackingSystem");
-            }
-            else
-            {
-                _jugador = null;
-            }
-        }
-    }
 }

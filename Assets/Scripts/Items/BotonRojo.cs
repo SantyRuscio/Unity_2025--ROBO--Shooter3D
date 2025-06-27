@@ -24,9 +24,9 @@ public class BotonRojo : Item
         return _jugador != null;
     }
 
-    public override void Interactuar()
+    public override void Interactuar(GameObject Interactor)
     {
-        base.Interactuar();
+        base.Interactuar(Interactor);
         if (!_rejaSubiendo)
         {
             _Sonido.PlayOneShot(sonidoBoton);
@@ -48,22 +48,6 @@ public class BotonRojo : Item
         }
 
         _Reja.position = posicionFinal;
-    }
-
-    protected override void ItemUpdate(Collider other, bool HasEnter)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (HasEnter)
-            {
-                _jugador = other.gameObject.GetComponent<MovAndStamina>();
-                Debug.Log("Jugador cerca del Botón");
-            }
-            else
-            {
-                _jugador = null;
-            }
-        }
     }
 }
 

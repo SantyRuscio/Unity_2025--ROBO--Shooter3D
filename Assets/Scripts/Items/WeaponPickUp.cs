@@ -34,29 +34,18 @@ public class WeaponPickUp : Item
         }
     }
 
-    public override void Interactuar()
+    public override void Interactuar(GameObject Interactor)
     {
-        base.Interactuar();
+
+        _weaponPlayer = Interactor.GetComponent<WeaponPlayer>();
+
+        if (_weaponPlayer == null) return;
+
         foreach (EnemigoIA current in enemigos)
         {
             current.Agresive = true;
         }
         _weaponPlayer.GetWeapon(type, itemPrefab, itemSlot);
         Destroy(gameObject);
-    }
-
-    protected override void ItemUpdate(Collider other, bool HasEnter)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if(HasEnter) 
-            {
-                _weaponPlayer = other.gameObject.GetComponent<WeaponPlayer>();
-            }
-            else
-            {
-                _weaponPlayer = null;
-            }
-        }
     }
 }

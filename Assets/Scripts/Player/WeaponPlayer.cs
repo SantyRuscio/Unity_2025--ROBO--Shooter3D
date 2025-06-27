@@ -5,24 +5,39 @@ using UnityEngine.UI;
 
 public class WeaponPlayer : MonoBehaviour
 {
-    private bool _hasPistol = false;
-    private bool _hasRifle = false;
-    private bool _hasWeapon = false;
+    public bool HasWeapon
+    {
+        get
+        {
+            return _currentWeapon != null;
+        }
+
+        private set { }
+    }
+
+    [SerializeField] private Weapon[] weapon;
 
     private AudioSource _audioSource;
-    [SerializeField] private AudioClip _PickUpRifleSFX;
-    [SerializeField] private AudioClip _PickUpPistolSFX;
 
-    [SerializeField] private EnemigoIA[] _enemigos;
+    private EnemigoIA[] _enemigos;
 
     [SerializeField] private Image crosshairImage;
 
     private Weapon _currentWeapon;
 
+    Dictionary<WeaponType, Weapon> _weapons = new Dictionary<WeaponType, Weapon>();
+
     private void Start()
     {
+        _enemigos = FindObjectsOfType<EnemigoIA>();
+
         _audioSource = GetComponent<AudioSource>();
         crosshairImage.enabled = false;
+
+        foreach (var item in weapon)
+        {
+            _weapons.Add(item.type, item);  
+        }
     }
 
     public Weapon GetCurrentWeapon()
@@ -30,45 +45,29 @@ public class WeaponPlayer : MonoBehaviour
         return _currentWeapon;
     }
 
-    public bool GetHasWeapon()
+    public WeaponType CurrentWeaponType
     {
-        return _hasWeapon;
-    }
-
-    public bool GetHasPistol()
-    {
-        return _hasPistol;
-    }
-    
-    public bool GetHasRifle()
-    {
-        return _hasRifle;
+        get
+        {
+            return _currentWeapon.type;
+        }
+        
+        private set { }
     }
 
     public void GetWeapon(WeaponType weaponType, GameObject weaponprefab, Transform intanceSlot)
     {
-        if (_hasWeapon == true)
+        if (HasWeapon)
         {
             // Hacer logica de reemplazar el arma
         }
         else
         {
-            switch (weaponType)
+            if (_weapons.ContainsKey(weaponType))
             {
-                case WeaponType.Pistol:
-                    _hasPistol = true;
-                    crosshairImage.enabled = true;
-                    _audioSource.PlayOneShot(_PickUpPistolSFX);
-                    break;
-
-                case WeaponType.Rifle:
-                    _hasRifle = true;
-                    crosshairImage.enabled = true;
-                    _audioSource.PlayOneShot(_PickUpRifleSFX);
-                    break;
-
-                default:
-                    break;
+                crosshairImage.enabled = true;
+                _audioSource.PlayOneShot(_weapons[weaponType]._pickUpSFX);
+                _currentWeapon = _weapons[weaponType];
             }
 
             GameObject instantiatedItem = Instantiate(weaponprefab, intanceSlot.position, intanceSlot.rotation);
@@ -76,8 +75,6 @@ public class WeaponPlayer : MonoBehaviour
             instantiatedItem.transform.parent = intanceSlot;
 
             _currentWeapon = instantiatedItem.GetComponent<Weapon>();
-
-            _hasWeapon = true;
 
             // enemigoIA.AggresiveMode = true;
 

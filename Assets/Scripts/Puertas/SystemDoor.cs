@@ -20,8 +20,7 @@ public class SystemDoor : MonoBehaviour, IInteractuables
 
     [Header("Sistema de apertura")]
     [SerializeField] private bool doorOpen = false;
-    [SerializeField] private float activationDistance = 3f;
-    private bool _canBeOpen = true;
+    private bool _canBeOpen = true; 
 
     [Header("AudioPuerta")]
     [SerializeField] private AudioSource AudioSource;
@@ -36,20 +35,14 @@ public class SystemDoor : MonoBehaviour, IInteractuables
         } 
     }
 
+    public void ToggleShowTag(bool active)
+    {
+        _Indicaciones.gameObject.SetActive(active);
+    }
+
+
     void Update()
     {
-
-
-        if (Vector3.Distance(transform.position, player.position) <= activationDistance)
-        {
-            _Indicaciones.gameObject.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.E) && _canBeOpen == true)
-            {
-                Interactuar();
-            }
-        }
-
         if (doorOpen)
         {
             DoorOpen();
@@ -70,7 +63,7 @@ public class SystemDoor : MonoBehaviour, IInteractuables
     {
         Quaternion targetRotation = Quaternion.Euler(0, doorOpenAngle, 0);
         transformPuerta.rotation = Quaternion.Slerp(transformPuerta.rotation, targetRotation, smooth * Time.deltaTime);
-        _Indicaciones.gameObject.SetActive(false);
+        ToggleShowTag(false);
 
         if(item != null)
         {
@@ -85,7 +78,7 @@ public class SystemDoor : MonoBehaviour, IInteractuables
         transformPuerta.rotation = Quaternion.Slerp(transformPuerta.rotation, targetRotation, smooth * Time.deltaTime);
     }
 
-    public void Interactuar()
+    public void Interactuar(GameObject interactor)
     {
         doorOpen = !doorOpen; // Alterna entre abrir y cerrar
         AudioSource.PlayOneShot(RuidoPuerta);

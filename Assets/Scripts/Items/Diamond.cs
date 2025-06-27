@@ -26,7 +26,7 @@ public class Diamond : Item
         return _isPlayerInside;
     }
 
-    public override void Interactuar()
+    public override void Interactuar(GameObject Interactor)
     {
         foreach (EnemigoIA current in enemigos)
         {
@@ -48,13 +48,5 @@ public class Diamond : Item
     {
         yield return new WaitForSeconds(_timerSound);
         Destroy(gameObject);
-    }
-
-    protected override void ItemUpdate(Collider other, bool HasEnter)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            _isPlayerInside = HasEnter;
-        }
     }
 }
