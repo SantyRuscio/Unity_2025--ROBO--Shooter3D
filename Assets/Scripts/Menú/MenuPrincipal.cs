@@ -7,7 +7,12 @@ using UnityEngine.SceneManagement;
 public class MenuPrincipal : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] private AudioSource _sonido;
+
     [SerializeField] private AudioClip _sonidoHover;
+
+    public GameObject panelControles;
+
+    private bool estaVisible = false;
 
     public Animator animator;
     [SerializeField] private float tiempoEspera = 2.5f; 
@@ -17,9 +22,10 @@ public class MenuPrincipal : MonoBehaviour, IPointerEnterHandler
         StartCoroutine(CambioConFade(1));
     }
 
-    public void Controles()
+    public void ToggleControles()
     {
-        StartCoroutine(CambioConFade(3));
+        estaVisible = !estaVisible;
+        panelControles.SetActive(estaVisible);
     }
 
     public void Salir()
