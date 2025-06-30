@@ -11,8 +11,8 @@ public class MovementHandle
     private Transform _transform;
     private Rigidbody _rigidBody;
 
-    public Action<float,float> OnMove;
-    public Action OnJump;
+    public event Action<float,float> OnMove;
+    public event Action OnJump;
 
     public MovementHandle(float speed, float jumpForce, Transform transform, Rigidbody rigidBody)
     {
@@ -26,6 +26,15 @@ public class MovementHandle
     }
 
     ~MovementHandle() { }
+
+    public void MoveCall(float horizontal, float vertical)
+    {
+        OnMove(horizontal, vertical);
+    }
+    public void JumpCall()
+    {
+        OnJump();
+    }
 
     public bool IsMoving()
     {

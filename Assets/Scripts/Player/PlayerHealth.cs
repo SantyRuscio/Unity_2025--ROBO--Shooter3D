@@ -130,7 +130,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IHeal
         moveandStamina.ChangeCameraEnableState(false);
         moveandStamina.enabled = false;
 
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
     }
 
     // reiniciar el nivel 

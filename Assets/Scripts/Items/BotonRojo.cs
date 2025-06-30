@@ -7,6 +7,8 @@ public class BotonRojo : Item
     [Header("Asignaciones")]
     private MovAndStamina _jugador;
     [SerializeField] private Transform _Reja;
+    [SerializeField] private CapsuleCollider _collider;
+
 
     [Header("Audio")]
     [SerializeField] public AudioSource _Sonido;
@@ -27,10 +29,14 @@ public class BotonRojo : Item
     public override void Interactuar(GameObject Interactor)
     {
         base.Interactuar(Interactor);
+
         if (!_rejaSubiendo)
         {
             _Sonido.PlayOneShot(sonidoBoton);
             StartCoroutine(SubirRejaSuavemente());
+            ToggleShowTag(false);
+            _collider.enabled = false;
+
         }
     }
 

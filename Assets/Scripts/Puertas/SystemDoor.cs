@@ -80,6 +80,7 @@ public class SystemDoor : MonoBehaviour, IInteractuables
 
     public void Interactuar(GameObject interactor)
     {
+        Debug.Log("Ez`");
         doorOpen = !doorOpen; // Alterna entre abrir y cerrar
         AudioSource.PlayOneShot(RuidoPuerta);
     }

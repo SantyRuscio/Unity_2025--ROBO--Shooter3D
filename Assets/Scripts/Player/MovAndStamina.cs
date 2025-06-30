@@ -79,7 +79,7 @@ public class MovAndStamina : MonoBehaviour, IJump
         if (!_canMove) return; // bloquear movimiento si est� paralizado
 
 
-        _movementHandle.OnMove(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        _movementHandle.MoveCall(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
     }
     private void LateUpdate()
@@ -135,7 +135,7 @@ public class MovAndStamina : MonoBehaviour, IJump
             Debug.Log("Saltando");
             _sonido.PlayOneShot(_Salto);
             _isJumping = true;
-            _movementHandle.OnJump();
+            _movementHandle.JumpCall();
             StartCoroutine(jumpTime());
         }
         else
@@ -243,9 +243,9 @@ public class MovAndStamina : MonoBehaviour, IJump
 
             foreach(var item in i)
             {
-                if(item.GetComponent<Item>() != null)
+                if(item.GetComponent<IInteractuables>() != null)
                 {
-                    item.GetComponent<Item>().Interactuar(gameObject);
+                    item.GetComponent<IInteractuables>().Interactuar(gameObject);
                     break;
                 }
             }

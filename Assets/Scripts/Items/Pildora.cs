@@ -23,8 +23,6 @@ public class Pildora : Item
 
         if(_jugador == null) return;
 
-        base.Interactuar(Interactor);
-
         _jugador.ChangeCanJumpState(true);
 
         if (sonidoSalto != null && _Sonido != null)

@@ -28,6 +28,8 @@ public class Diamond : Item
 
     public override void Interactuar(GameObject Interactor)
     {
+        base.Interactuar(Interactor);
+
         foreach (EnemigoIA current in enemigos)
         {
             current.Agresive = true;

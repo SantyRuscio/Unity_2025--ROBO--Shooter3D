@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ChipHackingSystem : Item
 {
-    private MovAndStamina _jugador;
+    [SerializeField] private MovAndStamina _jugador;
 
     [SerializeField] private float _timerSound = 0.99f;
 
@@ -18,7 +18,10 @@ public class ChipHackingSystem : Item
 
     public override void Interactuar(GameObject Interactor)
     {
+        base.Interactuar(Interactor);
+
         PlayerAnimator playerAnimator = _jugador.GetComponent<PlayerAnimator>();
+
         if (playerAnimator != null)
         {
             playerAnimator.TriggerSpecialAnimation();

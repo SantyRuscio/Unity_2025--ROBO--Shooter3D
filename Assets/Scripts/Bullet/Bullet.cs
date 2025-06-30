@@ -25,6 +25,8 @@ public class Bullet : MonoBehaviour
     {
         Debug.Log("Bala impact� contra: " + other.gameObject.name);
 
+        if (other.GetComponent<CollisionDetecter>() != null) { }
+
         var damageable = other.GetComponent<IDamageable>();
 
         Plataforma plataforma = other.GetComponent<Plataforma>();
@@ -38,6 +40,8 @@ public class Bullet : MonoBehaviour
         {
             plataforma.ForceBrocken();
         }
+
+        Debug.Log(other.gameObject.name);
        Destroy(gameObject); // La bala se destruye sin importar con qu� choque. 
 
     }

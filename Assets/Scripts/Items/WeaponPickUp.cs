@@ -36,6 +36,7 @@ public class WeaponPickUp : Item
 
     public override void Interactuar(GameObject Interactor)
     {
+        base.Interactuar(Interactor);
 
         _weaponPlayer = Interactor.GetComponent<WeaponPlayer>();
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8539277372180021129}
   - component: {fileID: 4702867716777701803}
   - component: {fileID: 2366879450814309372}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -175,6 +175,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 9mm_bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e1734b9b6b167049912f547f41e109e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429700056739269681, guid: 3e1734b9b6b167049912f547f41e109e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934631751490719391, guid: 3e1734b9b6b167049912f547f41e109e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7749118212346495024, guid: 3e1734b9b6b167049912f547f41e109e,
         type: 3}
