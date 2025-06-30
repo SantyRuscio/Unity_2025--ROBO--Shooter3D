@@ -19,6 +19,15 @@ public class Bullet : MonoBehaviour
     {
         bulletRb = GetComponent<Rigidbody>();
         bulletRb.AddForce(transform.forward * bulletPower, ForceMode.Impulse);
+
+        Collider checkerCollider = GameObject.Find("Checker").GetComponent<Collider>();
+        Collider myCollider = GetComponent<Collider>();
+
+        if (checkerCollider != null && myCollider != null)
+        {
+            Physics.IgnoreCollision(myCollider, checkerCollider);
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
