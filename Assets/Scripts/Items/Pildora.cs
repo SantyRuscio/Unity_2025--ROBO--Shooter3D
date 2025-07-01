@@ -19,6 +19,8 @@ public class Pildora : Item
         
     public override void Interactuar(GameObject Interactor)
     {
+        base.Interactuar(Interactor);
+
         _jugador = Interactor.GetComponent<IJump>();
 
         if(_jugador == null) return;
