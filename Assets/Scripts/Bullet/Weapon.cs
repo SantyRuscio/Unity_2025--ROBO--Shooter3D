@@ -3,30 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]   
+public struct WeaponSettings
+{
+    public GameObject _bulletPrefab;
+    public AudioClip _pickUpSFX;
+    public AudioClip sonidoDisparo;
+    public WeaponType type;
+    public float _timeBetweenShots;
+}
+
+
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected Transform _shootSpawn;
 
-    [SerializeField] protected GameObject _bulletPrefab;
-
-    [SerializeField] public  AudioClip _pickUpSFX;
-
     //Balas que se pueden disparar le puse 500 depues lo editamos mas adelanmte
     [SerializeField] protected int _remainingBullets = 500;
 
-    //Tiempo de cooldown entre disparos
-    [SerializeField] protected float _timeBetweenShots = 0.5f;
+    [SerializeField] protected WeaponSettings _data;
 
-    public WeaponType type;
     public abstract void Shoot();
     public abstract void Realease();
 
     protected abstract bool CheckCanShoot();
 
+    public WeaponType GetweaponType
+    {
+        get { return _data.type; }
+    }
+    public AudioClip GetPickupSound
+    {
+        get { return _data._pickUpSFX; }
+    }
     protected void InstanciateBullet()
     {
         // Crear la bala
-        Instantiate(_bulletPrefab, _shootSpawn.position, Quaternion.LookRotation(GetShootDirection()));
+        Instantiate(_data._bulletPrefab, _shootSpawn.position, Quaternion.LookRotation(GetShootDirection()));
 
 
         RemoveBullet();

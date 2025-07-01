@@ -8,7 +8,6 @@ public class PistolController : Weapon
     protected float lastShotTime = 0f;
 
     [SerializeField] public AudioSource _Pistol;
-    [SerializeField] private AudioClip sonidoDisparo;
 
     public ParticleSystem fogonazo;
     public override void Realease() { }
@@ -17,7 +16,7 @@ public class PistolController : Weapon
     {
         if (CheckCanShoot() == false) return;
 
-        _Pistol.PlayOneShot(sonidoDisparo);
+        _Pistol.PlayOneShot(_data.sonidoDisparo);
 
         fogonazo.Play();
 
@@ -29,7 +28,7 @@ public class PistolController : Weapon
     protected override bool CheckCanShoot()
     {
         // Solo disparar si quedan balas y ha pasado suficiente tiempo desde el ultimo disparo
-        if (_remainingBullets > 0 && Time.time >= lastShotTime + _timeBetweenShots)
+        if (_remainingBullets > 0 && Time.time >= lastShotTime + _data._timeBetweenShots)
         {
             return true;
         }

@@ -1293,14 +1293,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootSpawn: {fileID: 5268625728748620298}
-  _bulletPrefab: {fileID: 5464425902589247731, guid: 6dd2fec6b3eb8c041b8356525e8f91c4,
-    type: 3}
-  _pickUpSFX: {fileID: 8300000, guid: 278b730b4e14f514dbceae5640727f36, type: 3}
   _remainingBullets: 500
-  _timeBetweenShots: 0.2
-  type: 1
+  _data:
+    _bulletPrefab: {fileID: 5464425902589247731, guid: 6dd2fec6b3eb8c041b8356525e8f91c4,
+      type: 3}
+    _pickUpSFX: {fileID: 8300000, guid: 278b730b4e14f514dbceae5640727f36, type: 3}
+    sonidoDisparo: {fileID: 8300000, guid: 5dda1562d8268d94b86e6ae6ea35f630, type: 3}
+    type: 1
+    _timeBetweenShots: 0.19
   _AkTiro: {fileID: -6468737515279793083}
-  sonidoDisparo: {fileID: 8300000, guid: 5dda1562d8268d94b86e6ae6ea35f630, type: 3}
 --- !u!82 &-6468737515279793083
 AudioSource:
   m_ObjectHideFlags: 0

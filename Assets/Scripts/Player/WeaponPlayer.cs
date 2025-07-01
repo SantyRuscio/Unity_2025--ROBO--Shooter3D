@@ -36,7 +36,7 @@ public class WeaponPlayer : MonoBehaviour
 
         foreach (var item in weapon)
         {
-            _weapons.Add(item.type, item);  
+            _weapons.Add(item.GetweaponType, item);  
         }
     }
 
@@ -49,7 +49,7 @@ public class WeaponPlayer : MonoBehaviour
     {
         get
         {
-            return _currentWeapon.type;
+            return _currentWeapon.GetweaponType;
         }
         
         private set { }
@@ -66,7 +66,7 @@ public class WeaponPlayer : MonoBehaviour
             if (_weapons.ContainsKey(weaponType))
             {
                 crosshairImage.enabled = true;
-                _audioSource.PlayOneShot(_weapons[weaponType]._pickUpSFX);
+                _audioSource.PlayOneShot(_weapons[weaponType].GetPickupSound);
                 _currentWeapon = _weapons[weaponType];
             }
 
