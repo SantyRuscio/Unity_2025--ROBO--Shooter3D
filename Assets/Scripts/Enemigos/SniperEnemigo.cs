@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Ruscio Santiago
+
 public class SniperEnemigo : EnemigoIA
 {
     [Header("Configuración Sniper")]

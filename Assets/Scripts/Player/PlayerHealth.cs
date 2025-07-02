@@ -5,6 +5,8 @@ using UnityEngine.ProBuilder;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//Codigo por: Beghin Ulises
+
 public class PlayerHealth : MonoBehaviour, IDamageable, IHeal
 {
     [Header("Configuración de Vida")]

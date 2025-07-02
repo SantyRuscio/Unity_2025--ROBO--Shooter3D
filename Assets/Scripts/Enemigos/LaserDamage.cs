@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Ruscio Santiago
+
 public class LaserDamage : MonoBehaviour
 {
     [SerializeField] private float damageAmount = 25f;

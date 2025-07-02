@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Codigo por: Santiago Ruscio
 public class MenuOpciones : MonoBehaviour
 {
     public void VolverMenu()

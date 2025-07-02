@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+//Codigo por: Ulises Beghin
 public class MenuPausa : MonoBehaviour
 {
     public GameObject pauseMenuUI;

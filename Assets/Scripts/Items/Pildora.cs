@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Beghin Ulises
+
 public class Pildora : Item
 {
     private IJump _jugador;

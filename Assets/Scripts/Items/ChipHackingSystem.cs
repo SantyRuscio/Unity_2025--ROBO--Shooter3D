@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+//Codigo por: Beghin Ulises
 public class ChipHackingSystem : Item
 {
     [SerializeField] private MovAndStamina _jugador;
@@ -43,7 +45,7 @@ public class ChipHackingSystem : Item
     {
         _Sonido.PlayOneShot(sonidoHackear);
         yield return new WaitForSeconds(_timerSound); // espera que el audio termine
-        gameObject.SetActive(false); // ahora sí se puede apagar
+        gameObject.SetActive(false); 
         Destroy(gameObject);
     }
 

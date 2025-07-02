@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Codigo por: Berola Lazaro
+
 public class Cuadro : Item
 {
     [SerializeField] private RawImage _cuadroImagen;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Ulises beghin
+
 public class CameraSecurityIA : EnemigoIA
 {
     [Header("Ataque de C�mara")]

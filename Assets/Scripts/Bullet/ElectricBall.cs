@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Santiago Ruscio
+
 public class ElectricBall : MonoBehaviour
 {
     Rigidbody bulletRb;

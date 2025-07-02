@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Lazaro Berola
+
 public class CamaraSeguimiento
 {
     private Transform _playerTr;

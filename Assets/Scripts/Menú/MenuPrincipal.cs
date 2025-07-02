@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+//Codigo por: Ulises Beghin
+
 public class MenuPrincipal : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] private AudioSource _sonido;

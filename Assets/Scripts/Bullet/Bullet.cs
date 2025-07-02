@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
+//Codigo por: Berola Lazaro
+
 public class Bullet : MonoBehaviour
 {
 

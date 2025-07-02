@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
+//Codigo por: Beghin Ulises
 public class SystemDoor : MonoBehaviour, IInteractuables
 {
     [Header("Referencia")]
@@ -11,7 +13,7 @@ public class SystemDoor : MonoBehaviour, IInteractuables
     [SerializeField] private Item item;
     [SerializeField] private TextMeshProUGUI _Indicaciones;
 
-    [Header("Ángulos de apertura")]
+    [Header("ï¿½ngulos de apertura")]
     [SerializeField] private float doorOpenAngle = -18.9f;
     [SerializeField] private float doorCloseAngle = 0f;
 

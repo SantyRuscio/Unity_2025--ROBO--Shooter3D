@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Codigo por: Santiago Ruscio
+
 public class WeaponPlayer : MonoBehaviour
 {
     public bool HasWeapon

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+//Codigo por: Berola Lazaro
 public class Medkit : Item
 {
     public int healAmount = 30;

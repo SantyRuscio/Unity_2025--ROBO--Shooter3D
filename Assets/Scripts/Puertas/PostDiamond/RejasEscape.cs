@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+//Codigo por: Lazaro Berola
 public class RejasEscape : MonoBehaviour
 {
     [SerializeField] private bool _diamondWasPicked = false;

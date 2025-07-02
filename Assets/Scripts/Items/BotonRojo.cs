@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Ruscio Santiago
 public class BotonRojo : Item
 {
     [Header("Asignaciones")]

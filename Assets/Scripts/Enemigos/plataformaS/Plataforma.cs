@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Santiago Ruscio
 public class Plataforma : MonoBehaviour
 {
     private bool _isFalse = false;

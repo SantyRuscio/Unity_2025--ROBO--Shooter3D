@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+//Codigo por: Santiago Ruscio
 public class CondicionVictoria : MonoBehaviour
 {
     [SerializeField] private string escenaVictoria = "Victoria";
