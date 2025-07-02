@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+//Codigo por: Berola Lazaro
+
 public enum WeaponType
 {
     Pistol,

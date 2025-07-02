@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Codigo por: Berola Lazaro
+
 [RequireComponent(typeof(NavMeshAgent))]
 
 public class EnemigoSWAT : EnemigoIA

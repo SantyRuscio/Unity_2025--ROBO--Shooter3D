@@ -4,6 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//Codigo por: Ruscio Santiago
+
 public class DoorDiamond : MonoBehaviour
 {
     [Header("Referencia")]
@@ -11,7 +13,7 @@ public class DoorDiamond : MonoBehaviour
     private Collider _doorCollider;
 
     [Header("Apertura")]
-    [SerializeField] private Vector3 openOffset = new Vector3(-8f, 0f, 0f); // cuánto se desliza la puerta
+    [SerializeField] private Vector3 openOffset = new Vector3(-8f, 0f, 0f); // cuï¿½nto se desliza la puerta
     [SerializeField] private float openSpeed = 2f;
     private Vector3 _closedPosition;
     private Vector3 _openPosition;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Beghin Ulises
+
 public class EsferaLaserVertical : LaserPadre
 {
     public float velocidadMovimiento = 3f;

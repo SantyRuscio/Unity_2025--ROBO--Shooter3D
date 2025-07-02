@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Santiago Ruscio
+
 public class Diamond : Item
 {
     [Header("Asignaciones")]

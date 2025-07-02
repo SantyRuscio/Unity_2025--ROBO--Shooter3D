@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//Codigo por: Ruscio Santiago
+
 public abstract class Item : MonoBehaviour, IInteractuables
 {
     protected abstract bool CanItemBeUse();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Berola Lazaro
 public abstract class LaserPadre : EnemigoIA
 {
     [Header("Configuración General")]

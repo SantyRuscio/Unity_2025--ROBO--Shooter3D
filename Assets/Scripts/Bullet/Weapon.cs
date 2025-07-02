@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Santiago Ruscio
+
 [System.Serializable]   
 public struct WeaponSettings
 {
@@ -36,11 +38,31 @@ public abstract class Weapon : MonoBehaviour
     {
         get { return _data._pickUpSFX; }
     }
-    protected void InstanciateBullet()
+    protected void RaycastShoot(float Damage)
     {
-        // Crear la bala
-        Instantiate(_data._bulletPrefab, _shootSpawn.position, Quaternion.LookRotation(GetShootDirection()));
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        RaycastHit hit;
 
+        if (Physics.Raycast(ray, out hit, 1000f))
+        {
+            Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red, 1f); 
+            Debug.Log("Le diste a: " + hit.collider.name);
+
+            // Verificar si tiene vida
+            IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(Damage); 
+            }
+
+            Plataforma plataforma = hit.collider.GetComponent<Plataforma>();
+            if (plataforma != null)
+            {
+                plataforma.ForceBrocken();
+            }
+
+
+        }
 
         RemoveBullet();
     }

@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Berola Lazaro
+
 public class PistolController : Weapon
 {
     //Tiempo del ultimo disparo
     protected float lastShotTime = 0f;
 
     [SerializeField] public AudioSource _Pistol;
+    [SerializeField] private float PistolDamage = 20f;
 
     public ParticleSystem fogonazo;
     public override void Realease() { }
@@ -22,7 +25,7 @@ public class PistolController : Weapon
 
         lastShotTime = Time.time;  // Actualizar el tiempo del ultimo disparo
 
-       InstanciateBullet();
+        RaycastShoot(PistolDamage);
     }
 
     protected override bool CheckCanShoot()

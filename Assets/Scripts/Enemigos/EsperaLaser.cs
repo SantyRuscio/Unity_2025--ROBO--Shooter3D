@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Ruscio, Beghin, Berola
+
 public enum TipoMovimientooS
 { 
     Vertical,
@@ -12,7 +14,7 @@ public enum TipoMovimientooS
 public class EsperaLaser : EnemigoIA
 {
 
-    [Header("Configuración general")]
+    [Header("Configuraciï¿½n general")]
     [SerializeField] private TipoMovimientooS tipoMovimiento;
     [SerializeField] float velocidadMovimiento;
     [SerializeField] float distanciaMovimiento;

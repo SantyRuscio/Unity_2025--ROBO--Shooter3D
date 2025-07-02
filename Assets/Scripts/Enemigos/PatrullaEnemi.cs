@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Codigo por: Beghin Ulises
+
 [RequireComponent(typeof(NavMeshAgent))]
 
 

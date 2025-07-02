@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Ruscio Santiago
+
 public class SniperEnemigo : EnemigoIA
 {
     [Header("Configuración Sniper")]
@@ -11,6 +13,10 @@ public class SniperEnemigo : EnemigoIA
     public Transform puntoDisparo;
     public float fuerzaDisparo = 30f;
     public Animator animator;
+
+    [Header("Audio")]
+    [SerializeField] public AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoMuerte;
 
     private float tiempoApuntando;
     private bool estaApuntando;
@@ -84,6 +90,7 @@ public class SniperEnemigo : EnemigoIA
             animator.SetTrigger("isShooting");
 
         GameObject bala = Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
+        Debug.Log("Disparó el sniper");
         bala.transform.LookAt(target.position);
         Rigidbody rb = bala.GetComponent<Rigidbody>();
 
@@ -110,6 +117,7 @@ public class SniperEnemigo : EnemigoIA
 
     IEnumerator DeathAnim()
     {
+        _Sonido.PlayOneShot(sonidoMuerte);
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }

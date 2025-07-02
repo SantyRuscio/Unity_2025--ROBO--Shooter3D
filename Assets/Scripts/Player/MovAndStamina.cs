@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Codigo por: Beghin Ulises, Ruscio Santiago
+
 public class MovAndStamina : MonoBehaviour, IJump
 {
     [Header("Movimiento")]

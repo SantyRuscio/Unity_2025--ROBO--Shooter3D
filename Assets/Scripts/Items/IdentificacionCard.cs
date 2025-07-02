@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.Services.Analytics;
 using UnityEngine;
 
+//Codigo por: Beghin Ulises
+
 public class IdentificacionCard : Item
 {
     private MovAndStamina _player1;

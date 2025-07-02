@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Codigo por: Beghin Ulises
+
 public class AsignadorDePlataformaFalsa : MonoBehaviour
 {
     [SerializeField] private Plataforma[] _childPlatforms;

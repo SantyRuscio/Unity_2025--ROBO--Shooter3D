@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+//Codigo por: Berola, Ruscio, Beghin
 public abstract class EnemigoIA : MonoBehaviour
 {
     public Estados estado;

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+
+//Codigo por: Berola, Ruscio, Beghin
 public class MovementHandle
 {
     private float _horizontalInput, _verticalInput, _movementSpeed, _jumpForce;
