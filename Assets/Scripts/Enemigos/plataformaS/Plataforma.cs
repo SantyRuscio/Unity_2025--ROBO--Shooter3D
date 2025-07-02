@@ -30,6 +30,7 @@ public class Plataforma : MonoBehaviour
     {
         if (_isFalse)
         {
+            _Sonido.PlayOneShot(sonidoPisada);
             RomperPlataforma();
         }
     }

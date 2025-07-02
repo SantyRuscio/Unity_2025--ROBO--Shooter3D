@@ -10,6 +10,7 @@ public class PistolController : Weapon
     protected float lastShotTime = 0f;
 
     [SerializeField] public AudioSource _Pistol;
+    [SerializeField] private float PistolDamage = 20f;
 
     public ParticleSystem fogonazo;
     public override void Realease() { }
@@ -24,7 +25,7 @@ public class PistolController : Weapon
 
         lastShotTime = Time.time;  // Actualizar el tiempo del ultimo disparo
 
-       InstanciateBullet();
+        RaycastShoot(PistolDamage);
     }
 
     protected override bool CheckCanShoot()

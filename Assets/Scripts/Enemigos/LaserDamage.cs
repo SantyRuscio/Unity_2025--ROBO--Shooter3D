@@ -10,8 +10,6 @@ public class LaserDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Bala impact� contra: " + other.gameObject.name);
-
         var damageable = other.GetComponent<IDamageable>();
 
         if (damageable != null && other.CompareTag("Player"))

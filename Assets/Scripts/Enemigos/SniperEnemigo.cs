@@ -14,6 +14,10 @@ public class SniperEnemigo : EnemigoIA
     public float fuerzaDisparo = 30f;
     public Animator animator;
 
+    [Header("Audio")]
+    [SerializeField] public AudioSource _Sonido;
+    [SerializeField] private AudioClip sonidoMuerte;
+
     private float tiempoApuntando;
     private bool estaApuntando;
     private float tiempoEntreDisparos;
@@ -113,6 +117,7 @@ public class SniperEnemigo : EnemigoIA
 
     IEnumerator DeathAnim()
     {
+        _Sonido.PlayOneShot(sonidoMuerte);
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
