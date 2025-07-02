@@ -84,6 +84,7 @@ public class SniperEnemigo : EnemigoIA
             animator.SetTrigger("isShooting");
 
         GameObject bala = Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
+        Debug.Log("Disparó el sniper");
         bala.transform.LookAt(target.position);
         Rigidbody rb = bala.GetComponent<Rigidbody>();
 
