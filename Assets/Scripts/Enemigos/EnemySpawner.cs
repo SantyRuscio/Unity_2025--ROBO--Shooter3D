@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Configuración de Spawn")]
+    [Header("Configuraciï¿½n de Spawn")]
     public GameObject enemyPrefab;
     public int maxEnemiesToSpawn = 10;
     public float minSpawnTime = 2f;

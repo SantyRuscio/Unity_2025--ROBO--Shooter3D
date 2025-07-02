@@ -10,11 +10,6 @@ public class EnemigoSpawneado : MonoBehaviour
     private void Start()
     {
         enemigoIA = GetComponent<EnemigoIA>();
-
-        if (enemigoIA != null)
-        {
-            enemigoIA.Agresive = true;
-        }
     }
 
     public void SetSpawner(EnemySpawner spawnerRef)
