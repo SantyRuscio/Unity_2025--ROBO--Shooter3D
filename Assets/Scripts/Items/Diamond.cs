@@ -12,7 +12,8 @@ public class Diamond : Item
     private EnemigoIA[] enemigos;
     [SerializeField] private RejasEscape _rejasEscape;
     [SerializeField] private float _timerSound = 0.3f;
-    
+
+    [SerializeField] private List<EnemySpawner> spawners; //se agrego nuevo
 
     [Header("Audio")]
     [SerializeField] private AudioSource _Sonido;
@@ -44,6 +45,11 @@ public class Diamond : Item
 
         GetComponent<Collider>().enabled = false;
         GetComponent<MeshRenderer>().enabled = false;
+
+        foreach (var spawner in spawners)// se agrego
+        {
+            spawner.StartSpawning();
+        } // se agrego
 
         StartCoroutine(ReproducirDiamond());
 
