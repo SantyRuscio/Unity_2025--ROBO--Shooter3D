@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ConejosSouns : MonoBehaviour
+public class ConejosSouns : MonoBehaviour, IDamageable
 {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioDianas;
@@ -14,18 +14,17 @@ public class ConejosSouns : MonoBehaviour
 
     private bool _audioComandanteReproducido = false;
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(float damage)
     {
-        if (other.CompareTag("Bullet"))
-        {
-            _audioSource.PlayOneShot(_audioDianas);
-            Debug.Log("Me pegó una bala");
 
-            if (!_audioComandanteReproducido)
-            {
-                _audioComandanteReproducido = true;
-                StartCoroutine(Comandante());
-            }
+        Debug.Log("Me pego una bala" + "me hizo" + damage + "daÃ±o, pero no me muero por que estoy re potente");
+
+        _audioSource.PlayOneShot(_audioDianas);
+
+        if (!_audioComandanteReproducido)
+        {
+            _audioComandanteReproducido = true;
+            StartCoroutine(Comandante());
         }
     }
 
