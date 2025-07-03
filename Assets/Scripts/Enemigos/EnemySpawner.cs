@@ -35,8 +35,9 @@ public class EnemySpawner : MonoBehaviour
             GameObject newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             EnemigoSpawneado enemyScript = newEnemy.AddComponent<EnemigoSpawneado>();
             enemyScript.SetSpawner(this);
+            enemiesSpawned++;                        // hay que castear las lineas 35-38 y llamar a la funcion de abajo
 
-            enemiesSpawned++;
+           // enemigoRecienCreado.SetTarget();
         }
     }
 

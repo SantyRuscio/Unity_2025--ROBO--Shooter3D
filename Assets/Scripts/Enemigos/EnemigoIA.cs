@@ -32,6 +32,15 @@ public abstract class EnemigoIA : MonoBehaviour
         StartCoroutine(CalcularDistancia());
     }
 
+    public void SetTarget()
+    {
+        StopCoroutine(CalcularDistancia());
+
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        StartCoroutine(CalcularDistancia());
+    }
+
     private void LateUpdate()
     {
         CheckEstado();
