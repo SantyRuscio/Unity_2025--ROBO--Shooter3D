@@ -160,6 +160,11 @@ public abstract class EnemigoIA : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, distanceToEscape);
     }
+
+    public virtual void SetTarget(Transform t)
+    {
+        target = t;
+    }
 }
 
 public enum Estados

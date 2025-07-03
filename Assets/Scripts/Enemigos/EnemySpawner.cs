@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Configuraci�n de Spawn")]
+    [Header("Configuración de Spawn")]
     public GameObject enemyPrefab;
     public int maxEnemiesToSpawn = 10;
     public float minSpawnTime = 2f;
@@ -33,11 +33,26 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
 
             GameObject newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-            EnemigoSpawneado enemyScript = newEnemy.AddComponent<EnemigoSpawneado>();
-            enemyScript.SetSpawner(this);
-            enemiesSpawned++;                        // hay que castear las lineas 35-38 y llamar a la funcion de abajo
 
-           // enemigoRecienCreado.SetTarget();
+            EnemigoSpawneado enemyScript = newEnemy.GetComponent<EnemigoSpawneado>();
+            if (enemyScript == null)
+                enemyScript = newEnemy.AddComponent<EnemigoSpawneado>();
+
+            enemyScript.SetSpawner(this);
+            enemyScript.SetTarget();
+
+            EnemigoIA enemigoIA = newEnemy.GetComponent<EnemigoIA>();
+            if (enemigoIA != null)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    enemigoIA.SetTarget(player.transform);
+                    enemigoIA.Agresive = true;
+                }
+            }
+
+            enemiesSpawned++;
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemigoSpawneado : MonoBehaviour
 {
@@ -15,6 +16,15 @@ public class EnemigoSpawneado : MonoBehaviour
     public void SetSpawner(EnemySpawner spawnerRef)
     {
         spawner = spawnerRef;
+    }
+
+    public void SetTarget()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null && enemigoIA != null)
+        {
+            enemigoIA.SetTarget(player.transform);
+        }
     }
 
     private void Update()

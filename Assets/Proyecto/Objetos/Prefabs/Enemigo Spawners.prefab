@@ -75,6 +75,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4972406053636107749, guid: 24930a1501a746e43bc0229bfe522078,
         type: 3}
+      propertyPath: sonidoPesigue
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972406053636107749, guid: 24930a1501a746e43bc0229bfe522078,
+        type: 3}
       propertyPath: "_da\xF1oAlJugador"
       value: 20
       objectReference: {fileID: 0}
