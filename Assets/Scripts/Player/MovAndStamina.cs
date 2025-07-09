@@ -13,6 +13,7 @@ public class MovAndStamina : MonoBehaviour, IJump
     private MovementHandle _movementHandle;
     private CamaraSeguimiento _camaraSeguimiento;
     private bool _canMove = true;
+    [SerializeField] float rangoInteractuable = 5;
 
     [Header("Stamina")]
     public float maxStamina = 100f;
@@ -21,6 +22,7 @@ public class MovAndStamina : MonoBehaviour, IJump
     public float staminaRegen = 10f;
     private bool isSprinting = false;
     private bool isExhausted = false;
+    private float _jumpTime = 0.7f;
 
     [Header("Jumping")]
     private bool _canJump = false;
@@ -147,7 +149,7 @@ public class MovAndStamina : MonoBehaviour, IJump
     }
      IEnumerator jumpTime()
      {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(_jumpTime);
         _isJumping = false;
      }
 
@@ -241,7 +243,7 @@ public class MovAndStamina : MonoBehaviour, IJump
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            var i = Physics.OverlapSphere(transform.position, 5);
+            var i = Physics.OverlapSphere(transform.position, rangoInteractuable);
 
             foreach(var item in i)
             {

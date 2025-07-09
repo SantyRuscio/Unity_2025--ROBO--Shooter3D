@@ -14,7 +14,6 @@ public class WeaponPlayer : MonoBehaviour
             return _currentWeapon != null;
         }
 
-        private set { }
     }
 
     [SerializeField] private Weapon[] weapon;
@@ -54,7 +53,6 @@ public class WeaponPlayer : MonoBehaviour
             return _currentWeapon.GetweaponType;
         }
         
-        private set { }
     }
 
     public void GetWeapon(WeaponType weaponType, GameObject weaponprefab, Transform intanceSlot)
