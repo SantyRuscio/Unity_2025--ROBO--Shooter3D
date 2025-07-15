@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,10 @@ public class MovAndStamina : MonoBehaviour, IJump
     private CamaraSeguimiento _camaraSeguimiento;
     private bool _canMove = true;
     [SerializeField] float rangoInteractuable = 5;
+
+    //eventos
+    public event Action<float, float> OnMove;
+    public event Action OnJump;
 
     [Header("Stamina")]
     public float maxStamina = 100f;
@@ -52,7 +57,7 @@ public class MovAndStamina : MonoBehaviour, IJump
         _rigidBody = GetComponent<Rigidbody>();
         _weaponPlayer = GetComponent<WeaponPlayer>();
 
-        _movementHandle = new MovementHandle(_playerSpeed, _jumpForcce, transform, _rigidBody);
+        _movementHandle = new MovementHandle(_playerSpeed, _jumpForcce, transform, _rigidBody, ref OnMove, ref OnJump);
 
         _camaraSeguimiento = new CamaraSeguimiento(transform, _cameraTrack, _cameraAxis);
     }
@@ -83,7 +88,9 @@ public class MovAndStamina : MonoBehaviour, IJump
         if (!_canMove) return; // bloquear movimiento si est� paralizado
 
 
-        _movementHandle.MoveCall(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //_movementHandle.MoveCall(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        OnMove?.Invoke(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
 
     }
     private void LateUpdate()
@@ -139,7 +146,8 @@ public class MovAndStamina : MonoBehaviour, IJump
             Debug.Log("Saltando");
             _sonido.PlayOneShot(_Salto);
             _isJumping = true;
-            _movementHandle.JumpCall();
+            //_movementHandle.JumpCall();
+            OnJump();
             StartCoroutine(jumpTime());
         }
         else

@@ -38,9 +38,6 @@ public class RifleController : Weapon
 
     protected override bool CheckCanShoot()
     {
-        if(_remainingBullets > 0)
-            return true;
-        else 
-            return false;
+        return _remainingBullets > 0;
     }
 }
