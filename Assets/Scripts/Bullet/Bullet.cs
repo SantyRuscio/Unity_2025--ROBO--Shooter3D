@@ -40,16 +40,9 @@ public class Bullet : MonoBehaviour
 
         var damageable = other.GetComponent<IDamageable>();
 
-        Plataforma plataforma = other.GetComponent<Plataforma>();
-
         if (damageable != null)
         {
             damageable.TakeDamage(_damage);
-        }
-
-        if (plataforma != null)
-        {
-            plataforma.ForceBrocken();
         }
 
         Debug.Log(other.gameObject.name);

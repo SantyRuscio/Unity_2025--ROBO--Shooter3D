@@ -13,43 +13,26 @@ public class ElectricBall : MonoBehaviour
     [SerializeField] float _damage = 10f;
     [SerializeField] float _paralyzeTime = 1.5f;
 
-    private MovAndStamina _jugador;
-
     [SerializeField]  private float time = 0f;
 
     void Start()
     {
         bulletRb = GetComponent<Rigidbody>();
         bulletRb.AddForce(transform.forward * _bulletPower, ForceMode.Impulse);
-
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            _jugador = player.GetComponent<MovAndStamina>();
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Bala impactó contra: " + other.gameObject.name);
 
-        PlayerAnimator playerAnimator = _jugador.GetComponent<PlayerAnimator>();
-
-        var damageable = other.GetComponent<IDamageable>();
+        var damageable = other.GetComponent<IParalyze>();
 
         if (damageable != null)
         {
-            damageable.TakeDamage(_damage);
+            damageable.TakeDamageParalyzed(_damage);
 
-            var playerHealth = other.GetComponent<PlayerHealth>();
-
-            if (playerHealth || playerAnimator  != null)
-            {
-                playerHealth.Paralyze(_paralyzeTime);
-
-                playerAnimator.TriggerSpecialElectricBall();
-            }
         }
     }
+
 
     private void Update()
     {

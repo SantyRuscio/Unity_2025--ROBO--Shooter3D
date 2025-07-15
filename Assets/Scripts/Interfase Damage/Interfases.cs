@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,4 +19,9 @@ public interface IHeal
 {
     public void Heal(int healAmount);
     bool CanRecover();
+}
+
+public interface IParalyze
+{
+    public void TakeDamageParalyzed(float damage);
 }

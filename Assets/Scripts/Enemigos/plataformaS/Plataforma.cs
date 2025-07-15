@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Codigo por: Santiago Ruscio
-public class Plataforma : MonoBehaviour
+public class Plataforma : MonoBehaviour, IDamageable
 {
     private bool _isFalse = false;
 
@@ -26,7 +26,7 @@ public class Plataforma : MonoBehaviour
         _isFalse = isfalse;
     }
 
-    public void ForceBrocken()
+    public void TakeDamage(float damage)
     {
         if (_isFalse)
         {

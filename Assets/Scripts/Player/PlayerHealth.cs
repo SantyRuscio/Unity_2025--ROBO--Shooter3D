@@ -7,13 +7,14 @@ using UnityEngine.UI;
 
 //Codigo por: Beghin Ulises
 
-public class PlayerHealth : MonoBehaviour, IDamageable, IHeal
+public class PlayerHealth : MonoBehaviour, IDamageable, IHeal, IParalyze
 {
     [Header("Configuración de Vida")]
 
     public float maxHealth = 100;
     public float currentHealth;
     public bool isDead = false;
+    private float DurationParalyzed = 1.5f;
 
     [Header("AudiosEspeciales")]
     [SerializeField] private AudioClip _hurtClip;
@@ -52,11 +53,45 @@ public class PlayerHealth : MonoBehaviour, IDamageable, IHeal
         }
     } //Daños y curaciones de prueba
 
-    public void Paralyze(float duration)
+    void IParalyze.TakeDamageParalyzed(float damage)
+    {
+        var duration = DurationParalyzed;
+
+        if (isDead) return;
+
+        currentHealth -= damage;
+        currentHealth = Mathf.Max(0, currentHealth);
+
+        if (_hurtClip != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(_hurtClip);
+            Paralyze(duration);
+
+        }
+
+        UpdateHealthUI();
+
+        //chequear si murio
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Paralyze(float duration)
     {
         _audioSource.PlayOneShot(_audioElectrico);
+
+        var playerAnimator = GetComponent<PlayerAnimator>(); 
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.TriggerSpecialElectricBall();
+        }
+
         StartCoroutine(ParalyzeCoroutine(duration));
     }
+
 
     private IEnumerator ParalyzeCoroutine(float duration)
     {

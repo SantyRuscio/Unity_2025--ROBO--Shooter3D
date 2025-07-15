@@ -55,13 +55,6 @@ public abstract class Weapon : MonoBehaviour
                 damageable.TakeDamage(Damage); 
             }
 
-            Plataforma plataforma = hit.collider.GetComponent<Plataforma>();
-            if (plataforma != null)
-            {
-                plataforma.ForceBrocken();
-            }
-
-
         }
 
         RemoveBullet();
