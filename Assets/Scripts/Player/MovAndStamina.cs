@@ -57,7 +57,7 @@ public class MovAndStamina : MonoBehaviour, IJump
         _rigidBody = GetComponent<Rigidbody>();
         _weaponPlayer = GetComponent<WeaponPlayer>();
 
-        _movementHandle = new MovementHandle(_playerSpeed, _jumpForcce, transform, _rigidBody, ref OnMove, ref OnJump);
+        _movementHandle = new MovementHandle(_playerSpeed, _jumpForcce, transform, _rigidBody, this );
 
         _camaraSeguimiento = new CamaraSeguimiento(transform, _cameraTrack, _cameraAxis);
     }

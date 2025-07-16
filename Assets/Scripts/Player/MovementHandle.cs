@@ -13,15 +13,15 @@ public class MovementHandle
     private Transform _transform;
     private Rigidbody _rigidBody;
 
-    public MovementHandle(float speed, float jumpForce, Transform transform, Rigidbody rigidBody, ref Action <float,float> MoveAction, ref Action jump)
+    public MovementHandle(float speed, float jumpForce, Transform transform, Rigidbody rigidBody, MovAndStamina movAndStamina)
     {
         _movementSpeed = speed;
         _transform = transform;
         _rigidBody = rigidBody;
         _jumpForce = jumpForce;
 
-        MoveAction += Move;
-        jump += Jump;
+        movAndStamina.OnMove += Move;
+        movAndStamina.OnJump += Jump;
     }
 
     ~MovementHandle() { }
