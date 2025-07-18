@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 //Codigo por: Santiago Ruscio
 
@@ -19,9 +20,8 @@ public struct WeaponSettings
 
 public abstract class Weapon : MonoBehaviour
 {
-    public delegate void OnAmmoChanged();
 
-    public event OnAmmoChanged AmmoChanged;
+    [SerializeField] private TextMeshProUGUI bulletsText;
 
     [SerializeField] protected Transform _shootSpawn;
 
@@ -34,6 +34,16 @@ public abstract class Weapon : MonoBehaviour
     public abstract void Realease();
 
     protected abstract bool CheckCanShoot();
+
+    protected virtual void Start()
+    {
+        if (bulletsText == null)
+        {
+            bulletsText = GameObject.Find("CantidadDeBalas").GetComponent<TextMeshProUGUI>();
+        }
+
+        UpdateBulletsUI();
+    }
 
     public WeaponType GetweaponType
     {
@@ -87,7 +97,7 @@ public abstract class Weapon : MonoBehaviour
 
         Debug.Log("Balas restantes: " + _remainingBullets);
 
-        AmmoChanged?.Invoke(); 
+        UpdateBulletsUI(); 
 
         if (_remainingBullets <= 0)
         {
@@ -95,8 +105,9 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    public int GetRemainingBullets()
+    private void UpdateBulletsUI()
     {
-        return _remainingBullets;
+        if (bulletsText != null)
+            bulletsText.text = "" + _remainingBullets;
     }
 }
