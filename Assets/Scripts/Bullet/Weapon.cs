@@ -16,8 +16,13 @@ public struct WeaponSettings
 }
 
 
+
 public abstract class Weapon : MonoBehaviour
 {
+    public delegate void OnAmmoChanged();
+
+    public event OnAmmoChanged AmmoChanged;
+
     [SerializeField] protected Transform _shootSpawn;
 
     //Balas que se pueden disparar le puse 500 depues lo editamos mas adelanmte
@@ -78,17 +83,20 @@ public abstract class Weapon : MonoBehaviour
 
     protected void RemoveBullet()
     {
-        // resta las balas restantes
         _remainingBullets--;
 
-        // Mostrar las balas restantes en consola checkeo
         Debug.Log("Balas restantes: " + _remainingBullets);
 
-        // Si no quedan balas 
+        AmmoChanged?.Invoke(); 
+
         if (_remainingBullets <= 0)
         {
-            Debug.Log("No tienes mas balas!");
+            Debug.Log("No tenes mas balas");
         }
     }
 
+    public int GetRemainingBullets()
+    {
+        return _remainingBullets;
+    }
 }
