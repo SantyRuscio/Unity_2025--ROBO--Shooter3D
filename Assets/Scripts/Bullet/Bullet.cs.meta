@@ -3,7 +3,9 @@ guid: fd6b9d6613169b64a9e0b74f4151c978
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Particulas_Sangre: {fileID: 9056510687256442834, guid: 6d1b1614df4f59448b03acff2ec118e8,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

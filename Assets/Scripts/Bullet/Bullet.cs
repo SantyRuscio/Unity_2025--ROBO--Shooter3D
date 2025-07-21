@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
 
     Rigidbody bulletRb;
 
+    [SerializeField] private GameObject hitParticlesPrefab; 
+
     [SerializeField] float bulletPower = 50f;
     [SerializeField] float lifeTime = 10f;
     [SerializeField] float _damage = 20f;
@@ -46,8 +48,7 @@ public class Bullet : MonoBehaviour
         }
 
         Debug.Log(other.gameObject.name);
-       Destroy(gameObject); // La bala se destruye sin importar con qu� choque. 
-
+       Destroy(gameObject); 
     }
 
     private void OnTriggerExit(Collider other)
