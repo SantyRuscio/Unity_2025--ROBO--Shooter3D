@@ -9,6 +9,7 @@ public class Cama : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _tocaLaLetra;
     private AudioGenerico AudioGenerico;
+    [SerializeField] private int Scene;
 
     private void Start()
     {
@@ -33,7 +34,7 @@ public class Cama : MonoBehaviour
     private void NextScene()
     {
         Debug.Log("CARGANDO ESCENA");
-        // SceneManager.LoadScene("Juego"); //fALTA poner el nombre que va realmente
+        SceneManager.LoadScene(Scene); //fALTA poner el nombre que va realmente
     }
 }
 

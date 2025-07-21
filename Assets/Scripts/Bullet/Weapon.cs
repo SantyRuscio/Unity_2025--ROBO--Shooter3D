@@ -25,6 +25,10 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField] protected Transform _shootSpawn;
 
+    [SerializeField] private GameObject weaponDropPrefab; // Prefab a soltar cuando se suelta el arma
+    [SerializeField] private Transform weaponDropPoint;   // Punto donde aparecerá (en el suelo)
+
+
     //Balas que se pueden disparar le puse 500 depues lo editamos mas adelanmte
     [SerializeField] protected int _remainingBullets = 500;
 
