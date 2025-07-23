@@ -8,8 +8,11 @@ using UnityEngine;
 public class UniformePrueba : Item
 {
     private MovAndStamina _player1;
-    [SerializeField] private float _timerSound = 0.3f;
+    [SerializeField] private float _timerSound = 4f;
 
+  [SerializeField] private TerminarExploracion exploracion;
+
+    private bool uniformeAgarrado = true;
 
     [Header("Audio")]
     [SerializeField] private AudioSource _Sonido;
@@ -29,7 +32,10 @@ public class UniformePrueba : Item
             _Sonido.PlayOneShot(sonidoRopa);
 
         GetComponent<Collider>().enabled = false;
-       // GetComponent<MeshRenderer>().enabled = false;
+
+        GetComponent<MeshRenderer>().enabled = false;
+
+        exploracion.Activar(uniformeAgarrado);
 
         StartCoroutine(ReproducirIdentificacion());
 

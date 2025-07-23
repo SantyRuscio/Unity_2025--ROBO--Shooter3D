@@ -34,7 +34,7 @@ public class Cama : MonoBehaviour
     private void NextScene()
     {
         Debug.Log("CARGANDO ESCENA");
-        SceneManager.LoadScene(Scene); //fALTA poner el nombre que va realmente
+        SceneManager.LoadScene(Scene); 
     }
 }
 

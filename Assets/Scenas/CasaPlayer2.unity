@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tocaLaLetra: {fileID: 1543831181}
-  Scene: 0
+  Scene: 5
 --- !u!136 &129736800
 CapsuleCollider:
   m_ObjectHideFlags: 0

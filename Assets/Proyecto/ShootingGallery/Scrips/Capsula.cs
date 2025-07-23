@@ -20,7 +20,7 @@ public class CambiarEscena : MonoBehaviour
     {
         if (jugadorDentro && Input.GetKeyDown(KeyCode.E))
         {
-            StartCoroutine(CambiarConFade("Juego"));
+            StartCoroutine(CambiarConFade("CasaPlayer1"));
         }
     }
 

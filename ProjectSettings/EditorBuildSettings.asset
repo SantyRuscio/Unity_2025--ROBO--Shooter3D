@@ -12,18 +12,21 @@ EditorBuildSettings:
     path: Assets/Scenas/ShootingGalery.unity
     guid: e5138c6b1ce0bff48bcc300648a59dda
   - enabled: 1
-    path: Assets/Scenas/Juego.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
     path: Assets/Scenas/CasaPlayer1.unity
     guid: ec8782fe5360e714aa41da69de0b336b
+  - enabled: 1
+    path: Assets/Scenas/Exploracion.unity
+    guid: c8d5bf0432c3edb449655b4da9de2e27
+  - enabled: 1
+    path: Assets/Scenas/CasaPlayer2.unity
+    guid: 46ff03cf00c3eb74cb7aea32104a9a66
+  - enabled: 1
+    path: Assets/Scenas/Juego.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenas/Derrota.unity
     guid: c3b9434e595fb7f4590e6a4fb53dae8b
   - enabled: 1
     path: Assets/Scenas/Victoria.unity
     guid: a7f8edcb0be8d5d429f9626c88925db4
-  - enabled: 1
-    path: Assets/Scenas/Exploracion.unity
-    guid: c8d5bf0432c3edb449655b4da9de2e27
   m_configObjects: {}
