@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenas/Victoria.unity
     guid: a7f8edcb0be8d5d429f9626c88925db4
+  - enabled: 1
+    path: Assets/Scenas/Exploracion.unity
+    guid: c8d5bf0432c3edb449655b4da9de2e27
   m_configObjects: {}

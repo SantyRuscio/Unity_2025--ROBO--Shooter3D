@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
     Rigidbody bulletRb;
 
     [SerializeField] private GameObject hitParticlesPrefab; 
-
     [SerializeField] float bulletPower = 50f;
     [SerializeField] float lifeTime = 10f;
     [SerializeField] float _damage = 20f;
