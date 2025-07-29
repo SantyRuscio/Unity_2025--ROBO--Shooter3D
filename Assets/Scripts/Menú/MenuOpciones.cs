@@ -13,7 +13,7 @@ public class MenuOpciones : MonoBehaviour
     }
     public void VolverReintento()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(5);
 
     }
 }
